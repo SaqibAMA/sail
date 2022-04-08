@@ -1,9 +1,10 @@
+import NavBar from './components/NavBar/NavBar';
 import './styles/App.scss';
 
 const App = ()=> {
   return (
     <main>
-      Hello World
+      <NavBar/>
     </main>
   );
 }
