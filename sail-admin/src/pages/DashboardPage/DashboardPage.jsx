@@ -1,4 +1,4 @@
-import { Container, Typography, Grid } from "@mui/material";
+import { Typography, Grid } from "@mui/material";
 import StatsCard from "../../components/StatsCard/StatsCard";
 
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
