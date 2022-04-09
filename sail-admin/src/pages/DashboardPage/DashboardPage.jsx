@@ -14,7 +14,7 @@ const page_styles = {
 
 const DashboardPage = () => {
   return (
-    <Container>
+    <section>
       <Typography sx={page_styles.title}>Dashboard</Typography>
 
       <Grid container spacing={3} mt={0}>
@@ -36,7 +36,7 @@ const DashboardPage = () => {
           <StatsCard icon={<CategoryIcon />} title="Products" value="1024" />
         </Grid>
       </Grid>
-    </Container>
+    </section>
   );
 };
 
