@@ -1,4 +1,4 @@
-import { Container, Stack, Link } from "@mui/material";
+import { Container, Stack, Link, IconButton, Avatar } from "@mui/material";
 import { ReactComponent as Logo } from "../../assets/logo-icon.svg";
 import LogoutIcon from "@mui/icons-material/Logout";
 
@@ -18,7 +18,7 @@ const nav_styles = {
   },
 };
 
-const NavBar = () => {
+const NavBar = ({auth, user, handleLogout}) => {
   return (
     <nav style={nav_styles.nav_container}>
       <Container>
@@ -41,9 +41,13 @@ const NavBar = () => {
               Products
             </Link>
           </Stack>
-          <Link sx={nav_styles.link} href="/logout">
-            <LogoutIcon />
-          </Link>
+          {auth &&
+          <Stack direction="row">
+            <Avatar alt={user.usrEmail} src={user.usrImage} />
+            <IconButton sx={nav_styles.link} onClick={handleLogout}>
+              <LogoutIcon />
+            </IconButton>
+          </Stack>}
         </Stack>
       </Container>
     </nav>

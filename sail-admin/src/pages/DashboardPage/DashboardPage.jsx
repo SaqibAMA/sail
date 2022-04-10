@@ -5,6 +5,10 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import PendingIcon from "@mui/icons-material/Pending";
 import CategoryIcon from "@mui/icons-material/Category";
 
+import {
+  Navigate,
+} from "react-router-dom";
+
 const page_styles = {
   title: {
     fontSize: "2rem",
@@ -12,9 +16,12 @@ const page_styles = {
   },
 };
 
-const DashboardPage = () => {
+const DashboardPage = ({auth}) => {
   return (
     <section>
+
+      {auth || <Navigate to="/login" />}
+
       <Typography sx={page_styles.title}>Dashboard</Typography>
 
       <Grid container spacing={3} mt={0}>

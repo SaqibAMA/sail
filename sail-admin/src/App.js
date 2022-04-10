@@ -1,13 +1,15 @@
+import { useState } from "react";
 import NavBar from "./components/NavBar/NavBar";
 import DashboardPage from "./pages/DashboardPage/DashboardPage";
+import Login from "./pages/Login/Login";
 import { Container } from "@mui/material";
 import "./styles/App.scss";
 import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
 } from "react-router-dom";
+import { allowedUsers } from "./data/allowedUsers";
 
 const app_styles = {
   page: {
@@ -16,22 +18,47 @@ const app_styles = {
 };
 
 const App = () => {
+  const [user, setUser] = useState(null);
+
+  const handleLogin = (res) => {
+    const usrEmail = res.user.email;
+    const usrImage = res.user.photoURL;
+
+    if (allowedUsers.includes(usrEmail)) {
+      setUser({
+        usrEmail,
+        usrImage,
+      });
+    } else {
+      setUser(null);
+    }
+  };
+
   return (
     <main>
-      <NavBar />
+
+      <NavBar auth={user !== null} user={user} handleLogout={() => setUser(null)} />
 
       <Container sx={app_styles.page}>
         <Router>
           <Routes>
-            {/* default */}
-            <Route path="*" element={<Navigate to="/" />}></Route>
+            
+            {/* Login */}
+            <Route
+              exact
+              path="/login"
+              element={<Login onLoginSuccess={handleLogin} auth={user !== null} />}
+            ></Route>
 
             {/* Dashboard */}
-            <Route exact path="/" element={<DashboardPage />}></Route>
+            <Route exact path="/" element={<DashboardPage auth={user !== null} />} />
 
             {/* Orders */}
+            <Route exact path="/" element={<DashboardPage auth={user !== null} />} />
 
             {/* Products */}
+            <Route exact path="/" element={<DashboardPage auth={user !== null} />} />
+
           </Routes>
         </Router>
       </Container>
