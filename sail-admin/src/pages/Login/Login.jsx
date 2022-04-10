@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
-import { signInWithGoogle } from "../../firebase";
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 const page_styles = {
   login_container: {
@@ -16,12 +16,13 @@ const page_styles = {
   },
 };
 
-const Login = ({ onLoginSuccess, auth }) => {
+const Login = () => {
+  const auth = useAuth();
 
   return (
     <section style={page_styles.login_container}>
 
-      {auth && <Navigate to="/" />}
+      {auth.currentUser && <Navigate to="/" />}
 
       <Typography sx={page_styles.title}>Sign In</Typography>
 
@@ -31,7 +32,7 @@ const Login = ({ onLoginSuccess, auth }) => {
         <Button
           variant="outlined"
           startIcon={<GoogleIcon />}
-          onClick={() => signInWithGoogle(onLoginSuccess)}
+          onClick={auth.signInWithGoogle}
         >
           Sign In with Google
         </Button>

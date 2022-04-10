@@ -5,9 +5,9 @@ import LocalShippingIcon from "@mui/icons-material/LocalShipping";
 import PendingIcon from "@mui/icons-material/Pending";
 import CategoryIcon from "@mui/icons-material/Category";
 
-import {
-  Navigate,
-} from "react-router-dom";
+import { Navigate } from "react-router-dom";
+
+import { useAuth } from "../../contexts/AuthContext";
 
 const page_styles = {
   title: {
@@ -16,11 +16,12 @@ const page_styles = {
   },
 };
 
-const DashboardPage = ({auth}) => {
+const DashboardPage = () => {
+  const auth = useAuth();
+
   return (
     <section>
-
-      {auth || <Navigate to="/login" />}
+      {auth.currentUser === null && <Navigate to="/login" />}
 
       <Typography sx={page_styles.title}>Dashboard</Typography>
 

@@ -1,6 +1,7 @@
 import { Container, Stack, Link, IconButton, Avatar } from "@mui/material";
 import { ReactComponent as Logo } from "../../assets/logo-icon.svg";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { useAuth } from "../../contexts/AuthContext";
 
 const nav_styles = {
   nav_container: {
@@ -18,7 +19,10 @@ const nav_styles = {
   },
 };
 
-const NavBar = ({auth, user, handleLogout}) => {
+const NavBar = () => {
+
+  const auth = useAuth();
+
   return (
     <nav style={nav_styles.nav_container}>
       <Container>
@@ -41,10 +45,10 @@ const NavBar = ({auth, user, handleLogout}) => {
               Products
             </Link>
           </Stack>
-          {auth &&
+          {auth.currentUser &&
           <Stack direction="row">
-            <Avatar alt={user.usrEmail} src={user.usrImage} />
-            <IconButton sx={nav_styles.link} onClick={handleLogout}>
+            <Avatar alt={auth.currentUser.email} src={auth.currentUser.profileImage} />
+            <IconButton sx={nav_styles.link} onClick={auth.handleLogout}>
               <LogoutIcon />
             </IconButton>
           </Stack>}
