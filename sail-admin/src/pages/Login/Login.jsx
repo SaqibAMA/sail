@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Stack, Button, Typography, Alert } from "@mui/material";
 import GoogleIcon from "@mui/icons-material/Google";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
@@ -21,14 +21,13 @@ const Login = () => {
 
   return (
     <section style={page_styles.login_container}>
-
       {auth.currentUser && <Navigate to="/" />}
 
       <Typography sx={page_styles.title}>Sign In</Typography>
 
       <Typography>Please sign in using your google account.</Typography>
 
-      <Box mt={5}>
+      <Stack mt={5} spacing={2}>
         <Button
           variant="outlined"
           startIcon={<GoogleIcon />}
@@ -36,7 +35,11 @@ const Login = () => {
         >
           Sign In with Google
         </Button>
-      </Box>
+
+        {auth.loginError && (
+          <Alert severity="error">Sorry! You are not an admin.</Alert>
+        )}
+      </Stack>
     </section>
   );
 };
