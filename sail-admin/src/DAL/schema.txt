@@ -1,0 +1,36 @@
+product = {
+    id: string,
+    name: string,
+    description: string,
+    images: [string],
+    price: number,
+    category: string,
+    createdAt: datetime,            // when was product added?
+    shippingCharges: number,
+    minOrderQuantity: number,       // at least how many orders should be there?
+    campaignDeadline: number,       // until when are we taking orders for this?
+    variants: [string],             // colors, sizes etc.
+    supplier: string,               // supplier = kashif traders
+    brand: string,                  // brand = apple airpods
+    estimatedDelivery: datetime,    // after placing the order, when can you expect delivery?
+}
+
+order = {
+    id: string,
+    productID: string,
+    customerID: user.email,
+    shippingInfo: {
+        name: string,               //
+        address: string,            // may be different for each order
+        phone: string,              //
+    },
+    quantity: number,
+    value: number,
+    status: string,
+    createdAt: datetime,
+    deliveredAt: datetime,
+    review: {
+        rating: number,
+        comment: string,
+    }
+}
