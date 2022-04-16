@@ -28,6 +28,10 @@ const del = async (id) => {
     return await db.collection("orders").doc(id).delete();
 };
 
+const update = async (id, data) => {
+    
+}
+
 module.exports = {
   get,
   del,
