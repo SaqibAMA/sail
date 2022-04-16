@@ -29,10 +29,11 @@ const del = async (id) => {
 };
 
 const update = async (id, data) => {
-    
+    return await db.collection("orders").doc(id).update(data);
 }
 
 module.exports = {
   get,
   del,
+  update
 };

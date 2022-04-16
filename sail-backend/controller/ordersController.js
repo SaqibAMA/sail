@@ -40,7 +40,7 @@ const del = (req, res, next) => {
       res.json({
         status: 200,
         data: {
-            message: "Order deleted successfully",
+          message: "Order deleted successfully",
         },
       });
     })
@@ -49,14 +49,31 @@ const del = (req, res, next) => {
         status: 500,
         error: err,
         data: {
-            message: "Error deleting order",
+          message: "Error deleting order",
         },
       });
     });
 };
 
 const update = (req, res, next) => {
-  res.send("update an order");
+  db.update(req.params.id, req.body)
+    .then((order) => {
+      res.json({
+        status: 200,
+        data: {
+          message: "Order updated successfully",
+        },
+      });
+    })
+    .catch((err) => {
+      res.json({
+        status: 500,
+        error: err,
+        data: {
+          message: "Error updating order",
+        },
+      });
+    });
 };
 
 module.exports = {
