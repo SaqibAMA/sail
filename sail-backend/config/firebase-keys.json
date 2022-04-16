@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sail-admin-83c4f",
+  "private_key_id": "de182d6a1f18374ca1ae8b80bb4cdd0fdd2b96c3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCWEb82/jKin2h7\nJncGQqvfgBIzwXMDPqV6GZh943OCMeREmnaD8TtN38e1IjvuTYUdJD8NscDIP28X\n+YU0f2yARXmQ/m+E7ogXIUjD42fOZMsSCwU3PaQNGrmwnK7pidSUTN3+X0sZA6Kn\nZA+N/Jmx+uqvS0ugidRZLtlWHbKJeMP1Ffhg/TKFmvMNhJCN6Jqyq3WWKq/vgQtA\n/MPOwg4qyfV1upR7D5NxlG5I4DMpDLR5BY559SrxCebz5IKHhdilxZUPvku2hjnc\nbu3rSD271G16Wv9l3xbG126+FrC6CbiVy38XLg32EKKxeFd/ojYasOC7fpKQW6l1\n4DzcOG9JAgMBAAECggEAMxLiKZS05fzrwbHzI0nQlfXP/BZUDuAk0FvitsGQ39gc\nEK8jM7+Hh/bn0IFQtUdjzOm3nfEHo/9Wz2mICLhvVG6Qs6Ssjqjh30FgMu7ztt49\n8KuYgFb1vNICLZX9v5S9qSVKDlcfR2mh02duFcxJALZdZgBxwjb2cs3LgRAFYdyX\nH7kCphYhdAhVkMX5yWUD8OMNg8HSyhpNeWvlbA2XbemSnhviEurgILrXcNhYZzti\naXNphOyHq3UR06sNtTZYtez/Lq+hR9Obhysg4urU3ZgNWf//x7xnEs3enAx4rW/8\nmgJrgQ/DIVIBifGopVmWwmxdaThL4yJbboFPnxzhywKBgQDHzzdjYvpN7iYWrAra\nujj8i+ArZ4kAzfsWg+Xy/e3KF768xXK4xFE1Ns/uMWe7GEKkdufXw/KEA4kHhqyC\nIxasMIEz+HltGX+DeqU62C+kanYNVWO9abDRA9C246tcHSNY8u3W+n0pKJuDVXS0\n33neG2jA31WDwWHDZrwufQY7twKBgQDARZ1c0IFqLSpvEVm6PdIdhL5H+ZQj3pdV\nAmXD954DD12CUgh9JbEGZBkyV0bHsJw5uCskioWDAlCrcrHk4LBppbMlvRYw4ndm\ndgDzmzj3y7hEm/jZk8d+X0sJ/LaOpmJY7vG5ljeteWxjxYwundwBbwfxs8Y/LO2f\naqvQ/Dys/wKBgECDPzbvtjGDOvkHA1or1kp0PyTEgQ+pcfCLFaunISenEwaQGcJe\nYHn2AJy/huZ5psrDOYgI1Dybh5rOeNRrz944qv7Esy/uk6U37DFbq8ZCOWuErndx\nsI1L1g+24pUTM1580R4gMlkfq1Z0OQJNRWPZJbFgapPn1FDq0sePxntxAoGAK1OE\nklWp0/M5jK2sOnuTzXMMLcvfxfVyxIU1yWMTCD1+JM+3efv0WCxWQTHJkVYK3jbS\nAfn0/ACZjQjbbWf0WNot9GMXjQx7O2t762ke/Te63jsHaIAUhDWVAzsfKCX2I3Q0\npE1lXoHuGs15OUf5O5l5gM2x7qqBIVs4PG+afKECgYEAn65lNB08rvA/WW9Fv/Gx\nclZKwpi68nENY/5tAdoMGncPvWHarBR0RGQ3keTvyLxO38ACZ9Yc/ggMMIAtMF8Y\nW5yEaNLfnftKkkt5ffdcDgvZoN5h2XYOeRMLhe2pEylrCrt5hfaOhM1PqRw21znY\n4PgODrZM3npsy5tnTZ+fE00=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-prptc@sail-admin-83c4f.iam.gserviceaccount.com",
+  "client_id": "105694950226061385674",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-prptc%40sail-admin-83c4f.iam.gserviceaccount.com"
+}
