@@ -7,4 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    
+    <color name="axolotl_200">#5F7161</color>
+    <color name="axolotl_100">#6D8B74</color>
+    <color name="cream_200">#D0C9C0</color>
+    <color name="cream_100">#EFEAD8</color>
+
 </resources>
