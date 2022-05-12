@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">sail</string>
+    <string name="title_activity_onboarding">OnboardingActivity</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+    <string name="tab_text_3">Tab 3</string>
+
+    <!--App defaults for dummy data-->
+    <string name="default_heading">Default Heading</string>
+    <string name="default_description">Default Description</string>
+    <string name="default_content_description">Visual Asset</string>
+
 </resources>
