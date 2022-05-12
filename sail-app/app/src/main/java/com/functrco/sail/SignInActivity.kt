@@ -1,11 +1,10 @@
 package com.functrco.sail
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -13,8 +12,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.ktx.Firebase
-import java.lang.Exception
 
 class SignInActivity : AppCompatActivity() {
 
@@ -36,6 +33,7 @@ class SignInActivity : AppCompatActivity() {
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
+            .requestProfile()
             .build()
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
         auth = FirebaseAuth.getInstance()
@@ -87,6 +85,17 @@ class SignInActivity : AppCompatActivity() {
                 val firebaseUser = auth.currentUser
                 val uid = firebaseUser?.uid
                 val email = firebaseUser?.email
+
+                val personName = account?.displayName
+                val personGivenName = account?.givenName
+                val personFamilyName = account?.familyName
+                val personEmail = account?.email
+                val personId = account?.id
+
+                Log.d(TAG, "User details: " +
+                        "name: $personName, givenName: $personGivenName, " +
+                        "familyName: $personFamilyName, email: $personEmail, " +
+                        "id: $personId")
 
                 Log.d(TAG, "firebaseWithGoogleAccount: $uid")
                 Log.d(TAG, "firebaseWithGoogleAccount: $email")
