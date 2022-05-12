@@ -15,4 +15,6 @@
 
     <string name="default_rating">4.2 (120)</string>
 
+    <string name="product_page_title">Product</string>
+
 </resources>

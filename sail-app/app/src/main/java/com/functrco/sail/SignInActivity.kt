@@ -114,6 +114,7 @@ class SignInActivity : AppCompatActivity() {
                     Log.d(TAG, "firebaseWithGoogleAccount: Logged in... $email")
                     Log.d(TAG, "firebaseWithGoogleAccount: Logged in... $uid")
                 }
+                checkUser()
             }
             .addOnFailureListener { e ->
                 // Error handling

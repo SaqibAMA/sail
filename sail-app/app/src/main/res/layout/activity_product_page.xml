@@ -26,6 +26,16 @@
             android:layout_height="48dp"
             android:background="@drawable/ic_back_fg" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_serif_display"
+            android:textSize="@dimen/h3"
+            android:textColor="@color/axolotl_200"
+            android:text="@string/product_page_title"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="5dp"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -65,62 +75,62 @@
             android:paddingBottom="10dp"
             android:paddingStart="5dp" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/product_page_details"
+            android:orientation="horizontal"
+            android:paddingStart="5dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/product_page_end_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins"
+                android:text="@string/default_product_end_time"
+                android:textColor="@color/axolotl_200"
+                android:textSize="@dimen/p"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/product_page_rating_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:gravity="right"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_star_fg" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_rating"
+                    android:fontFamily="@font/poppins"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/h5"
+                    android:paddingStart="10dp"/>
+
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
     </LinearLayout>
 
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/product_page_details"
-        android:orientation="horizontal"
-        android:paddingStart="5dp"
-        android:layout_marginTop="10dp">
-
-        <TextView
-            android:id="@+id/product_page_end_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins"
-            android:text="@string/default_product_end_time"
-            android:textColor="@color/axolotl_200"
-            android:textSize="@dimen/p"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/product_page_rating_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:gravity="right"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="right"
-                android:layout_marginTop="5dp"
-                android:src="@drawable/ic_star_fg" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/default_rating"
-                android:fontFamily="@font/poppins"
-                android:textColor="@color/black"
-                android:textSize="@dimen/h5"
-                android:paddingStart="10dp"/>
-
-
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 

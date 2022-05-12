@@ -11,7 +11,7 @@ class ProductPage : AppCompatActivity() {
 
         val backBtn = findViewById<ImageButton>(R.id.product_page_back_btn)
         backBtn.setOnClickListener {
-
+            finish()
         }
 
     }
