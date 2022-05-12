@@ -18,7 +18,7 @@ class PageViewModel : ViewModel() {
 
     private val _index = MutableLiveData<Int>()
     val text: LiveData<List<String>> = Transformations.map(_index) {
-        listOf(SCREEN_HEADING[it], SCREEN_DESC[it], SCREEN_BACKGROUND[it])
+        listOf(it.toString(), SCREEN_HEADING[it], SCREEN_DESC[it], SCREEN_BACKGROUND[it])
     }
 
     fun setIndex(index: Int) {
