@@ -5,20 +5,40 @@
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
         android:iconTint="@color/bottom_navbar_item"
-        android:title="Home" />
+        android:title="@string/nav_item_home" />
     <item
-        android:id="@+id/favoritesFragment"
-        android:icon="@drawable/ic_favorites"
+        android:id="@+id/searchFragment"
+        android:icon="@drawable/ic_search"
         android:iconTint="@color/bottom_navbar_item"
-        android:title="Favorites" />
+        android:title="@string/nav_item_search" />
+    <item
+        android:id="@+id/cartFragment"
+        android:icon="@drawable/ic_cart"
+        android:iconTint="@color/bottom_navbar_item"
+        android:title="@string/nav_item_cart" />
+
     <item
         android:id="@+id/ordersFragment"
         android:icon="@drawable/ic_orders"
         android:iconTint="@color/bottom_navbar_item"
-        android:title="Orders" />
+        android:title="@string/nav_item_orders" />
     <item
         android:id="@+id/settingsFragment"
         android:icon="@drawable/ic_settings"
         android:iconTint="@color/bottom_navbar_item"
-        android:title="Settings" />
+        android:title="@string/nav_item_settings" />
+
+<!--
+    products/home
+    search
+    cart
+    orders
+    settings
+            -> Profile (new page)
+                -> Photo, Name, address, email, number
+            -> Theme (toggle)
+            -> Language (English + Urdu)
+            -> Logout
+            -> Help?
+-->
 </menu>
