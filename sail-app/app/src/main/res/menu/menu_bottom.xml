@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/homeFragment"
-        android:icon="@drawable/ic_orders"
+        android:icon="@drawable/ic_home"
         android:iconTint="@color/bottom_navbar_item"
         android:title="Home" />
     <item
         android:id="@+id/favoritesFragment"
-        android:icon="@drawable/ic_orders"
+        android:icon="@drawable/ic_favorites"
         android:iconTint="@color/bottom_navbar_item"
         android:title="Favorites" />
     <item
@@ -18,7 +18,7 @@
         android:title="Orders" />
     <item
         android:id="@+id/settingsFragment"
-        android:icon="@drawable/ic_orders"
+        android:icon="@drawable/ic_settings"
         android:iconTint="@color/bottom_navbar_item"
         android:title="Settings" />
 </menu>
