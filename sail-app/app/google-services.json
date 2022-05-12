@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "743655652821",
+    "project_id": "sail-app-c1585",
+    "storage_bucket": "sail-app-c1585.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743655652821:android:92119e6f4589bd72f5515c",
+        "android_client_info": {
+          "package_name": "com.functrco.sail"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743655652821-4tg52ii880elidokit8gbl69nqsivul4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.functrco.sail",
+            "certificate_hash": "bb5fb708e1272a51c3053d4df3f4006a34d4dcd3"
+          }
+        },
+        {
+          "client_id": "743655652821-d5bje4dns1ncip1u2kqhbptfog4csbp2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXSYy4___KL3vnZVVRMyhknmAXWrt2pm8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743655652821-d5bje4dns1ncip1u2kqhbptfog4csbp2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
