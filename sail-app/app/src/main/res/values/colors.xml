@@ -13,4 +13,7 @@
     <color name="cream_200">#D0C9C0</color>
     <color name="cream_100">#EFEAD8</color>
 
+    <!-- Bottom navbar items color -->
+    <color name="bottom_navbar_item">@color/axolotl_100</color>
+
 </resources>

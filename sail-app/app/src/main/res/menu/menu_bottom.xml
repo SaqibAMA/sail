@@ -1,0 +1,24 @@
+<!-- bottom_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_orders"
+        app:cnb_iconColor="@color/bottom_navbar_item"
+        android:title="Home" />
+    <item
+        android:id="@+id/favoritesFragment"
+        android:icon="@drawable/ic_orders"
+        app:cnb_iconColor="@color/bottom_navbar_item"
+        android:title="Favorites" />
+    <item
+        android:id="@+id/ordersFragment"
+        android:icon="@drawable/ic_orders"
+        app:cnb_iconColor="@color/bottom_navbar_item"
+        android:title="Orders" />
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_orders"
+        app:cnb_iconColor="@color/bottom_navbar_item"
+        android:title="Settings" />
+</menu>

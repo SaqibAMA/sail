@@ -9,5 +9,7 @@
     <string name="default_heading">Default Heading</string>
     <string name="default_description">Default Description</string>
     <string name="default_content_description">Visual Asset</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
