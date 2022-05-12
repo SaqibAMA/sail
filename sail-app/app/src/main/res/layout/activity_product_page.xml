@@ -63,17 +63,39 @@
 
         </androidx.cardview.widget.CardView>
 
-        <TextView
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/product_page_product_title"
-            android:text="@string/default_product_title"
-            android:fontFamily="@font/dm_serif_display"
-            android:textSize="@dimen/h4"
-            android:textColor="@color/axolotl_200"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:paddingStart="5dp" />
+            android:paddingStart="5dp">
+
+            <!-- TODO: I need to resolve this UI bug -->
+
+            <TextView
+                android:id="@+id/product_page_product_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:fontFamily="@font/dm_serif_display"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="@string/default_product_title"
+                android:textColor="@color/axolotl_200"
+                android:textSize="@dimen/h4" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/default_product_price"
+                android:id="@+id/product_page_price"
+                android:fontFamily="@font/dm_serif_display"
+                android:textColor="@color/black"
+                android:textSize="@dimen/h3"
+                android:padding="10dp"/>
+
+        </LinearLayout>
+
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -126,7 +148,27 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description"
+            android:textSize="@dimen/h4"
+            android:textColor="@color/axolotl_200"
+            android:fontFamily="@font/dm_serif_display"
+            android:paddingStart="5dp"
+            android:layout_marginTop="25dp"
+            tools:ignore="RtlSymmetry" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/default_product_description"
+            android:fontFamily="@font/poppins"
+            android:textSize="@dimen/p"
+            android:textColor="@android:color/darker_gray"
+            android:layout_marginTop="10dp"
+            android:paddingStart="5dp"
+            tools:ignore="RtlSymmetry" />
 
     </LinearLayout>
 
