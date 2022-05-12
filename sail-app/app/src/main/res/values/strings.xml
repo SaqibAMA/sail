@@ -10,4 +10,7 @@
     <string name="default_description">Default Description</string>
     <string name="default_content_description">Visual Asset</string>
 
+    <string name="default_product_title">Basketball Shoe Air Jordan XXV "Sisterhood" US Variant</string>
+    <string name="default_product_end_time">00:00:00</string>
+
 </resources>

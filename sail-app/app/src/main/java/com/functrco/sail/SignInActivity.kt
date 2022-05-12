@@ -54,6 +54,9 @@ class SignInActivity : AppCompatActivity() {
         val firebaseUser = auth.currentUser
         if (firebaseUser != null) {
             // redirect to profile
+            val i = Intent(this, ProductPage::class.java)
+            startActivity(i)
+            finish()
         }
     }
 
@@ -91,6 +94,7 @@ class SignInActivity : AppCompatActivity() {
                 val personFamilyName = account?.familyName
                 val personEmail = account?.email
                 val personId = account?.id
+                val photoUri = account?.photoUrl
 
                 Log.d(TAG, "User details: " +
                         "name: $personName, givenName: $personGivenName, " +
