@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.PlaceholderFragment">
+
+    <ImageView
+        android:id="@+id/onboarding_pattern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/default_content_description"
+        android:src="@drawable/onboarding_pattern"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/section_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dm_serif_display"
+        android:text="@string/default_heading"
+        app:layout_constraintTop_toBottomOf="@+id/onboarding_pattern"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1"
+        tools:ignore="MissingConstraints"
+        android:textSize="@dimen/h1"
+        android:textColor="@color/black"
+        android:paddingLeft="30dp"/>
+
+    <TextView
+        android:id="@+id/section_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:paddingLeft="30dp"
+        android:paddingTop="15dp"
+        android:paddingRight="30dp"
+        android:text="@string/default_description"
+        android:textColor="@color/black"
+        android:textSize="@dimen/h5"
+        app:layout_constraintTop_toBottomOf="@+id/section_heading"
+        tools:ignore="MissingConstraints"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <Button
+        android:id="@+id/omboarding_continue_btn"
+        android:layout_width="match_parent"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:padding="15dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="Continue >"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/section_description"
+        android:fontFamily="@font/poppins"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
