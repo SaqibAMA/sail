@@ -25,7 +25,6 @@
         app:layout_constraintTop_toBottomOf="@+id/onboarding_pattern"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1"
-        tools:layout_editor_absoluteX="51dp"
         tools:ignore="MissingConstraints"
         android:textSize="@dimen/h1"
         android:textColor="@color/black"
@@ -41,10 +40,26 @@
         android:paddingRight="30dp"
         android:text="@string/default_description"
         android:textColor="@color/black"
-        android:textSize="@dimen/h4"
+        android:textSize="@dimen/h5"
         app:layout_constraintTop_toBottomOf="@+id/section_heading"
         tools:ignore="MissingConstraints"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
+
+    <Button
+        android:id="@+id/omboarding_continue_btn"
+        android:layout_width="match_parent"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:padding="15dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="Continue >"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/section_description"
+        android:fontFamily="@font/poppins"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
