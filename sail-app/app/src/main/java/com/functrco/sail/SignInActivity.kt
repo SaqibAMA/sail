@@ -22,25 +22,28 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var googleSignInClient: GoogleSignInClient
 
     private companion object {
-        private const val RC_SIGN_IN = 100
-        private const val TAG = "GOOGLE_SIGN_IN_TAG"
+        private const val RC_SIGN_IN = 100                  // returned from google auth when success
+        private const val TAG = "GOOGLE_SIGN_IN_TAG"        // for debugging purposes
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
 
+        // Setting up options for Google authentication
+        // Don't worry about default_web_client_id being red. It shows up like this for no reason.
         val googleSignInOptions = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-
         googleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions)
-
         auth = FirebaseAuth.getInstance()
+
+        // This function redirects the user to next page if they are already logged in.
         checkUser()
 
+        // binding our custom sign-in button to auth function
         val signInButton = findViewById<Button>(R.id.sign_in_btn)
         signInButton.setOnClickListener {
             val i = googleSignInClient.signInIntent
@@ -59,8 +62,8 @@ class SignInActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        // Gets the response back from google auth and handles it.
         if (requestCode == RC_SIGN_IN) {
-
             Log.d(TAG, "onActivityResult: Google Sign In Intent Result")
             val accountTask = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
@@ -75,6 +78,8 @@ class SignInActivity : AppCompatActivity() {
 
     private fun firebaseAuthWithGoogleAccount(account: GoogleSignInAccount?) {
         Log.d(TAG, "firebaseAuthWithGoogleAccount: begin firebase auth")
+
+        // Extract credentials that came with google sign in.
         val credential = GoogleAuthProvider.getCredential(account?.idToken, null)
         auth.signInWithCredential(credential)
             .addOnSuccessListener { authResult ->
@@ -86,16 +91,19 @@ class SignInActivity : AppCompatActivity() {
                 Log.d(TAG, "firebaseWithGoogleAccount: $uid")
                 Log.d(TAG, "firebaseWithGoogleAccount: $email")
 
+                // Executed when the user has never signed up with our app before
                 if (authResult.additionalUserInfo?.isNewUser == true) {
                     Log.d(TAG, "firebaseWithGoogleAccount: Account created... $email")
                     Log.d(TAG, "firebaseWithGoogleAccount: Account created... $uid")
                 }
                 else {
+                    // Executed when it's a returning user
                     Log.d(TAG, "firebaseWithGoogleAccount: Logged in... $email")
                     Log.d(TAG, "firebaseWithGoogleAccount: Logged in... $uid")
                 }
             }
             .addOnFailureListener { e ->
+                // Error handling
                 Log.d(TAG, "firebaseWithGoogleAccount: Login failed with ${e.message}")
             }
 
