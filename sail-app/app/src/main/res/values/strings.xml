@@ -21,4 +21,9 @@
 
     <string name="product_page_title">Product</string>
 
+    <string name="default_name">John Doe</string>
+    <string name="default_review">I found this product really useful. It is an absolutely killer deal and I couldn\'t ask for more.</string>
+    <string name="default_review_rating">4.9</string>
+    <string name="default_review_date_posted">Date Posted: 22-01-2022</string>
+
 </resources>
