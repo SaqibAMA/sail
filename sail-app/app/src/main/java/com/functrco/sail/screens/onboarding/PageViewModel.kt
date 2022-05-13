@@ -1,4 +1,4 @@
-package com.functrco.sail.ui.onboarding
+package com.functrco.sail.screens.onboarding
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

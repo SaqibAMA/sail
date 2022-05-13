@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignInActivity"
+    android:background="@color/cream_100">
+
+
+    <ImageView
+        android:id="@+id/signin_pattern"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:src="@drawable/sign_in_pattern"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signin_pattern">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dm_serif_display"
+            android:text="Sign In"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/h1" />
+
+        <Button
+            android:id="@+id/sign_in_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:backgroundTint="@color/white"
+            android:drawableRight="@drawable/ic_google_fg"
+            android:fontFamily="@font/poppins"
+            android:padding="15dp"
+            android:text="Sign In With Google"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="By continuing, you agree to the application terms and conditions. To learn more, please visit www.sail.pk"
+            android:textColor="@android:color/darker_gray"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:fontFamily="@font/poppins"
+            android:textAlignment="center"
+            android:textSize="@dimen/caption"/>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

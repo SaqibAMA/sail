@@ -1,4 +1,4 @@
-package com.functrco.sail.ui.onboarding
+package com.functrco.sail.screens.onboarding
 
 import android.content.Context
 import android.content.Intent

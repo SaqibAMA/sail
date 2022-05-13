@@ -3,7 +3,7 @@ package com.functrco.sail
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import androidx.appcompat.app.AppCompatActivity
-import com.functrco.sail.ui.onboarding.SectionsPagerAdapter
+import com.functrco.sail.screens.onboarding.SectionsPagerAdapter
 import com.functrco.sail.databinding.ActivityOnboardingBinding
 
 class OnboardingActivity : AppCompatActivity() {

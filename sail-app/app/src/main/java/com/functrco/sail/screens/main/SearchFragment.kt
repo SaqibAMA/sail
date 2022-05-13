@@ -1,4 +1,4 @@
-package com.functrco.sail.ui.main
+package com.functrco.sail.screens.main
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

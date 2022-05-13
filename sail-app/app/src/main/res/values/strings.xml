@@ -9,12 +9,21 @@
     <string name="default_heading">Default Heading</string>
     <string name="default_description">Default Description</string>
     <string name="default_content_description">Visual Asset</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Bottom Navbar items text -->
     <string name="nav_item_home">Home</string>
     <string name="nav_item_search">Search</string>
     <string name="nav_item_settings">Settings</string>
     <string name="nav_item_orders">Orders</string>
     <string name="nav_item_cart">Cart</string>
+
+    <string name="ic_profile_text">Profile</string>
+    <string name="sale_banner_img_desc">Sale Banner</string>
+    <string name="popular_categories_text">Popular Categories</string>
+    <string name="default_category_text">Category</string>
+    <string name="products_text">Products</string>
+    <string name="product_image_text">Product Image</string>
+    <string name="product_name_text">Product Name</string>
+    <string name="product_price_text">$ 99.99</string>
 
 </resources>

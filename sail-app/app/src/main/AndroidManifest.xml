@@ -9,10 +9,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SAIL">
+
+        <activity
+            android:name=".SignInActivity"
+            android:exported="false" />
         <activity
             android:name=".OnboardingActivity"
             android:label="@string/title_activity_onboarding"
-            android:theme="@style/Theme.SAIL.NoActionBar">
+            android:theme="@style/Theme.SAIL.NoActionBar"
+            >
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->

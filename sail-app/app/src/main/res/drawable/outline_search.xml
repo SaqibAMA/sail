@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/shaddow_view" />
+    <!-- Background -->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="30dp" />
+            <stroke
+                android:width="0dp"
+                android:dashWidth="0dp" />
+            <solid android:color="@color/extra_light_gray" />
+
+        </shape>
+    </item>
+
+</layer-list>

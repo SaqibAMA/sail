@@ -1,14 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.HomeFragment">
+    android:orientation="vertical"
+    tools:context=".screens.main.home.HomeFragment"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Home" />
+>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:scrollbarStyle="outsideInset"
+        android:scrollbars="vertical"
+
+        android:gravity="center_horizontal"
+        >
+
+        <!--   Search bar and profile icon     -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <SearchView
+                android:id="@+id/searchProduct"
+                android:layout_width="301dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/outline_search"
+                android:iconifiedByDefault="false"
+                android:queryBackground="@android:color/transparent"
+                android:queryHint="Search here"
+                android:searchIcon="@drawable/ic_search" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:background="@drawable/background_circle"
+                android:contentDescription="@string/ic_profile_text"
+                app:backgroundTint="@color/extra_light_gray"
+                app:icon="@drawable/ic_profile"
+                app:iconGravity="textTop"
+                app:iconTint="@color/gray" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/saleBannerImgView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/sale_banner_img_desc"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:src="@drawable/img_sale_banner" />
+
+
+        <!--   Category Section     -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_marginHorizontal="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/popular_categories_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/h4"
+                android:textStyle="bold" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/categoriesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:scrollbarSize="0dp"
+                android:scrollbarStyle="outsideInset"
+                android:scrollbars="horizontal"
+                tools:listitem="@layout/item_category"
+                />
+        </LinearLayout>
+
+
+
+        <!--   Products     -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="25dp"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/products_text"
+                android:textColor="@color/black"
+                android:textSize="@dimen/h4"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/productsRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/item_product"
+                android:scrollbars="none"
+                android:nestedScrollingEnabled="false"
+            />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    </ScrollView>
+
 
 </FrameLayout>
