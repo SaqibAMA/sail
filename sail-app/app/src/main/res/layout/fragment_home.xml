@@ -21,17 +21,20 @@
 
             <!--   Search bar and profile icon     -->
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
+                android:layout_marginHorizontal="20dp"
                 android:orientation="horizontal"
+                android:gravity="fill_horizontal"
                 >
 
                 <SearchView
                     android:id="@+id/searchProduct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:maxWidth="290dp"
                     android:background="@drawable/outline_search"
                     android:iconifiedByDefault="false"
                     android:queryBackground="@android:color/transparent"
@@ -43,7 +46,7 @@
                     style="@style/Widget.MaterialComponents.Button"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginStart="10dp"
                     android:background="@drawable/background_circle"
                     android:contentDescription="@string/ic_profile_text"
                     app:backgroundTint="@color/extra_light_gray"
@@ -58,10 +61,9 @@
                 android:id="@+id/saleBannerImgView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/sale_banner_img_desc_text"
-                android:paddingStart="25dp"
-                android:paddingEnd="25dp"
                 android:src="@drawable/img_sale_banner" />
 
 
@@ -69,18 +71,20 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                >
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="25dp"
                     android:fontFamily="@font/dm_serif_display"
                     android:text="@string/heading_popular_categories_text"
                     android:textColor="@color/axolotl_200"
                     android:textSize="@dimen/h4"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:layout_marginHorizontal="20dp"
+                    />
 
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -91,6 +95,7 @@
                     android:scrollbarSize="0dp"
                     android:scrollbarStyle="outsideInset"
                     android:scrollbars="horizontal"
+                    android:layout_marginHorizontal="0dp"
                     tools:listitem="@layout/item_category" />
             </LinearLayout>
 
@@ -100,9 +105,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginHorizontal="10dp"
-                android:orientation="vertical">
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                android:layout_marginHorizontal="20dp"
+                >
 
                 <TextView
                     android:layout_width="match_parent"
