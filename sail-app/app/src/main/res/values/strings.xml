@@ -5,6 +5,8 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>
 
+    <string name="default_page_title">Product</string>
+
     <!--App defaults for dummy data-->
     <string name="default_heading">Default Heading</string>
     <string name="default_description">Default Description</string>

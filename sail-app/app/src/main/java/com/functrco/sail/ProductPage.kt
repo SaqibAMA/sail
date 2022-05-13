@@ -1,10 +1,12 @@
 package com.functrco.sail
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -41,6 +43,13 @@ class ProductPage : AppCompatActivity() {
         findViewById<Button>(R.id.product_page_buy_now).apply {
             setOnClickListener {
                 handleBuyNow()
+            }
+        }
+
+        findViewById<TextView>(R.id.product_page_view_more).apply {
+            setOnClickListener {
+//                val i = Intent(this, ReviewPage::class.java)
+//                startActivity(i)
             }
         }
 
