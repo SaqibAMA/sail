@@ -1,5 +1,6 @@
 package com.functrco.sail
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.net.ConnectivityManager
@@ -14,6 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import java.lang.Exception
@@ -65,6 +67,8 @@ class SignInActivity : AppCompatActivity() {
 
         handleConnectionCoverage()
 
+        FirebaseApp.initializeApp(this)
+
         // Setting up options for Google authentication
         // Don't worry about default_web_client_id being red. It shows up like this for no reason.
         val googleSignInOptions = GoogleSignInOptions
@@ -95,7 +99,12 @@ class SignInActivity : AppCompatActivity() {
     private fun checkUser() {
         val firebaseUser = auth.currentUser
         if (firebaseUser != null) {
-            // redirect to profile
+            val i = Intent(this, MainActivity::class.java)
+            i.putExtra("name", firebaseUser.displayName)
+            i.putExtra("dp", firebaseUser.photoUrl)
+            i.putExtra("email", firebaseUser.email)
+            startActivity(i)
+            finish()
         }
     }
 
@@ -141,6 +150,7 @@ class SignInActivity : AppCompatActivity() {
                     Log.d(TAG, "firebaseWithGoogleAccount: Logged in... $email")
                     Log.d(TAG, "firebaseWithGoogleAccount: Logged in... $uid")
                 }
+                checkUser()
             }
             .addOnFailureListener { e ->
                 // Error handling
