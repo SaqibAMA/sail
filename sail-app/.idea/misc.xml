@@ -21,7 +21,7 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.3963541666666667" />
         <entry key="app/src/main/res/layout/activity_onboarding.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/layout/activity_product_catalog.xml" value="0.21822916666666667" />
-        <entry key="app/src/main/res/layout/activity_product_page.xml" value="0.3568281938325991" />
+        <entry key="app/src/main/res/layout/activity_product_page.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_favorites.xml" value="0.2109375" />
