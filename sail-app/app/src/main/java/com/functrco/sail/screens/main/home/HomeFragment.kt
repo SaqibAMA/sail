@@ -1,6 +1,7 @@
 package com.functrco.sail.screens.main.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.functrco.sail.ProductPage
 import com.functrco.sail.R
 import com.functrco.sail.databinding.FragmentHomeBinding
 import com.functrco.sail.screens.main.home.categories.CategoriesAdaptor
@@ -77,6 +79,11 @@ class HomeFragment : Fragment() {
         binding.productsRecyclerView.adapter = productsAdaptor
         binding.productsRecyclerView.layoutManager = GridLayoutManager(this.context, 2)
         binding.productsRecyclerView.addItemDecoration(GridSpacingItemDecoration(this.requireContext(), R.dimen.grid_item_offset))
+
+        productsAdaptor.onItemClick = {
+            val redirectToProductPage = Intent(activity, ProductPage::class.java)
+            startActivity(redirectToProductPage)
+        }
     }
 
     // set observer on the categories list and fetch categories

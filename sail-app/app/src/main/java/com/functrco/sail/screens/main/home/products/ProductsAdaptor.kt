@@ -9,6 +9,7 @@ import com.functrco.sail.databinding.ItemProductBinding
 
 class ProductsAdaptor(): RecyclerView.Adapter<ProductsAdaptor.ViewHolder>() {
     private lateinit var products: List<Product>
+    var onItemClick: ((Product) -> Unit)? = null
 
     inner class ViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(product: Product){
@@ -17,6 +18,12 @@ class ProductsAdaptor(): RecyclerView.Adapter<ProductsAdaptor.ViewHolder>() {
             )
             binding.productName.text = product.name
             binding.productPrice.text = product.price.toString()
+        }
+
+        init {
+            binding.productCard.setOnClickListener{
+                onItemClick?.invoke(products[adapterPosition])
+            }
         }
     }
 
