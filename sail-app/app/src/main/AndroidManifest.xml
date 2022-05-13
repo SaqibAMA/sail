@@ -14,38 +14,22 @@
 
         <activity
             android:name=".ProductPage"
-            android:exported="true"
-            >
+            android:exported="true"/>
+        <activity
+            android:name=".SignInActivity"
+            android:exported="true" />
+        <activity
+            android:name=".OnboardingActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.SAIL.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-
         </activity>
-        <activity
-            android:name=".SignInActivity"
-            android:exported="false" />
-        <activity
-            android:name=".OnboardingActivity"
-            android:label="@string/title_activity_onboarding"
-            android:theme="@style/Theme.SAIL.NoActionBar"
-            android:exported="true"
-            >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity android:name=".MainActivity"
-            android:exported="true"
-            >
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
 
-        </activity>
+        <activity android:name=".MainActivity" android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
