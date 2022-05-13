@@ -1,9 +1,12 @@
 package com.functrco.sail
 
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -12,6 +15,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+
 
 class SignInActivity : AppCompatActivity() {
 
@@ -23,9 +27,41 @@ class SignInActivity : AppCompatActivity() {
         private const val TAG = "GOOGLE_SIGN_IN_TAG"        // for debugging purposes
     }
 
+
+    // helper function that tells if user is connected to internet or not
+    private fun haveNetworkConnection(): Boolean {
+        var haveConnectedWifi = false
+        var haveConnectedMobile = false
+        val cm = getSystemService(CONNECTIVITY_SERVICE) as ConnectivityManager
+        val netInfo = cm.allNetworkInfo
+        for (ni in netInfo) {
+            if (ni.typeName.equals(
+                    "WIFI",
+                    ignoreCase = true
+                )
+            ) if (ni.isConnected) haveConnectedWifi = true
+            if (ni.typeName.equals(
+                    "MOBILE",
+                    ignoreCase = true
+                )
+            ) if (ni.isConnected) haveConnectedMobile = true
+        }
+        return haveConnectedWifi || haveConnectedMobile
+    }
+
+    // handles cases where user may not be connected to internet
+    private fun handleConnectionCoverage() {
+        // if the user is not connected to internet, show an error
+        findViewById<TextView>(R.id.login_connection_error).apply {
+            visibility = if (haveNetworkConnection()) View.GONE else View.VISIBLE
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
+
+        handleConnectionCoverage()
 
         // Setting up options for Google authentication
         // Don't worry about default_web_client_id being red. It shows up like this for no reason.
@@ -44,8 +80,13 @@ class SignInActivity : AppCompatActivity() {
         // binding our custom sign-in button to auth function
         val signInButton = findViewById<Button>(R.id.sign_in_btn)
         signInButton.setOnClickListener {
-            val i = googleSignInClient.signInIntent
-            startActivityForResult(i, RC_SIGN_IN)
+            if (haveNetworkConnection()) {
+                val i = googleSignInClient.signInIntent
+                startActivityForResult(i, RC_SIGN_IN)
+            }
+            else {
+                handleConnectionCoverage()
+            }
         }
 
     }

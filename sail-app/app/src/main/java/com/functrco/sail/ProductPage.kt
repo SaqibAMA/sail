@@ -44,6 +44,8 @@ class ProductPage : AppCompatActivity() {
             }
         }
 
+        // TODO: Pull reviews for the product from Firebase
+
         // filling dummy data into product page
         fillReviews(
             listOf(
