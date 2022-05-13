@@ -12,15 +12,27 @@
     <string name="default_description">Default Description</string>
     <string name="default_content_description">Visual Asset</string>
 
+    <!-- Bottom Navbar items text -->
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_search">Search</string>
+    <string name="nav_item_settings">Settings</string>
+    <string name="nav_item_orders">Orders</string>
+    <string name="nav_item_cart">Cart</string>
+
+    <string name="ic_profile_text">Profile icon</string>
+    <string name="sale_banner_img_desc_text">Sale banner image description</string>
+    <string name="heading_popular_categories_text">Popular Categories</string>
+    <string name="heading_products_text">Products</string>
+
+    <string name="default_category_name">Headphones</string>
+
+    <string name="product_image_desc_text">Product image</string>
     <string name="default_product_title">Basketball Shoe Air Jordan XXV "Sisterhood" US Variant</string>
     <string name="default_product_end_time">Ending in 00:00:00</string>
-
     <string name="default_product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  </string>
+
     <string name="default_product_price">$420</string>
-
-
     <string name="default_rating">4.2 (120)</string>
-
     <string name="product_page_title">Product</string>
 
     <string name="default_name">John Doe</string>
@@ -32,4 +44,5 @@
     <string name="login_terms">By continuing, you agree to the application terms and conditions. To learn more, please visit www.sail.pk</string>
     <string name="connection_error">You need to be connected to internet to continue.</string>
 
+    <string name="rating_star_image_desc">Rating star image description</string>
 </resources>

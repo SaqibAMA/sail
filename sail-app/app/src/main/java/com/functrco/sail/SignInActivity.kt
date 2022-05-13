@@ -1,13 +1,14 @@
 package com.functrco.sail
 
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -15,6 +16,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import java.lang.Exception
 
 
 class SignInActivity : AppCompatActivity() {
@@ -88,16 +90,12 @@ class SignInActivity : AppCompatActivity() {
                 handleConnectionCoverage()
             }
         }
-
     }
 
     private fun checkUser() {
         val firebaseUser = auth.currentUser
         if (firebaseUser != null) {
             // redirect to profile
-            val i = Intent(this, ProductPage::class.java)
-            startActivity(i)
-            finish()
         }
     }
 
@@ -130,18 +128,6 @@ class SignInActivity : AppCompatActivity() {
                 val uid = firebaseUser?.uid
                 val email = firebaseUser?.email
 
-                val personName = account?.displayName
-                val personGivenName = account?.givenName
-                val personFamilyName = account?.familyName
-                val personEmail = account?.email
-                val personId = account?.id
-                val photoUri = account?.photoUrl
-
-                Log.d(TAG, "User details: " +
-                        "name: $personName, givenName: $personGivenName, " +
-                        "familyName: $personFamilyName, email: $personEmail, " +
-                        "id: $personId")
-
                 Log.d(TAG, "firebaseWithGoogleAccount: $uid")
                 Log.d(TAG, "firebaseWithGoogleAccount: $email")
 
@@ -155,7 +141,6 @@ class SignInActivity : AppCompatActivity() {
                     Log.d(TAG, "firebaseWithGoogleAccount: Logged in... $email")
                     Log.d(TAG, "firebaseWithGoogleAccount: Logged in... $uid")
                 }
-                checkUser()
             }
             .addOnFailureListener { e ->
                 // Error handling
