@@ -14,7 +14,7 @@ class ProductsAdaptor(): RecyclerView.Adapter<ProductsAdaptor.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(product: Product){
             binding.productImage.setImageResource(
-                product.imageId ?: R.drawable.img_headphone_product
+                product.imageId ?: R.drawable.default_product_img
             )
             binding.productName.text = product.name
             binding.productPrice.text = product.price.toString()

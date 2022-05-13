@@ -2,8 +2,10 @@ package com.functrco.sail.screens.main.home
 
 import android.annotation.SuppressLint
 import android.content.Intent
+
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +19,10 @@ import com.functrco.sail.R
 import com.functrco.sail.databinding.FragmentHomeBinding
 import com.functrco.sail.screens.main.home.categories.CategoriesAdaptor
 import com.functrco.sail.screens.main.home.categories.CategoriesViewModel
-import com.functrco.sail.screens.main.home.products.GridSpacingItemDecoration
+import com.functrco.sail.screens.main.home.products.GridSpaceItemDecoration
 import com.functrco.sail.screens.main.home.products.ProductsAdaptor
 import com.functrco.sail.screens.main.home.products.ProductsViewModel
+import com.functrco.sail.utils.DisplayUtil
 
 
 class HomeFragment : Fragment() {
@@ -74,14 +77,16 @@ class HomeFragment : Fragment() {
     }
 
 
+
     // bind categories to the recycler view
     private fun setProducts(){
         binding.productsRecyclerView.adapter = productsAdaptor
         binding.productsRecyclerView.layoutManager = GridLayoutManager(this.context, 2)
-        binding.productsRecyclerView.addItemDecoration(GridSpacingItemDecoration(this.requireContext(), R.dimen.grid_item_offset))
+        binding.productsRecyclerView.addItemDecoration(GridSpaceItemDecoration(2, 0F, DisplayUtil.dp2dx(10F, resources)))
 
         productsAdaptor.onItemClick = {
             val redirectToProductPage = Intent(activity, ProductPage::class.java)
+            // TODO: pass product information through intent
             startActivity(redirectToProductPage)
         }
     }

@@ -10,9 +10,10 @@
         android:id="@+id/categoryImage"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/img_headphone_product"
+        android:src="@drawable/default_product_img"
         app:civ_circle_background_color="@color/extra_light_gray"
         android:background="@drawable/background_circle"
+        android:scaleType="centerCrop"
         />
 
     <TextView

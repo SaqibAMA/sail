@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
+            android:gravity="center"
             android:orientation="vertical"
             android:scrollbarStyle="outsideInset"
             android:scrollbars="vertical">
@@ -25,29 +25,33 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                >
 
                 <SearchView
                     android:id="@+id/searchProduct"
-                    android:layout_width="301dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/outline_search"
                     android:iconifiedByDefault="false"
                     android:queryBackground="@android:color/transparent"
                     android:queryHint="Search here"
+                    android:layout_gravity="start"
                     android:searchIcon="@drawable/ic_search" />
 
                 <com.google.android.material.button.MaterialButton
                     style="@style/Widget.MaterialComponents.Button"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_marginStart="5dp"
                     android:background="@drawable/background_circle"
                     android:contentDescription="@string/ic_profile_text"
                     app:backgroundTint="@color/extra_light_gray"
                     app:icon="@drawable/ic_profile"
                     app:iconGravity="textTop"
-                    app:iconTint="@color/gray" />
+                    app:iconTint="@color/gray"
+                    android:layout_gravity="end"
+                    />
             </LinearLayout>
 
             <ImageView
@@ -93,10 +97,11 @@
 
             <!--   Products     -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="25dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="10dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -114,7 +119,9 @@
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
                     android:scrollbars="none"
-                    tools:listitem="@layout/item_product" />
+                    tools:listitem="@layout/item_product"
+                    android:orientation="horizontal"
+                    />
             </LinearLayout>
 
         </LinearLayout>
