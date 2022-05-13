@@ -11,7 +11,8 @@
         android:id="@+id/product_page_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:paddingBottom="96dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -175,7 +176,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:fontFamily="@font/poppins"
+                    android:fontFamily="@font/roboto"
                     android:paddingStart="5dp"
                     android:text="@string/default_product_description"
                     android:textColor="@android:color/darker_gray"
@@ -193,16 +194,12 @@
                     android:textSize="@dimen/h4"
                     tools:ignore="RtlSymmetry" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:fontFamily="@font/poppins"
-                    android:paddingStart="5dp"
-                    android:text="@string/default_product_description"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/p"
-                    tools:ignore="RtlSymmetry" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        tools:listitem="@layout/product_page_review"
+                        android:id="@+id/product_page_review_list"
+                        android:padding="5dp"/>
 
             </LinearLayout>
 
@@ -238,6 +235,7 @@
                 android:layout_weight="1"/>
 
             <Button
+                android:id="@+id/product_page_buy_now"
                 android:layout_width="match_parent"
                 android:textAlignment="center"
                 android:layout_height="wrap_content"
