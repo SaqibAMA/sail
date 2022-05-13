@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/product_page_review_user_info">
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_avatar_fg"
+                android:id="@+id/product_page_review_user_avatar"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/product_page_review_user_name"
+                android:text="@string/default_name"
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/black"
+                android:textSize="@dimen/p"
+                android:layout_marginTop="3dp"
+                android:layout_marginStart="12dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/product_page_review_rating"
+                android:text="@string/default_review_rating"
+                android:fontFamily="@font/roboto"
+                android:textColor="@color/black"
+                android:layout_marginTop="3dp"
+                android:textSize="@dimen/p"
+                android:layout_marginStart="48dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/product_page_review_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/default_review"
+            android:fontFamily="@font/roboto"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintTop_toBottomOf="@id/product_page_review_user_info"
+            android:layout_marginTop="12dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/product_page_review_date_posted"
+            android:text="@string/default_review_date_posted"
+            app:layout_constraintTop_toBottomOf="@id/product_page_review_text"
+            android:layout_marginTop="6dp"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/caption"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

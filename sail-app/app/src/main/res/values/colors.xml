@@ -13,4 +13,13 @@
     <color name="cream_200">#D0C9C0</color>
     <color name="cream_100">#EFEAD8</color>
 
+
+    <color name="extra_light_gray">#f8f8f8</color>
+    <color name="gray">#555555</color>
+
+    <!-- Bottom navbar items color -->
+    <color name="bottom_navbar_item">@color/axolotl_100</color>
+    <color name="product_background_color">#FF7777</color>
+    <color name="yellow">#FFC107</color>
+
 </resources>
