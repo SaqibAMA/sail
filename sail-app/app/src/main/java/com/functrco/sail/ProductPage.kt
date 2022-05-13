@@ -1,10 +1,12 @@
 package com.functrco.sail
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -43,6 +45,15 @@ class ProductPage : AppCompatActivity() {
                 handleBuyNow()
             }
         }
+
+        findViewById<TextView>(R.id.product_page_view_more).apply {
+            setOnClickListener {
+//                val i = Intent(this, ReviewPage::class.java)
+//                startActivity(i)
+            }
+        }
+
+        // TODO: Pull reviews for the product from Firebase
 
         // filling dummy data into product page
         fillReviews(

@@ -22,34 +22,18 @@
             android:paddingRight="30dp"
             android:paddingBottom="30dp">
 
-            <LinearLayout
+            <!--Start of top nav-->
+            <com.functrco.sail.PageTopNav
                 android:id="@+id/product_page_top_nav"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
                 android:paddingTop="30dp"
                 android:paddingBottom="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <ImageButton
-                    android:id="@+id/product_page_back_btn"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:background="@drawable/ic_back_fg" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="5dp"
-                    android:fontFamily="@font/dm_serif_display"
-                    android:text="@string/product_page_title"
-                    android:textColor="@color/axolotl_200"
-                    android:textSize="@dimen/h3" />
-
-            </LinearLayout>
+                app:layout_constraintTop_toTopOf="parent"
+                app:title="Product"/>
+            <!--End of top nav-->
 
             <LinearLayout
                 android:id="@+id/product_page_details"
@@ -110,10 +94,22 @@
 
                 </LinearLayout>
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dm_serif_display"
+                    android:textColor="@color/black"
+                    android:id="@+id/product_page_order_limit"
+                    android:text="@string/default_orders_placed"
+                    android:textSize="@dimen/h4"
+                    android:paddingStart="5dp"
+                    android:layout_marginTop="25dp"/>
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="14dp"
                     android:orientation="horizontal"
                     android:paddingStart="5dp"
                     app:layout_constraintTop_toBottomOf="@id/product_page_details">
@@ -159,12 +155,12 @@
 
                     </LinearLayout>
 
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="25dp"
                     android:fontFamily="@font/dm_serif_display"
                     android:paddingStart="5dp"
                     android:text="Description"
@@ -194,12 +190,22 @@
                     android:textSize="@dimen/h4"
                     tools:ignore="RtlSymmetry" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        tools:listitem="@layout/product_page_review"
-                        android:id="@+id/product_page_review_list"
-                        android:padding="5dp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    tools:listitem="@layout/product_page_review"
+                    android:id="@+id/product_page_review_list"
+                    android:padding="5dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="View More >"
+                    android:textColor="@color/axolotl_100"
+                    android:fontFamily="@font/poppins"
+                    android:layout_marginTop="14dp"
+                    android:id="@+id/product_page_view_more"
+                    android:paddingStart="5dp"/>
 
             </LinearLayout>
 

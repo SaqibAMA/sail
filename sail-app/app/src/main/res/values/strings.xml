@@ -5,6 +5,8 @@
     <string name="tab_text_2">Tab 2</string>
     <string name="tab_text_3">Tab 3</string>
 
+    <string name="default_page_title">Product</string>
+
     <!--App defaults for dummy data-->
     <string name="default_heading">Default Heading</string>
     <string name="default_description">Default Description</string>
@@ -13,7 +15,7 @@
     <string name="default_product_title">Basketball Shoe Air Jordan XXV "Sisterhood" US Variant</string>
     <string name="default_product_end_time">Ending in 00:00:00</string>
 
-    <string name="default_product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
+    <string name="default_product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  </string>
     <string name="default_product_price">$420</string>
 
 
@@ -25,5 +27,9 @@
     <string name="default_review">I found this product really useful. It is an absolutely killer deal and I couldn\'t ask for more.</string>
     <string name="default_review_rating">4.9</string>
     <string name="default_review_date_posted">Date Posted: 22-01-2022</string>
+    <string name="default_orders_placed">Orders Placed: 142/150</string>
+
+    <string name="login_terms">By continuing, you agree to the application terms and conditions. To learn more, please visit www.sail.pk</string>
+    <string name="connection_error">You need to be connected to internet to continue.</string>
 
 </resources>
