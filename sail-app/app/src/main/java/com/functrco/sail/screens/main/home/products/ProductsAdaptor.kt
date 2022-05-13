@@ -1,14 +1,13 @@
-package com.functrco.sail.screens.main.home.product
+package com.functrco.sail.screens.main.home.products
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.functrco.sail.R
-import com.functrco.sail.databinding.FragmentHomeBinding
 import com.functrco.sail.databinding.ItemProductBinding
 
-class ProductAdaptor(): RecyclerView.Adapter<ProductAdaptor.ViewHolder>() {
+class ProductsAdaptor(): RecyclerView.Adapter<ProductsAdaptor.ViewHolder>() {
     private lateinit var products: List<Product>
 
     inner class ViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root){

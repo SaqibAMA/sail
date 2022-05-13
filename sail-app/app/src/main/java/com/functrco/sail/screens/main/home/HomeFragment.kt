@@ -1,6 +1,5 @@
 package com.functrco.sail.screens.main.home
 
-import android.R
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
@@ -12,23 +11,24 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.functrco.sail.R
 import com.functrco.sail.databinding.FragmentHomeBinding
-import com.functrco.sail.screens.main.home.category.CategoryAdaptor
-import com.functrco.sail.screens.main.home.category.CategoryViewModel
-import com.functrco.sail.screens.main.home.product.GridSpacingItemDecoration
-import com.functrco.sail.screens.main.home.product.ProductAdaptor
-import com.functrco.sail.screens.main.home.product.ProductViewModel
+import com.functrco.sail.screens.main.home.categories.CategoriesAdaptor
+import com.functrco.sail.screens.main.home.categories.CategoriesViewModel
+import com.functrco.sail.screens.main.home.products.GridSpacingItemDecoration
+import com.functrco.sail.screens.main.home.products.ProductsAdaptor
+import com.functrco.sail.screens.main.home.products.ProductsViewModel
 
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var categoryViewModel: CategoryViewModel
-    private lateinit var productViewModel: ProductViewModel
+    private lateinit var categoryViewModel: CategoriesViewModel
+    private lateinit var productViewModel: ProductsViewModel
 
-    private val categoriesAdaptor = CategoryAdaptor()
-    private val productsAdaptor = ProductAdaptor()
+    private val categoriesAdaptor = CategoriesAdaptor()
+    private val productsAdaptor = ProductsAdaptor()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,8 +37,8 @@ class HomeFragment : Fragment() {
     ): View {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        categoryViewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
-        productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
+        categoryViewModel = ViewModelProvider(this)[CategoriesViewModel::class.java]
+        productViewModel = ViewModelProvider(this)[ProductsViewModel::class.java]
 
 
         setCategories()
@@ -76,8 +76,7 @@ class HomeFragment : Fragment() {
     private fun setProducts(){
         binding.productsRecyclerView.adapter = productsAdaptor
         binding.productsRecyclerView.layoutManager = GridLayoutManager(this.context, 2)
-        val spacingInPixels = resources.getDimensionPixelSize(R.dimen.app_icon_size)
-        binding.productsRecyclerView.addItemDecoration(GridSpacingItemDecoration(2, spacingInPixels, true, 0, false))
+        binding.productsRecyclerView.addItemDecoration(GridSpacingItemDecoration(this.requireContext(), R.dimen.grid_item_offset))
     }
 
     // set observer on the categories list and fetch categories

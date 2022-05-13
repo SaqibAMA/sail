@@ -20,5 +20,6 @@
     <!-- Bottom navbar items color -->
     <color name="bottom_navbar_item">@color/axolotl_100</color>
     <color name="product_background_color">#FF7777</color>
+    <color name="yellow">#FFC107</color>
 
 </resources>

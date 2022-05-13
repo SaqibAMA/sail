@@ -1,22 +1,18 @@
-package com.functrco.sail.screens.main.home.category
+package com.functrco.sail.screens.main.home.categories
 
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.functrco.sail.R
 import com.functrco.sail.databinding.ItemCategoryBinding
-import com.functrco.sail.databinding.ItemProductBinding
 
-class CategoryAdaptor(): RecyclerView.Adapter<CategoryAdaptor.ViewHolder>() {
+class CategoriesAdaptor(): RecyclerView.Adapter<CategoriesAdaptor.ViewHolder>() {
     private lateinit var categories: List<Category>
 
     inner class ViewHolder(private val binding: ItemCategoryBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(category: Category){
-            binding.categoryImage.setImageResource(category.imageId ?: R.drawable.img_phone_product)
+            binding.categoryImage.setImageResource(category.imageId ?: R.drawable.img_headphone_product)
             binding.categoryName.text = category.name
 
         }

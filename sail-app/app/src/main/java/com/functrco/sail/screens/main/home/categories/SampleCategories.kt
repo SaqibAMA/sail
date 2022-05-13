@@ -1,6 +1,6 @@
-package com.functrco.sail.screens.main.home.category
+package com.functrco.sail.screens.main.home.categories
 
-object SampleCategoryData {
+object SampleCategories {
 
     fun getAll(): List<Category> {
         return mutableListOf(

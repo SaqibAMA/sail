@@ -1,9 +1,9 @@
-package com.functrco.sail.screens.main.home.product
+package com.functrco.sail.screens.main.home.products
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ProductViewModel : ViewModel() {
+class ProductsViewModel : ViewModel() {
 
     private var products = MutableLiveData<List<Product>>()
 
@@ -11,7 +11,7 @@ class ProductViewModel : ViewModel() {
 
     /* TODO: replace the code to fetch products from API */
     fun fetchProducts(): MutableLiveData<List<Product>>{
-        products.postValue(SampleProductData.getAll())
+        products.postValue(SampleProducts.getAll())
         return products
     }
 
