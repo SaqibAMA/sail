@@ -14,7 +14,6 @@ class CategoriesAdaptor(): RecyclerView.Adapter<CategoriesAdaptor.ViewHolder>() 
         fun bind(category: Category){
             binding.categoryImage.setImageResource(category.imageId ?: R.drawable.img_headphone_product)
             binding.categoryName.text = category.name
-
         }
 
     }

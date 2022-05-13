@@ -67,6 +67,7 @@ class SignInActivity : AppCompatActivity() {
 
         handleConnectionCoverage()
 
+        // initializing firebase app
         FirebaseApp.initializeApp(this)
 
         // Setting up options for Google authentication
