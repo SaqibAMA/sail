@@ -99,6 +99,7 @@
                         >
 
                         <TextView
+                            android:id="@+id/plusTextView"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:background="@drawable/ic_plus"
@@ -131,6 +132,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <TextView
+                            android:id="@+id/minusTextView"
                             android:text=""
                             android:layout_width="16dp"
                             android:layout_height="16dp"

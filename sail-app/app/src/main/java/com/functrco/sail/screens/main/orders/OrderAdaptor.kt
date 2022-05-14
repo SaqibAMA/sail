@@ -18,7 +18,7 @@ class OrderAdaptor(): RecyclerView.Adapter<OrderAdaptor.ViewHolder>() {
             )
             binding.productTitleTextView.text = order.product.name
             binding.productDescriptionTextView.text = order.product.description.orEmpty().ifEmpty { binding.orderCard.context.getString(R.string.default_product_description) }
-            binding.productPriceChip.text = order.product.price.toString()
+            binding.productPriceChip.text = "$${String.format("%2.2f", order.product.price)}"
             binding.productStatusChip.text = order.status
         }
         init {

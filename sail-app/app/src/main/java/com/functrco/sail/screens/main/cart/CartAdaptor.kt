@@ -19,7 +19,7 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
 
             binding.productTitleTextView.text = cart.product.name
             binding.productDescriptionTextView.text = cart.product.description.orEmpty().ifEmpty { binding.cartCard.context.getString(R.string.default_product_description) }
-            binding.productPriceTextView.text = cart.product.price.toString()
+            binding.productPriceTextView.text = "$${String.format("%.2f", cart.product.price)}"
             binding.productQuantityTextView.text = cart.quantity.toString()
         }
         init {

@@ -17,7 +17,7 @@ class ProductAdaptor(): RecyclerView.Adapter<ProductAdaptor.ViewHolder>() {
                 product.imageId ?: R.drawable.default_product_img
             )
             binding.productName.text = product.name
-            binding.productPrice.text = product.price.toString()
+            binding.productPrice.text = "$${String.format("%.2f", product.price)}"
         }
 
         init {
