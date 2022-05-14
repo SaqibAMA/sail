@@ -27,7 +27,7 @@
     <string name="default_category_name">Headphones</string>
 
     <string name="product_image_desc_text">Product image</string>
-    <string name="default_product_title">Basketball Shoe Air Jordan XXV "Sisterhood" US Variant</string>
+    <string name="default_product_title">Basketball Shoe Air</string>
     <string name="default_product_end_time">Ending in 00:00:00</string>
     <string name="default_product_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  </string>
 
@@ -40,6 +40,7 @@
     <string name="default_review_rating">4.9</string>
     <string name="default_review_date_posted">Date Posted: 22-01-2022</string>
     <string name="default_orders_placed">Orders Placed: 142/150</string>
+    <string name="default_product_quantity">2</string>
 
     <string name="login_terms">By continuing, you agree to the application terms and conditions. To learn more, please visit www.sail.pk</string>
     <string name="connection_error">You need to be connected to internet to continue.</string>
@@ -47,5 +48,12 @@
     <string name="rating_star_image_desc">Rating star image description</string>
 
     <string name="firebase_client_id">743655652821-4tg52ii880elidokit8gbl69nqsivul4.apps.googleusercontent.com</string>
+    <string name="item_order_product_img_desc_text">Item order product image description text</string>
+    <string name="default_product_status">Completed</string>
+    <string name="heading_product_quantity_text">QTY:</string>
+    <string name="heading_my_orders_text">My Orders</string>
+    <string name="heading_my_cart_text">Cart Products</string>
+    <string name="heading_total_payment_text">Total Payment</string>
+    <string name="heading_order_text">Order</string>
 
 </resources>

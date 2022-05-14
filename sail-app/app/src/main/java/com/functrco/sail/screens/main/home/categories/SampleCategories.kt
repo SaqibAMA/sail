@@ -2,14 +2,14 @@ package com.functrco.sail.screens.main.home.categories
 
 object SampleCategories {
 
-    fun getAll(): List<Category> {
+    fun getAll(): List<CategoryModel> {
         return mutableListOf(
-            Category("Mouse"),
-            Category("Keyboard"),
-            Category("Phone"),
-            Category("Shoes"),
-            Category("Airpods"),
-            Category("Keyboard")
+            CategoryModel("Mouse"),
+            CategoryModel("Keyboard"),
+            CategoryModel("Phone"),
+            CategoryModel("Shoes"),
+            CategoryModel("Airpods"),
+            CategoryModel("Keyboard")
         )
     }
 

@@ -1,16 +1,16 @@
-package com.functrco.sail.screens.main.home.products
+package com.functrco.sail.screens.main.products
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class ProductsViewModel : ViewModel() {
+class ProductViewModel : ViewModel() {
 
-    private var products = MutableLiveData<List<Product>>()
+    private var products = MutableLiveData<List<ProductModel>>()
 
     fun getObserver() = products
 
     /* TODO: replace the code to fetch products from API */
-    fun fetchProducts(): MutableLiveData<List<Product>>{
+    fun fetchProducts(): MutableLiveData<List<ProductModel>>{
         products.postValue(SampleProducts.getAll())
         return products
     }
