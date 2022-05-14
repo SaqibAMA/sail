@@ -31,30 +31,28 @@
                     android:id="@+id/searchProduct"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
                     android:layout_gravity="start"
                     android:background="@drawable/outline_search"
                     android:iconifiedByDefault="false"
                     android:maxWidth="290dp"
                     android:queryBackground="@android:color/transparent"
                     android:queryHint="Search here"
-                    android:searchIcon="@drawable/ic_search"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    />
+                    android:searchIcon="@drawable/ic_search" />
 
                 <ImageButton
                     style="@style/Widget.MaterialComponents.Button"
                     android:layout_width="55dp"
                     android:layout_height="55dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
                     android:layout_gravity="end"
                     android:background="@drawable/background_circle"
                     android:contentDescription="@string/ic_profile_text"
                     android:elevation="5dp"
                     android:src="@drawable/ic_profile"
-                    app:backgroundTint="@color/extra_light_gray"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentTop="true"
-                    />
+                    app:backgroundTint="@color/extra_light_gray" />
             </RelativeLayout>
 
             <ImageView
@@ -79,8 +77,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="20dp"
                     android:fontFamily="@font/dm_serif_display"
-                    android:textAllCaps="true"
                     android:text="@string/heading_popular_categories_text"
+                    android:textAllCaps="true"
                     android:textColor="@color/axolotl_200"
                     android:textSize="@dimen/h4"
                     android:textStyle="bold" />
@@ -98,35 +96,12 @@
                     tools:listitem="@layout/item_category" />
             </LinearLayout>
 
-
-            <!--   Products     -->
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/productsParentRecyclerView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="15dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/dm_serif_display"
-                    android:text="@string/heading_products_text"
-                    android:textAllCaps="true"
-                    android:textColor="@color/axolotl_200"
-                    android:textSize="@dimen/h4"
-                    android:textStyle="bold" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/productsRecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
-                    android:orientation="horizontal"
-                    android:scrollbars="none"
-                    tools:listitem="@layout/item_product" />
-            </LinearLayout>
+                android:orientation="vertical"
+                tools:listitem="@layout/item_products" />
 
         </LinearLayout>
 

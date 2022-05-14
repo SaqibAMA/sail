@@ -1,4 +1,4 @@
-package com.functrco.sail.screens.main.home.products
+package com.functrco.sail.screens.main.products
 
 
 import android.view.LayoutInflater
@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.functrco.sail.R
 import com.functrco.sail.databinding.ItemProductBinding
 
-class ProductsAdaptor(): RecyclerView.Adapter<ProductsAdaptor.ViewHolder>() {
-    private lateinit var products: List<Product>
-    var onItemClick: ((Product) -> Unit)? = null
+class ProductAdaptor(): RecyclerView.Adapter<ProductAdaptor.ViewHolder>() {
+    private var products: List<ProductModel> = listOf()
+    var onItemClick: ((ProductModel) -> Unit)? = null
 
     inner class ViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(product: Product){
+        fun bind(product: ProductModel){
             binding.productImage.setImageResource(
                 product.imageId ?: R.drawable.default_product_img
             )
@@ -41,7 +41,7 @@ class ProductsAdaptor(): RecyclerView.Adapter<ProductsAdaptor.ViewHolder>() {
         return products.size
     }
 
-    fun setListData(data: List<Product>){
+    fun setListData(data: List<ProductModel>){
         this.products = data.toMutableList()
     }
 }

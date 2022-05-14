@@ -1,4 +1,4 @@
-package com.functrco.sail.screens.main.home.products
+package com.functrco.sail.screens.main.products
 
 import android.graphics.Rect
 import android.view.View

@@ -14,21 +14,21 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.functrco.sail.ProductPage
 import com.functrco.sail.databinding.FragmentOrdersBinding
 
-class OrdersFragment : Fragment() {
+class OrderFragment : Fragment() {
 
     private var _binding: FragmentOrdersBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var orderViewModel: OrdersViewModel
+    private lateinit var orderViewModel: OrderViewModel
 
-    private val ordersAdaptor = OrdersAdaptor()
+    private val ordersAdaptor = OrderAdaptor()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentOrdersBinding.inflate(inflater, container, false)
-        orderViewModel = ViewModelProvider(this)[OrdersViewModel::class.java]
+        orderViewModel = ViewModelProvider(this)[OrderViewModel::class.java]
 
         setOrders()
         observeOrders()

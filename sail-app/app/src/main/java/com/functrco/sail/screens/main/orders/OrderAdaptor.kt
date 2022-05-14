@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.functrco.sail.R
 import com.functrco.sail.databinding.ItemOrderBinding
 
-class OrdersAdaptor(): RecyclerView.Adapter<OrdersAdaptor.ViewHolder>() {
-    private var orders: List<Order> = listOf()
-    var onItemClick: ((Order) -> Unit)? = null
+class OrderAdaptor(): RecyclerView.Adapter<OrderAdaptor.ViewHolder>() {
+    private var orders: List<OrderModel> = listOf()
+    var onItemClick: ((OrderModel) -> Unit)? = null
 
     inner class ViewHolder(private val binding: ItemOrderBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(order: Order){
+        fun bind(order: OrderModel){
             binding.productImage.setImageResource(
                 order.product.imageId ?: R.drawable.default_product_img
             )
@@ -41,7 +41,7 @@ class OrdersAdaptor(): RecyclerView.Adapter<OrdersAdaptor.ViewHolder>() {
         return orders.size
     }
 
-    fun setListData(data: List<Order>){
+    fun setListData(data: List<OrderModel>){
         this.orders = data.toMutableList()
     }
 }

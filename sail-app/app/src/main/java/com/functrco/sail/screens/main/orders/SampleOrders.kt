@@ -1,13 +1,13 @@
 package com.functrco.sail.screens.main.orders
 
-import com.functrco.sail.screens.main.home.products.SampleProducts
+import com.functrco.sail.screens.main.products.SampleProducts
 
 object SampleOrders {
-    fun getAll(): List<Order> {
+    fun getAll(): List<OrderModel> {
         val products = SampleProducts.getAll()
-        val orders = mutableListOf<Order>()
+        val orders = mutableListOf<OrderModel>()
         products.forEach{
-            orders.add(Order(it, "completed"))
+            orders.add(OrderModel(it, "completed"))
         }
 
         return orders
