@@ -1,7 +1,6 @@
 package com.functrco.sail.screens.main.home
 
 import android.annotation.SuppressLint
-import android.content.Intent
 
 import android.os.Bundle
 import android.util.Log
@@ -12,14 +11,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.functrco.sail.ProductPage
 import com.functrco.sail.databinding.FragmentHomeBinding
 import com.functrco.sail.screens.main.home.categories.CategoryAdaptor
 import com.functrco.sail.screens.main.home.categories.CategoryViewModel
 import com.functrco.sail.screens.main.home.products_parent.ProductsParentAdaptor
 import com.functrco.sail.screens.main.home.products_parent.ProductsViewModel
-import com.functrco.sail.screens.main.products.ProductAdaptor
-import com.functrco.sail.screens.main.products.ProductViewModel
 
 
 class HomeFragment : Fragment() {

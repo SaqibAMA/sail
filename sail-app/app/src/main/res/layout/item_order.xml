@@ -37,7 +37,7 @@
 
                 <LinearLayout
                     android:id="@+id/productInfo"
-                    android:layout_width="160dp"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:orientation="vertical">
@@ -70,8 +70,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
-                    android:layout_centerVertical="true"
                     tools:ignore="NotSibling,RelativeOverlap">
 
                     <TextView
@@ -79,7 +77,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/dm_serif_display"
-                        android:gravity="center"
                         android:text="@string/default_product_price"
                         android:textColor="@color/black"
                         android:textSize="@dimen/h4"

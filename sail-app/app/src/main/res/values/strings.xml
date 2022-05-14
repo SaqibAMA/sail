@@ -52,5 +52,8 @@
     <string name="default_product_status">Completed</string>
     <string name="heading_product_quantity_text">QTY:</string>
     <string name="heading_my_orders_text">My Orders</string>
+    <string name="heading_my_cart_text">Cart Products</string>
+    <string name="heading_total_payment_text">Total Payment</string>
+    <string name="heading_order_text">Order</string>
 
 </resources>

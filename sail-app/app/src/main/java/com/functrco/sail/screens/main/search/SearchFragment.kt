@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.functrco.sail.ProductPage
 import com.functrco.sail.databinding.FragmentSearchBinding
-import com.functrco.sail.screens.main.products.GridSpaceItemDecoration
+import com.functrco.sail.utils.GridSpaceItemDecoration
 import com.functrco.sail.screens.main.products.ProductAdaptor
 import com.functrco.sail.screens.main.products.ProductViewModel
 import com.functrco.sail.utils.DisplayUtil
