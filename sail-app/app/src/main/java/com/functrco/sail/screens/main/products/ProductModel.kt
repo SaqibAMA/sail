@@ -1,3 +1,11 @@
 package com.functrco.sail.screens.main.products
 
-data class ProductModel (val name: String, val price: Float, val imageId: Int? = null)
+import android.accounts.AuthenticatorDescription
+
+data class ProductModel(
+    val name: String,
+    val price: Float = 0F,
+    val description: String = "",
+    val imageId: Int? = null
+)
+

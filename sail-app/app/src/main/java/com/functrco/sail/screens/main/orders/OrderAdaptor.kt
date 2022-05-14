@@ -17,11 +17,12 @@ class OrderAdaptor(): RecyclerView.Adapter<OrderAdaptor.ViewHolder>() {
                 order.product.imageId ?: R.drawable.default_product_img
             )
             binding.productTitleTextView.text = order.product.name
+            binding.productDescriptionTextView.text = order.product.description.orEmpty().ifEmpty { binding.orderCard.context.getString(R.string.default_product_description) }
             binding.productPriceChip.text = order.product.price.toString()
             binding.productStatusChip.text = order.status
         }
         init {
-            binding.orderCard.setOnClickListener{
+            binding.productImage.setOnClickListener{
                 onItemClick?.invoke(orders[adapterPosition])
             }
         }
