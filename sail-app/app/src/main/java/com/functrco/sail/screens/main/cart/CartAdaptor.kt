@@ -5,22 +5,22 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.functrco.sail.R
-import com.functrco.sail.databinding.ItemCartBinding
+import com.functrco.sail.databinding.ItemCartProductBinding
 
 class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
-    private var carts: List<CartModel> = listOf()
-    var onItemClick: ((CartModel) -> Unit)? = null
+    private var carts: List<CartItemModel> = listOf()
+    var onItemClick: ((CartItemModel) -> Unit)? = null
 
-    inner class ViewHolder(private val binding: ItemCartBinding) : RecyclerView.ViewHolder(binding.root){
-        fun bind(cart: CartModel){
+    inner class ViewHolder(private val binding: ItemCartProductBinding) : RecyclerView.ViewHolder(binding.root){
+        fun bind(cartItem: CartItemModel){
             binding.productImage.setImageResource(
-                cart.product.imageId ?: R.drawable.default_product_img
+                cartItem.product.imageId ?: R.drawable.default_product_img
             )
 
-            binding.productTitleTextView.text = cart.product.name
-            binding.productDescriptionTextView.text = cart.product.description.orEmpty().ifEmpty { binding.cartCard.context.getString(R.string.default_product_description) }
-            binding.productPriceTextView.text = "$${String.format("%.2f", cart.product.price)}"
-            binding.productQuantityTextView.text = cart.quantity.toString()
+            binding.productTitleTextView.text = cartItem.product.name
+            binding.productDescriptionTextView.text = cartItem.product.description.orEmpty().ifEmpty { binding.cartCard.context.getString(R.string.default_product_description) }
+            binding.productPriceTextView.text = "$${String.format("%.2f", cartItem.product.price)}"
+            binding.productQuantityTextView.text = cartItem.quantity.toString()
         }
 
         fun setPlusClickListener(position: Int){
@@ -49,7 +49,7 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val binding = ItemCartBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemCartProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -63,7 +63,7 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
         return carts.size
     }
 
-    fun setListData(data: List<CartModel>){
+    fun setListData(data: List<CartItemModel>){
         this.carts = data.toMutableList()
     }
 }

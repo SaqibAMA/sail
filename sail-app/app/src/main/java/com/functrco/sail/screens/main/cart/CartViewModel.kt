@@ -5,14 +5,14 @@ import androidx.lifecycle.ViewModel
 
 class CartViewModel : ViewModel() {
 
-    private var carts = MutableLiveData<List<CartModel>>()
+    private var cart = MutableLiveData<CartModel>()
 
-    fun getObserver() = carts
+    fun getObserver() = cart
 
     /* TODO: replace the code to fetch carts from API */
-    fun fetchCarts(): MutableLiveData<List<CartModel>>{
-        carts.postValue(SampleCarts.getAll())
-        return carts
+    fun fetchCarts(): MutableLiveData<CartModel>{
+        cart.postValue(SampleCarts.get())
+        return cart
     }
 
 }

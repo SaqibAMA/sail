@@ -36,13 +36,13 @@
                     android:textStyle="bold" />
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/cartsRecyclerView"
+                    android:id="@+id/cartRecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:nestedScrollingEnabled="false"
                     android:scrollbarSize="0dp"
                     android:scrollbarStyle="outsideInset"
-                    tools:listitem="@layout/item_cart" />
+                    tools:listitem="@layout/item_cart_product" />
 
             </LinearLayout>
 

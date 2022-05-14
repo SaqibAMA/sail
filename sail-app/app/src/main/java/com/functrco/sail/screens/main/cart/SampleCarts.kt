@@ -1,16 +1,13 @@
 package com.functrco.sail.screens.main.cart
-
 import com.functrco.sail.screens.main.products.SampleProducts
 
 object SampleCarts {
-    fun getAll(): List<CartModel> {
+    fun get(): CartModel {
         val products = SampleProducts.getAll()
-        val orders = mutableListOf<CartModel>()
+        val cart = CartModel()
         products.forEach{
-            orders.add(CartModel(it, 2))
+            cart.cartItems.add(CartItemModel(it, 1))
         }
-
-        return orders
+        return cart
     }
-
 }

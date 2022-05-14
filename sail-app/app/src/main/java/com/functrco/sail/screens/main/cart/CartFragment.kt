@@ -21,7 +21,7 @@ class CartFragment : Fragment() {
 
     private lateinit var cartViewModel: CartViewModel
 
-    private val cartsAdaptor = CartAdaptor()
+    private val cartAdaptor = CartAdaptor()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,19 +30,19 @@ class CartFragment : Fragment() {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
 
-        setCarts()
-        observeCarts()
+        setCart()
+        observeCart()
 
         return binding.root
     }
 
 
     // bind cart to the recycler view
-    private fun setCarts(){
-        binding.cartsRecyclerView.adapter = cartsAdaptor
-        binding.cartsRecyclerView.layoutManager = LinearLayoutManager(this.context)
+    private fun setCart(){
+        binding.cartRecyclerView.adapter = cartAdaptor
+        binding.cartRecyclerView.layoutManager = LinearLayoutManager(this.context)
 
-        cartsAdaptor.onItemClick = {
+        cartAdaptor.onItemClick = {
             val redirectToCartPage = Intent(activity, ProductPage::class.java)
             // TODO: pass cart information through intent
             startActivity(redirectToCartPage)
@@ -51,11 +51,11 @@ class CartFragment : Fragment() {
 
     // set observer on the carts list and fetch categories
     @SuppressLint("NotifyDataSetChanged")
-    private fun observeCarts() {
+    private fun observeCart() {
         cartViewModel.getObserver().observe(viewLifecycleOwner, Observer {
             if (it != null) {
-                cartsAdaptor.setListData(it)
-                cartsAdaptor.notifyDataSetChanged()
+                cartAdaptor.setListData(it.cartItems)
+                cartAdaptor.notifyDataSetChanged()
             } else {
                 Log.d(TAG, "observeCarts(): null")
             }
