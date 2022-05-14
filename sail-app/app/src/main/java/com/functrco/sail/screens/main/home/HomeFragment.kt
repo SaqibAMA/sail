@@ -1,6 +1,8 @@
 package com.functrco.sail.screens.main.home
 
 import android.annotation.SuppressLint
+import android.content.Intent
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,26 +11,26 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.functrco.sail.R
+import com.functrco.sail.ProductPage
 import com.functrco.sail.databinding.FragmentHomeBinding
-import com.functrco.sail.screens.main.home.categories.CategoriesAdaptor
-import com.functrco.sail.screens.main.home.categories.CategoriesViewModel
-import com.functrco.sail.screens.main.home.products.GridSpacingItemDecoration
-import com.functrco.sail.screens.main.home.products.ProductsAdaptor
-import com.functrco.sail.screens.main.home.products.ProductsViewModel
+import com.functrco.sail.screens.main.home.categories.CategoryAdaptor
+import com.functrco.sail.screens.main.home.categories.CategoryViewModel
+import com.functrco.sail.screens.main.home.products_parent.ProductsParentAdaptor
+import com.functrco.sail.screens.main.home.products_parent.ProductsViewModel
+import com.functrco.sail.screens.main.products.ProductAdaptor
+import com.functrco.sail.screens.main.products.ProductViewModel
 
 
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var categoryViewModel: CategoriesViewModel
-    private lateinit var productViewModel: ProductsViewModel
+    private lateinit var categoryViewModel: CategoryViewModel
+    private lateinit var productsParentViewModel: ProductsViewModel
 
-    private val categoriesAdaptor = CategoriesAdaptor()
-    private val productsAdaptor = ProductsAdaptor()
+    private val categoriesAdaptor = CategoryAdaptor()
+    private val productsParentsAdaptor = ProductsParentAdaptor()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,15 +39,15 @@ class HomeFragment : Fragment() {
     ): View {
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        categoryViewModel = ViewModelProvider(this)[CategoriesViewModel::class.java]
-        productViewModel = ViewModelProvider(this)[ProductsViewModel::class.java]
+        categoryViewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
+        productsParentViewModel = ViewModelProvider(this)[ProductsViewModel::class.java]
 
 
         setCategories()
         observeCategories()
 
-        setProducts()
-        observeProducts()
+        setProductsParents()
+        observeProductsParents()
 
         return binding.root
     }
@@ -72,25 +74,25 @@ class HomeFragment : Fragment() {
     }
 
 
+
     // bind categories to the recycler view
-    private fun setProducts(){
-        binding.productsRecyclerView.adapter = productsAdaptor
-        binding.productsRecyclerView.layoutManager = GridLayoutManager(this.context, 2)
-        binding.productsRecyclerView.addItemDecoration(GridSpacingItemDecoration(this.requireContext(), R.dimen.grid_item_offset))
+    private fun setProductsParents(){
+        binding.productsParentRecyclerView.adapter = productsParentsAdaptor
+        binding.productsParentRecyclerView.layoutManager = LinearLayoutManager(this.context)
     }
 
     // set observer on the categories list and fetch categories
     @SuppressLint("NotifyDataSetChanged")
-    private fun observeProducts() {
-        productViewModel.getObserver().observe(viewLifecycleOwner, Observer {
+    private fun observeProductsParents() {
+        productsParentViewModel.getObserver().observe(viewLifecycleOwner, Observer {
             if (it != null) {
-                productsAdaptor.setListData(it)
-                productsAdaptor.notifyDataSetChanged()
+                productsParentsAdaptor.setListData(it)
+                productsParentsAdaptor.notifyDataSetChanged()
             } else {
-                Log.d(TAG, "observeProducts(): null")
+                Log.d(TAG, "observeProductsParents(): null")
             }
         })
-        productViewModel.fetchProducts()
+        productsParentViewModel.fetchProductsParents()
     }
 
 

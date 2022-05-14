@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_cart" />
     <fragment
         android:id="@+id/ordersFragment"
-        android:name="com.functrco.sail.screens.main.orders.OrdersFragment"
+        android:name="com.functrco.sail.screens.main.orders.OrderFragment"
         android:label="Orders"
         tools:layout="@layout/fragment_orders" />
     <fragment
