@@ -5,7 +5,6 @@ import android.content.Intent
 
 import android.os.Bundle
 import android.util.Log
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,7 +14,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.functrco.sail.ProductPage
-import com.functrco.sail.R
 import com.functrco.sail.databinding.FragmentHomeBinding
 import com.functrco.sail.screens.main.home.categories.CategoriesAdaptor
 import com.functrco.sail.screens.main.home.categories.CategoriesViewModel
