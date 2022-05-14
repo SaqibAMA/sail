@@ -22,6 +22,24 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
             binding.productPriceTextView.text = "$${String.format("%.2f", cart.product.price)}"
             binding.productQuantityTextView.text = cart.quantity.toString()
         }
+
+        fun setPlusClickListener(position: Int){
+            binding.plusTextView.setOnClickListener {
+                carts[position].quantity++
+                notifyItemChanged(position)
+            }
+        }
+
+        fun setMinusClickListener(position: Int){
+            binding.minusTextView.setOnClickListener {
+                if(carts[position].quantity > 0){
+                    carts[position].quantity--
+                    notifyItemChanged(position)
+                }
+                notifyItemChanged(position)
+            }
+        }
+
         init {
             binding.productImage.setOnClickListener{
                 onItemClick?.invoke(carts[adapterPosition])
@@ -37,6 +55,8 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(carts[position])
+        holder.setPlusClickListener(position)
+        holder.setMinusClickListener(position)
     }
 
     override fun getItemCount(): Int {
