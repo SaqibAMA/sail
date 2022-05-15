@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.functrco.sail.ProductPage
+import com.functrco.sail.adaptors.CartAdaptor
 import com.functrco.sail.databinding.FragmentCartBinding
 
 class CartFragment : Fragment() {
@@ -54,7 +55,7 @@ class CartFragment : Fragment() {
     private fun observeCart() {
         cartViewModel.getObserver().observe(viewLifecycleOwner, Observer {
             if (it != null) {
-                cartAdaptor.setListData(it.cartItems)
+                cartAdaptor.setListData(it.cartItems!!)
                 cartAdaptor.notifyDataSetChanged()
             } else {
                 Log.d(TAG, "observeCarts(): null")

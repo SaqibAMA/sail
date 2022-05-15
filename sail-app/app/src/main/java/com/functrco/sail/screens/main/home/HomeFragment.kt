@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.functrco.sail.databinding.FragmentHomeBinding
-import com.functrco.sail.screens.main.home.categories.CategoryAdaptor
+import com.functrco.sail.adaptors.CategoryAdaptor
 import com.functrco.sail.screens.main.home.categories.CategoryViewModel
 import com.functrco.sail.screens.main.home.products_parent.ProductsParentAdaptor
 import com.functrco.sail.screens.main.home.products_parent.ProductsViewModel
@@ -25,8 +25,8 @@ class HomeFragment : Fragment() {
     private lateinit var categoryViewModel: CategoryViewModel
     private lateinit var productsParentViewModel: ProductsViewModel
 
-    private val categoriesAdaptor = CategoryAdaptor()
-    private val productsParentsAdaptor = ProductsParentAdaptor()
+    private lateinit var categoriesAdaptor: CategoryAdaptor
+    private lateinit var productsParentsAdaptor: ProductsParentAdaptor
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,6 +38,8 @@ class HomeFragment : Fragment() {
         categoryViewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
         productsParentViewModel = ViewModelProvider(this)[ProductsViewModel::class.java]
 
+//        TODO: uncomment
+//        categoryViewModel.init()
 
         setCategories()
         observeCategories()
@@ -49,8 +51,10 @@ class HomeFragment : Fragment() {
     }
 
 
+
     // bind categories to the recycler view
     private fun setCategories(){
+        categoriesAdaptor = CategoryAdaptor()
         binding.categoriesRecyclerView.adapter = categoriesAdaptor
         binding.categoriesRecyclerView.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
     }
@@ -73,6 +77,7 @@ class HomeFragment : Fragment() {
 
     // bind categories to the recycler view
     private fun setProductsParents(){
+        productsParentsAdaptor = ProductsParentAdaptor()
         binding.productsParentRecyclerView.adapter = productsParentsAdaptor
         binding.productsParentRecyclerView.layoutManager = LinearLayoutManager(this.context)
     }

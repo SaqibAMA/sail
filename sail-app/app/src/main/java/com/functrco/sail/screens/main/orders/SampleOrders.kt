@@ -1,5 +1,6 @@
 package com.functrco.sail.screens.main.orders
 
+import com.functrco.sail.models.OrderModel
 import com.functrco.sail.screens.main.products.SampleProducts
 
 object SampleOrders {

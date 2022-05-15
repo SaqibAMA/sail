@@ -1,5 +1,6 @@
 package com.functrco.sail.screens.main.home.products_parent
 
+import com.functrco.sail.models.ProductsModel
 import com.functrco.sail.screens.main.products.SampleProducts
 
 object SampleProductsParents {

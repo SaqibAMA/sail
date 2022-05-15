@@ -1,21 +1,28 @@
-package com.functrco.sail.screens.main.home.categories
+package com.functrco.sail.adaptors
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.firebase.ui.database.FirebaseRecyclerAdapter
+import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.functrco.sail.R
 import com.functrco.sail.databinding.ItemCategoryBinding
+import com.functrco.sail.models.CategoryModel
 
 class CategoryAdaptor() : RecyclerView.Adapter<CategoryAdaptor.ViewHolder>() {
-    private lateinit var categories: List<CategoryModel>
+    private var categories: List<CategoryModel> = listOf()
 
     inner class ViewHolder(private val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(category: CategoryModel) {
-            binding.categoryImage.setImageResource(
-                category.imageId ?: R.drawable.default_product_img
-            )
+            Glide
+                .with(this.itemView.context)
+                .load(category.imageUrl)
+                .centerCrop()
+                .placeholder(R.drawable.default_product_img)
+                .into(binding.categoryImage)
             binding.categoryName.text = category.name
         }
     }

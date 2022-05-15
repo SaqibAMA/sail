@@ -1,4 +1,4 @@
-package com.functrco.sail.screens.main.cart
+package com.functrco.sail.adaptors
 
 
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.functrco.sail.R
 import com.functrco.sail.databinding.ItemCartProductBinding
+import com.functrco.sail.models.CartItemModel
 
 class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
     private var carts: List<CartItemModel> = listOf()
@@ -14,12 +15,12 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemCartProductBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(cartItem: CartItemModel){
             binding.productImage.setImageResource(
-                cartItem.product.imageId ?: R.drawable.default_product_img
+                cartItem.product!!.imageId ?: R.drawable.default_product_img
             )
 
-            binding.productTitleTextView.text = cartItem.product.name
-            binding.productDescriptionTextView.text = cartItem.product.description.orEmpty().ifEmpty { binding.cartCard.context.getString(R.string.default_product_description) }
-            binding.productPriceTextView.text = "$${String.format("%.2f", cartItem.product.price)}"
+            binding.productTitleTextView.text = cartItem.product!!.name
+            binding.productDescriptionTextView.text = cartItem.product!!.description.orEmpty().ifEmpty { binding.cartCard.context.getString(R.string.default_product_description) }
+            binding.productPriceTextView.text = "$${String.format("%.2f", cartItem.product!!.price)}"
             binding.productQuantityTextView.text = cartItem.quantity.toString()
         }
 

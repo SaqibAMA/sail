@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.functrco.sail.ProductPage
+import com.functrco.sail.adaptors.OrderAdaptor
 import com.functrco.sail.databinding.FragmentOrdersBinding
 
 class OrderFragment : Fragment() {

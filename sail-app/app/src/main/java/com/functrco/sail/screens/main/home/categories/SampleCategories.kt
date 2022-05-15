@@ -1,15 +1,15 @@
 package com.functrco.sail.screens.main.home.categories
 
+import com.functrco.sail.R
+import com.functrco.sail.models.CategoryModel
+
 object SampleCategories {
 
-    fun getAll(): List<CategoryModel> {
+    fun getAll(): List<Pair<String, Int>> {
         return mutableListOf(
-            CategoryModel("Mouse"),
-            CategoryModel("Keyboard"),
-            CategoryModel("Phone"),
-            CategoryModel("Shoes"),
-            CategoryModel("Airpods"),
-            CategoryModel("Keyboard")
+            Pair("Shoes", R.drawable.default_product_img),
+            Pair("Headphone", R.drawable.img_headphone_product),
+            Pair("Phone", R.drawable.img_phone_product),
         )
     }
 

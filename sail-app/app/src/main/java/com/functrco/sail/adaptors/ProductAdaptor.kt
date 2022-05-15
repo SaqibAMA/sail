@@ -1,4 +1,4 @@
-package com.functrco.sail.screens.main.products
+package com.functrco.sail.adaptors
 
 
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.functrco.sail.R
 import com.functrco.sail.databinding.ItemProductBinding
+import com.functrco.sail.models.ProductModel
 
 class ProductAdaptor(): RecyclerView.Adapter<ProductAdaptor.ViewHolder>() {
     private var products: List<ProductModel> = listOf()

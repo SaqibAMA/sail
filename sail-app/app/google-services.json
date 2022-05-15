@@ -14,11 +14,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "743655652821-4tg52ii880elidokit8gbl69nqsivul4.apps.googleusercontent.com",
+          "client_id": "743655652821-8pmnt7ukti7jsg6vaf66ntti62gdq28v.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.functrco.sail",
             "certificate_hash": "bb5fb708e1272a51c3053d4df3f4006a34d4dcd3"
+          }
+        },
+        {
+          "client_id": "743655652821-hse3edojg5ci8835prb08hp60obmhtsf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.functrco.sail",
+            "certificate_hash": "49ece4214f65f3b7babf2520217677f44173b34a"
           }
         },
         {

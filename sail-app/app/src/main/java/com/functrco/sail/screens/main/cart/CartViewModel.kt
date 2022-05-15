@@ -2,6 +2,8 @@ package com.functrco.sail.screens.main.cart
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.functrco.sail.models.CartModel
+import com.functrco.sail.screens.main.home.categories.SampleCategories
 
 class CartViewModel : ViewModel() {
 

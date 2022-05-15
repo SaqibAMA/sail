@@ -1,5 +1,7 @@
 package com.functrco.sail.screens.main.products
 
+import com.functrco.sail.models.ProductModel
+
 object SampleProducts {
     fun getAll(): List<ProductModel> {
         return mutableListOf(

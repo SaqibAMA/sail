@@ -2,6 +2,7 @@ package com.functrco.sail.screens.main.orders
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.functrco.sail.models.OrderModel
 
 class OrderViewModel : ViewModel() {
 
