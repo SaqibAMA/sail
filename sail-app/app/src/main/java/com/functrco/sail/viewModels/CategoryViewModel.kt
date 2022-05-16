@@ -1,4 +1,4 @@
-package com.functrco.sail.screens.main.home.categories
+package com.functrco.sail.viewModels
 
 import android.app.Application
 import android.util.Log
@@ -9,6 +9,7 @@ import com.functrco.sail.firebase_storage.FirebaseStorageDirectories
 import com.functrco.sail.firebase_storage.FirebaseStorageManager
 import com.functrco.sail.models.CategoryModel
 import com.functrco.sail.repository.CategoriesRepository
+import com.functrco.sail.sample_data.SampleCategories
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

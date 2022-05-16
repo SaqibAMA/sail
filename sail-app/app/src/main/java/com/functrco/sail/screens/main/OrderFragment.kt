@@ -1,4 +1,4 @@
-package com.functrco.sail.screens.main.orders
+package com.functrco.sail.screens.main
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.functrco.sail.ProductPage
 import com.functrco.sail.adaptors.OrderAdaptor
 import com.functrco.sail.databinding.FragmentOrdersBinding
+import com.functrco.sail.viewModels.OrderViewModel
 
 class OrderFragment : Fragment() {
 

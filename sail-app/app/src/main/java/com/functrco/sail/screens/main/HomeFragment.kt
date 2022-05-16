@@ -1,4 +1,4 @@
-package com.functrco.sail.screens.main.home
+package com.functrco.sail.screens.main
 
 import android.annotation.SuppressLint
 
@@ -13,9 +13,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.functrco.sail.databinding.FragmentHomeBinding
 import com.functrco.sail.adaptors.CategoryAdaptor
-import com.functrco.sail.screens.main.home.categories.CategoryViewModel
+import com.functrco.sail.repository.UserRepository
+import com.functrco.sail.viewModels.CategoryViewModel
 import com.functrco.sail.screens.main.home.products_parent.ProductsParentAdaptor
-import com.functrco.sail.screens.main.home.products_parent.ProductsViewModel
+import com.functrco.sail.viewModels.ProductsViewModel
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class HomeFragment : Fragment() {
@@ -40,6 +43,7 @@ class HomeFragment : Fragment() {
 
 //        TODO: uncomment
 //        categoryViewModel.init()
+
 
         setCategories()
         observeCategories()

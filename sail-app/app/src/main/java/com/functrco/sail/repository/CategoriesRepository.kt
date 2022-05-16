@@ -2,15 +2,10 @@ package com.functrco.sail.repository
 
 import android.util.Log
 import com.functrco.sail.models.CategoryModel
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.getValue
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 class CategoriesRepository {
 
@@ -32,22 +27,17 @@ class CategoriesRepository {
     }
 
 
-    suspend fun get(categoryId: String) = suspendCoroutine<CategoryModel> { continuation ->
-        val valueEventListener =
-            dbReference.child(categoryId).addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    dataSnapshot.getValue<CategoryModel>()?.let {
-                        continuation.resume(it)
-                    }
-                }
+    suspend fun get(categoryId: String): CategoryModel? {
+        var category: CategoryModel? = null
 
-                override fun onCancelled(databaseError: DatabaseError) {
-                    Log.w(Companion.TAG, "getAll:onCancelled", databaseError.toException())
-                    continuation.resume(CategoryModel())
-                }
-            })
+        dbReference.child(categoryId).get()
+            .addOnSuccessListener {
+                category = it.getValue<CategoryModel>()            }
+            .addOnFailureListener{ e->
+                Log.w(Companion.TAG, "getAll:onCancelled", e.cause)
+            }.await()
 
-        dbReference.child(categoryId).addValueEventListener(valueEventListener)
+        return category
     }
 
 

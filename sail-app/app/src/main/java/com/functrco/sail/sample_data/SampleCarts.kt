@@ -1,7 +1,6 @@
-package com.functrco.sail.screens.main.cart
+package com.functrco.sail.sample_data
 import com.functrco.sail.models.CartItemModel
 import com.functrco.sail.models.CartModel
-import com.functrco.sail.screens.main.products.SampleProducts
 
 object SampleCarts {
     fun get(): CartModel {

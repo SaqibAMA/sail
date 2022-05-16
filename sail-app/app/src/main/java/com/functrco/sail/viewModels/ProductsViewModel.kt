@@ -1,8 +1,9 @@
-package com.functrco.sail.screens.main.home.products_parent
+package com.functrco.sail.viewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.functrco.sail.models.ProductsModel
+import com.functrco.sail.sample_data.SampleProductsParents
 
 class ProductsViewModel : ViewModel() {
 

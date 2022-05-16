@@ -1,4 +1,4 @@
-package com.functrco.sail.screens.main.products
+package com.functrco.sail.sample_data
 
 import com.functrco.sail.models.ProductModel
 

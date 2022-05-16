@@ -1,7 +1,6 @@
-package com.functrco.sail.screens.main.home.products_parent
+package com.functrco.sail.sample_data
 
 import com.functrco.sail.models.ProductsModel
-import com.functrco.sail.screens.main.products.SampleProducts
 
 object SampleProductsParents {
     fun getAll(): List<ProductsModel> {

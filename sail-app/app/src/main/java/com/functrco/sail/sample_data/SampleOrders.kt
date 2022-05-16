@@ -1,7 +1,6 @@
-package com.functrco.sail.screens.main.orders
+package com.functrco.sail.sample_data
 
 import com.functrco.sail.models.OrderModel
-import com.functrco.sail.screens.main.products.SampleProducts
 
 object SampleOrders {
     fun getAll(): List<OrderModel> {

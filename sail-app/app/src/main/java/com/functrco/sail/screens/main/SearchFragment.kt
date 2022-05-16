@@ -1,4 +1,4 @@
-package com.functrco.sail.screens.main.search
+package com.functrco.sail.screens.main
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -14,7 +14,7 @@ import com.functrco.sail.ProductPage
 import com.functrco.sail.databinding.FragmentSearchBinding
 import com.functrco.sail.utils.GridSpaceItemDecoration
 import com.functrco.sail.adaptors.ProductAdaptor
-import com.functrco.sail.screens.main.products.ProductViewModel
+import com.functrco.sail.viewModels.ProductViewModel
 import com.functrco.sail.utils.DisplayUtil
 
 class SearchFragment : Fragment() {

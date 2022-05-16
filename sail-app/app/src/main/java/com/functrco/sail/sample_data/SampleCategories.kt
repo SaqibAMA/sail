@@ -1,4 +1,4 @@
-package com.functrco.sail.screens.main.home.categories
+package com.functrco.sail.sample_data
 
 import com.functrco.sail.R
 import com.functrco.sail.models.CategoryModel
