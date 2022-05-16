@@ -15,7 +15,7 @@ class OrderAdaptor(): RecyclerView.Adapter<OrderAdaptor.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemOrderBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(order: OrderModel){
             binding.productImage.setImageResource(
-                order.product!!.imageId ?: R.drawable.default_product_img
+                order.product!!.imageResourceId ?: R.drawable.default_product_img
             )
             binding.productTitleTextView.text = order.product!!.name
             binding.productDescriptionTextView.text = order.product!!.description.orEmpty().ifEmpty { binding.orderCard.context.getString(R.string.default_product_description) }

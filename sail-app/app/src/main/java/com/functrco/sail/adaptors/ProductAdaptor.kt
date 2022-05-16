@@ -4,6 +4,7 @@ package com.functrco.sail.adaptors
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.functrco.sail.R
 import com.functrco.sail.databinding.ItemProductBinding
 import com.functrco.sail.models.ProductModel
@@ -14,9 +15,13 @@ class ProductAdaptor(): RecyclerView.Adapter<ProductAdaptor.ViewHolder>() {
 
     inner class ViewHolder(private val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(product: ProductModel){
-            binding.productImage.setImageResource(
-                product.imageId ?: R.drawable.default_product_img
-            )
+            Glide
+                .with(this.itemView.context)
+                .load(product.imageUrl)
+                .centerCrop()
+                .placeholder(R.drawable.default_product_img)
+                .into(binding.productImage)
+
             binding.productName.text = product.name
             binding.productPrice.text = "$${String.format("%.2f", product.price)}"
         }

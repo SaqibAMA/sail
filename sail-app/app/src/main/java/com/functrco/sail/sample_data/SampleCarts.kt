@@ -7,6 +7,7 @@ object SampleCarts {
         val products = SampleProducts.getAll()
         val cart = CartModel()
         products.forEach{
+            if(cart.cartItems == null) cart.cartItems = mutableListOf<CartItemModel>()
             cart.cartItems!!.add(CartItemModel(it, 1))
         }
         return cart

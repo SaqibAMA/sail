@@ -1,11 +1,12 @@
 package com.functrco.sail.viewModels
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.functrco.sail.models.ProductModel
 import com.functrco.sail.sample_data.SampleProducts
 
-class ProductViewModel : ViewModel() {
+class ProductViewModel (app: Application) : AndroidViewModel(app)  {
 
     private var products = MutableLiveData<List<ProductModel>>()
 
@@ -17,6 +18,9 @@ class ProductViewModel : ViewModel() {
         return products
     }
 
+    companion object {
+        private val TAG = ProductViewModel::class.java.name
+    }
 }
 
 

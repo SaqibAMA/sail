@@ -1,4 +1,4 @@
-package com.functrco.sail.repository
+package com.functrco.sail.firebase.firebase_repository
 
 import android.util.Log
 import com.functrco.sail.models.CategoryModel
@@ -22,7 +22,6 @@ class CategoriesRepository {
         }.await()
 
         Log.d(TAG,  categories.toString())
-
         return categories
     }
 

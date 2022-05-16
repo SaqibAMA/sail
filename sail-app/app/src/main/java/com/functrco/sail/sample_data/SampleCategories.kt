@@ -5,11 +5,11 @@ import com.functrco.sail.models.CategoryModel
 
 object SampleCategories {
 
-    fun getAll(): List<Pair<String, Int>> {
+    fun getAll(): List<CategoryModel> {
         return mutableListOf(
-            Pair("Shoes", R.drawable.default_product_img),
-            Pair("Headphone", R.drawable.img_headphone_product),
-            Pair("Phone", R.drawable.img_phone_product),
+            CategoryModel("Shoes", R.drawable.default_product_img),
+            CategoryModel("Headphone", R.drawable.img_headphone_product),
+            CategoryModel("Phone", R.drawable.img_phone_product),
         )
     }
 

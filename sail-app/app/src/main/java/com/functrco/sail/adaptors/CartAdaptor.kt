@@ -15,9 +15,8 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
     inner class ViewHolder(private val binding: ItemCartProductBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(cartItem: CartItemModel){
             binding.productImage.setImageResource(
-                cartItem.product!!.imageId ?: R.drawable.default_product_img
+                cartItem.product!!.imageResourceId ?: R.drawable.default_product_img
             )
-
             binding.productTitleTextView.text = cartItem.product!!.name
             binding.productDescriptionTextView.text = cartItem.product!!.description.orEmpty().ifEmpty { binding.cartCard.context.getString(R.string.default_product_description) }
             binding.productPriceTextView.text = "$${String.format("%.2f", cartItem.product!!.price)}"

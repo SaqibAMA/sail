@@ -1,9 +1,6 @@
-package com.functrco.sail.repository
+package com.functrco.sail.firebase.firebase_repository
 
-import android.annotation.SuppressLint
 import android.util.Log
-import com.firebase.ui.auth.data.model.User
-import com.functrco.sail.models.CategoryModel
 import com.functrco.sail.models.UserModel
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.getValue

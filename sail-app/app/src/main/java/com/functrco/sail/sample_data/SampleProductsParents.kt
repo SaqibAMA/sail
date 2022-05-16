@@ -5,11 +5,9 @@ import com.functrco.sail.models.ProductsModel
 object SampleProductsParents {
     fun getAll(): List<ProductsModel> {
         val products = SampleProducts.getAll()
-
-        return listOf<ProductsModel>(
-            ProductsModel("Popular Products", products.take(5)),
-            ProductsModel("Feature Products", products.takeLast(5))
+        return listOf(
+            ProductsModel("Popular Products", products.take(1)),
+            ProductsModel("Feature Products", products.takeLast(2))
         )
     }
-
 }

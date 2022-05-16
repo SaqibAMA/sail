@@ -1,6 +1,6 @@
-package com.functrco.sail.repository
+package com.functrco.sail.firebase.firebase_storage
 
-object FirebaseDBEndPoints {
+object FirebaseStorageDirectories {
     const val USERS = "users"
     const val CATEGORIES = "categories"
     const val PRODUCTS = "products"

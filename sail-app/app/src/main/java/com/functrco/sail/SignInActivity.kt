@@ -1,6 +1,5 @@
 package com.functrco.sail
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.net.ConnectivityManager
@@ -8,10 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import android.widget.TextView
 import com.functrco.sail.models.UserModel
-import com.functrco.sail.repository.UserRepository
+import com.functrco.sail.firebase.firebase_repository.UserRepository
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient

@@ -1,17 +1,11 @@
-package com.functrco.sail.firebase_storage
+package com.functrco.sail.firebase.firebase_storage
 
 import android.content.ContentResolver
 import android.content.res.Resources
 import android.net.Uri
 import android.util.Log
 import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.tasks.await
-import java.text.DateFormat
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 object FirebaseStorageManager {
 
