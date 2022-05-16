@@ -2,6 +2,7 @@ package com.functrco.sail
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -14,6 +15,11 @@ class ReviewsPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reviews_page)
+
+        // bind back button
+        findViewById<ImageButton>(R.id.top_nav_back_btn).setOnClickListener {
+            finish()
+        }
 
         // TODO: Pull reviews for the product from Firebase
 

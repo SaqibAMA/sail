@@ -13,21 +13,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:paddingLeft="30dp"
-        android:paddingRight="30dp">
+        android:paddingRight="30dp"
+        android:orientation="vertical">
 
         <com.functrco.sail.PageTopNav
-            android:id="@+id/product_page_top_nav"
+            android:id="@+id/reviews_page_top_nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="30dp"
             android:paddingBottom="30dp"
-            app:title="Reviews"/>
+            app:title="Reviews" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            tools:listitem="@layout/product_page_review"
             android:id="@+id/reviews_page_list"
-            tools:listitem="@layout/product_page_review"/>
+            android:padding="5dp"/>
 
     </LinearLayout>
 
