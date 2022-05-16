@@ -1,49 +1,19 @@
 package com.functrco.sail
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
-class ProductPage : AppCompatActivity() {
+class ReviewsPage : AppCompatActivity() {
 
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var adapter: RecyclerView.Adapter<ProductPageReviewAdapter.ViewHolder>
     lateinit var reviewList: RecyclerView
 
-
-    companion object {
-        private const val TAG = "PRODUCT_PAGE"  // for debug
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_page)
-
-        // bind back button
-        findViewById<ImageButton>(R.id.product_page_back_btn).setOnClickListener {
-                finish()
-        }
-
-        // bind add to cart button
-        findViewById<Button>(R.id.product_page_add_to_cart).setOnClickListener {
-            handleAddToCart()
-        }
-
-        // bind buy now button
-        findViewById<Button>(R.id.product_page_buy_now).setOnClickListener {
-                handleBuyNow()
-        }
-
-        findViewById<TextView>(R.id.product_page_view_more).setOnClickListener {
-            val i = Intent(this, ReviewsPage::class.java)
-            startActivity(i)
-        }
+        setContentView(R.layout.activity_reviews_page)
 
         // TODO: Pull reviews for the product from Firebase
 
@@ -73,17 +43,9 @@ class ProductPage : AppCompatActivity() {
 
     }
 
-    fun handleAddToCart() {
-        Log.d(TAG, "Add to cart")
-    }
-
-    fun handleBuyNow() {
-        Log.d(TAG, "Buy now")
-    }
-
     fun fillReviews(data: List<ReviewModel>) {
         layoutManager = LinearLayoutManager(this)
-        reviewList = findViewById(R.id.product_page_review_list)
+        reviewList = findViewById(R.id.reviews_page_list)
         reviewList.layoutManager = layoutManager
         adapter = ProductPageReviewAdapter(data)
         reviewList.adapter = adapter
