@@ -26,7 +26,7 @@ class ProductPage : AppCompatActivity() {
         setContentView(R.layout.activity_product_page)
 
         // bind back button
-        findViewById<ImageButton>(R.id.product_page_back_btn).setOnClickListener {
+        findViewById<ImageButton>(R.id.top_nav_back_btn).setOnClickListener {
                 finish()
         }
 
