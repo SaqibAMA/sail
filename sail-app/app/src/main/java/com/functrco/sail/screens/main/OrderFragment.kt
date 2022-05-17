@@ -17,6 +17,8 @@ import com.functrco.sail.adaptors.OrderAdaptor
 import com.functrco.sail.databinding.FragmentOrdersBinding
 import com.functrco.sail.utils.Util
 import com.functrco.sail.viewModels.OrderViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class OrderFragment : Fragment() {
 
@@ -26,16 +28,16 @@ class OrderFragment : Fragment() {
     private lateinit var orderViewModel: OrderViewModel
 
     private val ordersAdaptor = OrderAdaptor()
+    private var user: FirebaseUser? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         Util.removeFragment(activity?.supportFragmentManager, MainActivity.CART_FRAGMENT_TAG)
-
-
         _binding = FragmentOrdersBinding.inflate(inflater, container, false)
         orderViewModel = ViewModelProvider(this)[OrderViewModel::class.java]
+        user = FirebaseAuth.getInstance().currentUser
 
 
         setOrders()
@@ -52,7 +54,7 @@ class OrderFragment : Fragment() {
 
         ordersAdaptor.onItemClick = {
             val redirectToOrderPage = Intent(activity, ProductPage::class.java)
-            // TODO: pass order information through intent
+            redirectToOrderPage.putExtra("product_info", Util.toSerializable(it.product))
             startActivity(redirectToOrderPage)
         }
     }
@@ -68,7 +70,9 @@ class OrderFragment : Fragment() {
                 Log.d(TAG, "observeOrders(): null")
             }
         })
-        orderViewModel.fetchOrders()
+        if(user != null) {
+            orderViewModel.getAll(user?.uid!!)
+        }
     }
 
 

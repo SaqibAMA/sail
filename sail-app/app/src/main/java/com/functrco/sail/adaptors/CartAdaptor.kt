@@ -29,23 +29,6 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
             binding.productQuantityTextView.text = cartItem.quantity.toString()
         }
 
-        fun setPlusClickListener(position: Int){
-            binding.plusTextView.setOnClickListener {
-                carts[position].quantity++
-                notifyItemChanged(position)
-            }
-        }
-
-        fun setMinusClickListener(position: Int){
-            binding.minusTextView.setOnClickListener {
-                if(carts[position].quantity > 1){
-                    carts[position].quantity--
-                    notifyItemChanged(position)
-                }
-                notifyItemChanged(position)
-            }
-        }
-
         init {
             binding.plusTextView.setOnClickListener{
                 onPlusClick?.invoke(carts[adapterPosition])
@@ -65,8 +48,6 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(carts[position])
-//        holder.setPlusClickListener(position)
-//        holder.setMinusClickListener(position)
     }
 
     override fun getItemCount(): Int {

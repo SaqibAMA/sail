@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
-    private var product: ProductModel? = null
+    private var goToCartPage: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,30 +30,20 @@ class MainActivity : AppCompatActivity() {
 
 
         // get product information from the intent
-        product = Gson().fromJson(
-            intent?.getStringExtra("product_info"),
-            ProductModel::class.java
-        )
+        goToCartPage = intent.getBooleanExtra("go_to_cart_page", false)
         navigateToCartPage()
     }
 
     private fun navigateToCartPage() {
-        if (product != null) {
-            val bundle = Bundle()
-            bundle.putString("product_info", Util.toSerializable(product))
-            val cartFragment = CartFragment()
-            cartFragment.arguments = bundle
-            performNoBackStackTransaction(CART_FRAGMENT_TAG, cartFragment)
+        if (goToCartPage) {
+            performNoBackStackTransaction(CART_FRAGMENT_TAG, CartFragment())
         } else {
-            Log.d(TAG, "null product")
+            Log.d(TAG, "do not go to cart page")
         }
     }
 
 
-    private fun performNoBackStackTransaction(
-        tag: String,
-        fragment: Fragment
-    ) {
+    private fun performNoBackStackTransaction(tag: String, fragment: Fragment) {
         binding.bottomNavbar.menu.getItem(2).isChecked = true
         supportFragmentManager
             .beginTransaction()

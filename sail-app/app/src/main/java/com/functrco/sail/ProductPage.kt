@@ -13,11 +13,20 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.functrco.sail.firebase.repository.CartRepository
+import com.functrco.sail.models.CartItemModel
+import com.functrco.sail.models.CartModel
 import com.functrco.sail.models.ProductModel
 import com.functrco.sail.models.ReviewModel
 import com.functrco.sail.screens.main.CartFragment
 import com.functrco.sail.utils.Util
+import com.functrco.sail.viewModels.CartViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.gson.Gson
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.io.Serializable
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -30,6 +39,7 @@ class ProductPage : AppCompatActivity() {
     private lateinit var reviewList: RecyclerView
     private lateinit var product: ProductModel
     private var reviews: List<ReviewModel>? = null
+    private var user: FirebaseUser? = null
 
     companion object {
         private const val TAG = "PRODUCT_PAGE"  // for debug
@@ -40,6 +50,7 @@ class ProductPage : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_product_page)
 
+        user = FirebaseAuth.getInstance().currentUser
         // get product information from the intent
         product = Gson().fromJson<ProductModel>(
             intent.getStringExtra("product_info"),
@@ -74,18 +85,25 @@ class ProductPage : AppCompatActivity() {
             startActivity(i)
         }
 
-        // filling dummy data into product page
         fillReviews()
     }
 
-    fun handleAddToCart() {
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun handleAddToCart() {
         Log.d(TAG, "Add to cart")
         val redirectToCartPage = Intent(this, MainActivity::class.java)
-        redirectToCartPage.putExtra("product_info", Util.toSerializable(product))
-        startActivity(redirectToCartPage)
+        // insert product into cart
+        GlobalScope.launch {
+            if(user != null) {
+                val cart = CartModel(listOf(CartItemModel(product.id, product)), user?.uid!!)
+                CartRepository().insert(user?.uid!!, cart)
+                redirectToCartPage.putExtra("go_to_cart_page", true)
+                startActivity(redirectToCartPage)
+            }
+        }
     }
 
-    fun handleBuyNow() {
+    private fun handleBuyNow() {
         Log.d(TAG, "Buy now")
     }
 
@@ -99,7 +117,6 @@ class ProductPage : AppCompatActivity() {
             reviewList.adapter = adapter
         }
     }
-
 
     private fun setViewsData() {
         Glide

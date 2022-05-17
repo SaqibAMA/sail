@@ -2,8 +2,11 @@ package com.functrco.sail.viewModels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.functrco.sail.firebase.repository.OrdersRepository
 import com.functrco.sail.models.OrderModel
 import com.functrco.sail.sample_data.SampleOrders
+import kotlinx.coroutines.launch
 
 class OrderViewModel : ViewModel() {
 
@@ -11,9 +14,10 @@ class OrderViewModel : ViewModel() {
 
     fun getObserver() = orders
 
-    /* TODO: replace the code to fetch orders from API */
-    fun fetchOrders(): MutableLiveData<List<OrderModel>>{
-//        orders.postValue(SampleOrders.getAll())
+    fun getAll(userId: String): MutableLiveData<List<OrderModel>>{
+        viewModelScope.launch {
+            orders.postValue(OrdersRepository().getAll(userId))
+        }
         return orders
     }
 

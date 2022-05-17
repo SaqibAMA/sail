@@ -85,6 +85,11 @@ class CartRepository {
         return getNestedDetails(cart)
     }
 
+    // delete cart from the database
+    suspend fun delete(userId: String) {
+        dbReference.child(userId).removeValue().await()
+    }
+
     companion object {
         private val TAG = CartRepository::class.java.name
         private val dbReference =

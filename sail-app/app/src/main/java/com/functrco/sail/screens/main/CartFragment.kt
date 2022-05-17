@@ -1,32 +1,31 @@
 package com.functrco.sail.screens.main
 
 import android.annotation.SuppressLint
-import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.functrco.sail.ProductPage
+import com.functrco.sail.R
 import com.functrco.sail.adaptors.CartAdaptor
 import com.functrco.sail.databinding.FragmentCartBinding
-import com.functrco.sail.models.CartItemModel
-import com.functrco.sail.models.ProductModel
+import com.functrco.sail.firebase.repository.CartRepository
+import com.functrco.sail.firebase.repository.OrdersRepository
+import com.functrco.sail.models.OrderModel
 import com.functrco.sail.utils.Util
 import com.functrco.sail.viewModels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.firestore.auth.User
-import com.google.firebase.ktx.Firebase
-import com.google.gson.Gson
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import java.time.LocalDateTime
+import java.util.*
 
 class CartFragment : Fragment() {
 
@@ -36,8 +35,7 @@ class CartFragment : Fragment() {
     private lateinit var cartViewModel: CartViewModel
     private val cartAdaptor = CartAdaptor()
 
-    private var user:FirebaseUser? = null
-    private var product: ProductModel? = null
+    private var user: FirebaseUser? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,37 +43,61 @@ class CartFragment : Fragment() {
     ): View {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
-
         user = FirebaseAuth.getInstance().currentUser
 
-        // get product information from the intent
-        product = Gson().fromJson(
-            arguments?.getString("product_info"),
-            ProductModel::class.java
-        )
+        binding.orderButton.setOnClickListener {
+            handleMakeOrder()
+        }
 
-        initCart()
         setCart()
         observeCart()
 
         return binding.root
     }
 
+    // insert orders in the database, delete cart and redirect user to the order page
+    private fun handleMakeOrder() {
+        if (user?.uid != null) {
+            val orders = mutableListOf<OrderModel>()
+            cartAdaptor.carts.forEach { cartItem ->
+                orders.add(
+                    OrderModel(
+                        user?.uid!!,
+                        cartItem.productId,
+                        cartItem.product,
+                        "Progress",
+                        cartItem.quantity,
+                        Date().toString(),
+                        30
+                    )
+                )
+            }
+            GlobalScope.launch {
+                // insert each cart Items as an order
+                OrdersRepository().insertAll(orders)
 
+                // delete cart
+                CartRepository().delete(user?.uid!!)
 
-    private fun initCart() {
-        if(product != null){
-             Log.d(TAG, "Product: " +  product.toString())
-            // remove previous fragment i.e home fragment
-            val fragment = activity?.supportFragmentManager?.findFragmentById(0)
-            if (fragment != null) activity?.supportFragmentManager?.beginTransaction()?.remove(fragment)?.commit()
+                // navigate to the order page
+                performNoBackStackTransaction("order_fragment", OrderFragment())
+            }
         }
     }
+
+    private fun performNoBackStackTransaction(tag: String, fragment: Fragment) {
+        activity?.supportFragmentManager
+            ?.beginTransaction()
+            ?.replace(R.id.fragmentContainer, fragment, tag)
+            ?.commit()
+    }
+
+
 
     override fun onStop() {
         super.onStop()
         Log.d(TAG, "Here hello")
-        if(user != null) {
+        if (user != null) {
             Log.d(TAG, cartAdaptor.carts.size.toString())
             GlobalScope.launch {
                 cartViewModel.insert(user!!.uid, cartViewModel.getObserver().value)
@@ -85,7 +107,7 @@ class CartFragment : Fragment() {
     }
 
     // bind cart to the recycler view
-    private fun setCart(){
+    private fun setCart() {
         binding.cartRecyclerView.adapter = cartAdaptor
         binding.cartRecyclerView.layoutManager = LinearLayoutManager(this.context)
 
@@ -95,7 +117,7 @@ class CartFragment : Fragment() {
             updateTotalPaymentText()
         }
         cartAdaptor.onMinusClick = {
-            if(it.quantity > 1) it.quantity--
+            if (it.quantity > 1) it.quantity--
             cartAdaptor.notifyDataSetChanged()
             updateTotalPaymentText()
 
@@ -116,16 +138,13 @@ class CartFragment : Fragment() {
             }
         })
 
-        if(user != null){
-            GlobalScope.launch {
-                if(product != null)
-                    cartViewModel.insert(user?.uid!!, CartItemModel(product?.id, product))
-                cartViewModel.getAll(user!!.uid)
-            }
+        if (user != null) {
+            cartViewModel.getAll(user!!.uid)
         }
     }
 
 
+    // update total payment of the cart in ui
     private fun updateTotalPaymentText() {
         cartViewModel.getObserver().value.let {
             binding.cartTotalPaymentTextView.text = Util.toCurrency(it?.let { it1 ->
