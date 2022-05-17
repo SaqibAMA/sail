@@ -4,22 +4,28 @@ package com.functrco.sail.adaptors
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.functrco.sail.R
 import com.functrco.sail.databinding.ItemCartProductBinding
 import com.functrco.sail.models.CartItemModel
+import com.functrco.sail.utils.Util
 
 class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
-    private var carts: List<CartItemModel> = listOf()
-    var onItemClick: ((CartItemModel) -> Unit)? = null
+    var carts: MutableList<CartItemModel> = mutableListOf()
+    var onPlusClick: ((CartItemModel) -> Unit)? = null
+    var onMinusClick: ((CartItemModel) -> Unit)? = null
 
     inner class ViewHolder(private val binding: ItemCartProductBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(cartItem: CartItemModel){
-            binding.productImage.setImageResource(
-                cartItem.product!!.imageResourceId ?: R.drawable.default_product_img
-            )
+            Glide
+                .with(this.itemView.context)
+                .load(cartItem.product!!.imageUrl)
+                .centerCrop()
+                .placeholder(R.drawable.default_product_img)
+                .into(binding.productImage)
             binding.productTitleTextView.text = cartItem.product!!.name
             binding.productDescriptionTextView.text = cartItem.product!!.description.orEmpty().ifEmpty { binding.cartCard.context.getString(R.string.default_product_description) }
-            binding.productPriceTextView.text = "$${String.format("%.2f", cartItem.product!!.price)}"
+            binding.productPriceTextView.text = Util.toCurrency(cartItem.product?.price)
             binding.productQuantityTextView.text = cartItem.quantity.toString()
         }
 
@@ -32,7 +38,7 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
 
         fun setMinusClickListener(position: Int){
             binding.minusTextView.setOnClickListener {
-                if(carts[position].quantity > 0){
+                if(carts[position].quantity > 1){
                     carts[position].quantity--
                     notifyItemChanged(position)
                 }
@@ -41,8 +47,12 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
         }
 
         init {
-            binding.productImage.setOnClickListener{
-                onItemClick?.invoke(carts[adapterPosition])
+            binding.plusTextView.setOnClickListener{
+                onPlusClick?.invoke(carts[adapterPosition])
+            }
+
+            binding.minusTextView.setOnClickListener{
+                onMinusClick?.invoke(carts[adapterPosition])
             }
         }
     }
@@ -55,8 +65,8 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(carts[position])
-        holder.setPlusClickListener(position)
-        holder.setMinusClickListener(position)
+//        holder.setPlusClickListener(position)
+//        holder.setMinusClickListener(position)
     }
 
     override fun getItemCount(): Int {

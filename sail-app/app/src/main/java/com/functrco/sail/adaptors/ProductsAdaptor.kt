@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.functrco.sail.ProductPage
 import com.functrco.sail.databinding.ItemProductsBinding
 import com.functrco.sail.models.ProductsModel
+import com.functrco.sail.utils.Util
 
 class ProductsParentAdaptor(): RecyclerView.Adapter<ProductsParentAdaptor.ViewHolder>() {
     private var productsParents: List<ProductsModel> = listOf()
@@ -21,12 +22,14 @@ class ProductsParentAdaptor(): RecyclerView.Adapter<ProductsParentAdaptor.ViewHo
     // bind categories to the recycler view
     private fun setProducts(binding: ItemProductsBinding, productsParent: ProductsModel){
         val productAdaptor = ProductAdaptor()
-        productAdaptor.setListData(productsParent.products!!)
+
+        if(productsParent.products != null)
+            productAdaptor.setListData(productsParent.products!!)
         binding.productsRecyclerView.adapter = productAdaptor
         binding.productsRecyclerView.layoutManager = LinearLayoutManager(binding.productsRecyclerView.context, LinearLayoutManager.HORIZONTAL, false)
         productAdaptor.onItemClick = {
             val redirectToProductPage = Intent(binding.productsRecyclerView.context, ProductPage::class.java)
-            // TODO: pass product information through intent
+            redirectToProductPage.putExtra("product_info", Util.toSerializable(it))
             binding.productsRecyclerView.context.startActivity(redirectToProductPage)
         }
     }

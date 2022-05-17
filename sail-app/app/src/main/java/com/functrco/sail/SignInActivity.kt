@@ -9,7 +9,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import com.functrco.sail.models.UserModel
-import com.functrco.sail.firebase.firebase_repository.UserRepository
+import com.functrco.sail.firebase.repository.UserRepository
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -140,6 +140,7 @@ class SignInActivity : AppCompatActivity() {
                 val uid = firebaseUser?.uid
                 val email = firebaseUser?.email
 
+                // add user to the database
                 GlobalScope.launch {
                     UserRepository().insert(uid!!, UserModel(firebaseUser.displayName, firebaseUser.phoneNumber, email, firebaseUser.photoUrl.toString()))
                 }

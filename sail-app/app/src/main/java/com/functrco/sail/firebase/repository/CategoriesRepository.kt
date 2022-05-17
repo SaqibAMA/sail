@@ -1,4 +1,4 @@
-package com.functrco.sail.firebase.firebase_repository
+package com.functrco.sail.firebase.repository
 
 import android.util.Log
 import com.functrco.sail.models.CategoryModel
@@ -14,6 +14,7 @@ class CategoriesRepository {
         dbReference.get().addOnSuccessListener {
             it.children.forEach { dataSnapshot ->
                 dataSnapshot.getValue<CategoryModel>()?.let { category ->
+                    category.id = dataSnapshot.key
                     categories.add(category)
                 }
             }
@@ -31,7 +32,9 @@ class CategoriesRepository {
 
         dbReference.child(categoryId).get()
             .addOnSuccessListener {
-                category = it.getValue<CategoryModel>()            }
+                category = it.getValue<CategoryModel>()
+                category?.id = it.key
+            }
             .addOnFailureListener{ e->
                 Log.w(Companion.TAG, "getAll:onCancelled", e.cause)
             }.await()

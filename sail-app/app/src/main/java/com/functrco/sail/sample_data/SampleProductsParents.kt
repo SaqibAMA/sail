@@ -6,8 +6,14 @@ object SampleProductsParents {
     fun getAll(): List<ProductsModel> {
         val products = SampleProducts.getAll()
         return listOf(
-            ProductsModel("Popular Products", products.take(1)),
-            ProductsModel("Feature Products", products.takeLast(2))
+            ProductsModel(
+                "Popular Products",
+                products.take(1)
+            ),
+            ProductsModel(
+                "Feature Products",
+                products.takeLast(2)
+            )
         )
     }
 }

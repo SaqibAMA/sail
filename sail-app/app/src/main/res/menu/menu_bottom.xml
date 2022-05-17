@@ -27,18 +27,4 @@
         android:icon="@drawable/ic_settings"
         android:iconTint="@color/bottom_navbar_item"
         android:title="@string/nav_item_settings" />
-
-<!--
-    products/home
-    search
-    cart
-    orders
-    settings
-            -> Profile (new page)
-                -> Photo, Name, address, email, number
-            -> Theme (toggle)
-            -> Language (English + Urdu)
-            -> Logout
-            -> Help?
--->
 </menu>

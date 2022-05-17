@@ -5,6 +5,9 @@ import com.functrco.sail.models.ProductModel
 
 object SampleProducts {
     fun getAll(): List<ProductModel> {
+
+        val reviews = SampleReviews.getAll()
+
         return mutableListOf(
             ProductModel(
                 "Beautiful Shoes",
@@ -14,7 +17,10 @@ object SampleProducts {
                 null,
                 "Nishat",
                 "-N28U0LdZpTFGq2RxdYD",
-                10
+                10,
+                null,
+                null,
+                reviews.take(2)
             ),
             ProductModel(
                 "Amazing Phone",
@@ -24,7 +30,10 @@ object SampleProducts {
                 null,
                 "Nvidia",
                 "-N28U0qekH7FWYg3kt1d",
-                95
+                125,
+                null,
+                null,
+                reviews.takeLast(2)
             ),
             ProductModel(
                 "Amazing Headphone",
@@ -34,7 +43,10 @@ object SampleProducts {
                 null,
                 "Samsung",
                 "-N28U0qekH7FWYg3kt1d",
-                95
+                95,
+                null,
+                null,
+                listOf(reviews[1])
             ),
         )
     }

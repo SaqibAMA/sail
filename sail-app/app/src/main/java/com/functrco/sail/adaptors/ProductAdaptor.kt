@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.functrco.sail.R
 import com.functrco.sail.databinding.ItemProductBinding
 import com.functrco.sail.models.ProductModel
+import com.functrco.sail.utils.Util
 
 class ProductAdaptor(): RecyclerView.Adapter<ProductAdaptor.ViewHolder>() {
     private var products: List<ProductModel> = listOf()
@@ -23,7 +24,8 @@ class ProductAdaptor(): RecyclerView.Adapter<ProductAdaptor.ViewHolder>() {
                 .into(binding.productImage)
 
             binding.productName.text = product.name
-            binding.productPrice.text = "$${String.format("%.2f", product.price)}"
+            binding.productPrice.text = Util.toCurrency(product.price)
+            binding.productRating.text = String.format("%.1f", Util.calculateRating(product.reviews))
         }
 
         init {

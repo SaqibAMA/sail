@@ -1,4 +1,4 @@
-package com.functrco.sail.firebase.firebase_storage
+package com.functrco.sail.firebase.storage
 
 import android.content.ContentResolver
 import android.content.res.Resources

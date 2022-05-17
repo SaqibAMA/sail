@@ -1,4 +1,4 @@
-package com.functrco.sail.firebase.firebase_repository
+package com.functrco.sail.firebase.repository
 
 import android.util.Log
 import com.functrco.sail.models.UserModel
@@ -13,6 +13,7 @@ class UserRepository {
         dbReference.get().addOnSuccessListener {
             it.children.forEach { dataSnapshot ->
                 dataSnapshot.getValue<UserModel>()?.let { user ->
+                    user.id = dataSnapshot.key
                     users.add(user)
                 }
             }
@@ -26,6 +27,22 @@ class UserRepository {
         return users
     }
 
+    suspend fun get(userId: String): UserModel? {
+        var user: UserModel? = null
+
+        dbReference.child(userId).get()
+            .addOnSuccessListener {
+                user = it.getValue<UserModel>()
+                user?.id = it.key
+            }
+            .addOnFailureListener { e ->
+                Log.w(TAG, "getAll:onFailure", e.cause)
+            }.await()
+
+        return user
+    }
+
+
     suspend fun insert(key: String, user: UserModel): String {
         try {
             dbReference.child(key).setValue(user).await()
@@ -38,7 +55,6 @@ class UserRepository {
 
     companion object {
         private val TAG = UserRepository::class.java.name
-
         private val dbReference =
             FirebaseDatabase.getInstance().getReference(FirebaseDBEndPoints.USERS)
     }

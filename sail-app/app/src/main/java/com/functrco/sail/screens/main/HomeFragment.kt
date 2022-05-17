@@ -11,11 +11,19 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.functrco.sail.MainActivity
+import com.functrco.sail.R
 import com.functrco.sail.databinding.FragmentHomeBinding
 import com.functrco.sail.adaptors.CategoryAdaptor
 import com.functrco.sail.viewModels.CategoryViewModel
 import com.functrco.sail.adaptors.ProductsParentAdaptor
+import com.functrco.sail.models.CategoryModel
+import com.functrco.sail.models.ProductModel
+import com.functrco.sail.utils.Util
 import com.functrco.sail.viewModels.ProductsViewModel
+import com.google.gson.Gson
+import kotlinx.coroutines.*
+import kotlin.concurrent.fixedRateTimer
 
 
 class HomeFragment : Fragment() {
@@ -28,28 +36,36 @@ class HomeFragment : Fragment() {
     private lateinit var categoriesAdaptor: CategoryAdaptor
     private lateinit var productsParentsAdaptor: ProductsParentAdaptor
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
+         Util.removeFragment(activity?.supportFragmentManager, MainActivity.CART_FRAGMENT_TAG)
+
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         categoryViewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
         productsParentViewModel = ViewModelProvider(this)[ProductsViewModel::class.java]
 
 //        TODO: uncomment
-//        categoryViewModel.init()
-
-
         setCategories()
-        observeCategories()
+        GlobalScope.launch {
+            // categoryViewModel.init()
+            withContext(Dispatchers.Main){
+                observeCategories()
+            }
+        }
 
         // TODO: uncomment
-        productsParentViewModel.init()
-
         setProductsParents()
-        observeProductsParents()
+        GlobalScope.launch {
+            // productsParentViewModel.init()
+            withContext(Dispatchers.Main){
+                observeProductsParents()
+            }
+        }
 
         return binding.root
     }
@@ -57,10 +73,11 @@ class HomeFragment : Fragment() {
 
 
     // bind categories to the recycler view
-    private fun setCategories(){
+    private fun setCategories() {
         categoriesAdaptor = CategoryAdaptor()
         binding.categoriesRecyclerView.adapter = categoriesAdaptor
-        binding.categoriesRecyclerView.layoutManager = LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
+        binding.categoriesRecyclerView.layoutManager =
+            LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
     }
 
     // set observer on the categories list and fetch categories
@@ -78,9 +95,8 @@ class HomeFragment : Fragment() {
     }
 
 
-
     // bind categories to the recycler view
-    private fun setProductsParents(){
+    private fun setProductsParents() {
         productsParentsAdaptor = ProductsParentAdaptor()
         binding.productsParentRecyclerView.adapter = productsParentsAdaptor
         binding.productsParentRecyclerView.layoutManager = LinearLayoutManager(this.context)
@@ -97,7 +113,7 @@ class HomeFragment : Fragment() {
                 Log.d(TAG, "observeProductsParents(): null")
             }
         })
-        productsParentViewModel.fetchProductsParents()
+        productsParentViewModel.getAll()
     }
 
 

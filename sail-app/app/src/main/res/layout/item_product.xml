@@ -81,11 +81,12 @@
                         android:layout_height="match_parent">
 
                         <TextView
+                            android:id="@+id/productRating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins"
                             android:paddingStart="2dp"
-                            android:text="4.3"
+                            android:text="@string/default_product_rating"
                             android:textColor="@color/yellow"
                             android:textSize="@dimen/caption"
                             tools:ignore="RtlSymmetry" />

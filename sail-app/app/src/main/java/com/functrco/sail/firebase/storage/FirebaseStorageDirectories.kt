@@ -1,4 +1,4 @@
-package com.functrco.sail.firebase.firebase_storage
+package com.functrco.sail.firebase.storage
 
 object FirebaseStorageDirectories {
     const val USERS = "users"

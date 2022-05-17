@@ -10,12 +10,13 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.functrco.sail.MainActivity
 import com.functrco.sail.ProductPage
 import com.functrco.sail.databinding.FragmentSearchBinding
 import com.functrco.sail.utils.GridSpaceItemDecoration
 import com.functrco.sail.adaptors.ProductAdaptor
 import com.functrco.sail.viewModels.ProductViewModel
-import com.functrco.sail.utils.DisplayUtil
+import com.functrco.sail.utils.Util
 
 class SearchFragment : Fragment() {
 
@@ -30,6 +31,9 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
+        Util.removeFragment(activity?.supportFragmentManager, MainActivity.CART_FRAGMENT_TAG)
+
 
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         productViewModel = ViewModelProvider(this)[ProductViewModel::class.java]
@@ -48,12 +52,13 @@ class SearchFragment : Fragment() {
             GridSpaceItemDecoration(
                 2,
                 0F,
-                DisplayUtil.dp2dx(10F, resources)
+                Util.dp2dx(10F, resources)
             )
         )
 
         productsAdaptor.onItemClick = {
             val redirectToProductPage = Intent(activity, ProductPage::class.java)
+            redirectToProductPage.putExtra("product_info", Util.toSerializable(it))
             // TODO: pass product information through intent
             startActivity(redirectToProductPage)
         }
@@ -66,7 +71,7 @@ class SearchFragment : Fragment() {
             productsAdaptor.setListData(it)
             productsAdaptor.notifyDataSetChanged()
         })
-        productViewModel.fetchProducts()
+        productViewModel.getAll()
     }
 
 

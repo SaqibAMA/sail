@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.main.OrderFragment">
+    tools:context=".screens.main.OrderFragment"
+    android:background="@color/white"
+    >
 
 
     <androidx.core.widget.NestedScrollView

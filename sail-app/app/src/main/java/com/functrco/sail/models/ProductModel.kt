@@ -12,7 +12,10 @@ data class ProductModel(
     var imageUrl: String? = null,
     var brandName: String? = "",
     var categoryId: String? = "",
-    var availableQuantity: Int? = 0,
-    @set:Exclude @get:Exclude var category: CategoryModel? = null
+    var minQuantity: Int? = 100,
+    @set:Exclude @get:Exclude var category: CategoryModel? = null,
+    var reviewsId: List<String>? = null,
+    @set:Exclude @get:Exclude var reviews: List<ReviewModel>? = null,
+    @set:Exclude @get:Exclude var id: String? = null
 )
 

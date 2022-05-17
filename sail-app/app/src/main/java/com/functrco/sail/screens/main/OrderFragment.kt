@@ -11,9 +11,11 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.functrco.sail.MainActivity
 import com.functrco.sail.ProductPage
 import com.functrco.sail.adaptors.OrderAdaptor
 import com.functrco.sail.databinding.FragmentOrdersBinding
+import com.functrco.sail.utils.Util
 import com.functrco.sail.viewModels.OrderViewModel
 
 class OrderFragment : Fragment() {
@@ -29,8 +31,12 @@ class OrderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Util.removeFragment(activity?.supportFragmentManager, MainActivity.CART_FRAGMENT_TAG)
+
+
         _binding = FragmentOrdersBinding.inflate(inflater, container, false)
         orderViewModel = ViewModelProvider(this)[OrderViewModel::class.java]
+
 
         setOrders()
         observeOrders()

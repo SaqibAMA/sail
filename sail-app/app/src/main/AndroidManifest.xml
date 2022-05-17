@@ -11,6 +11,10 @@
         android:theme="@style/Theme.SAIL">
 
         <activity
+            android:name=".ReviewsPage"
+            android:exported="false" />
+
+        <activity
             android:name=".ProductPage"
             android:exported="true"
             >

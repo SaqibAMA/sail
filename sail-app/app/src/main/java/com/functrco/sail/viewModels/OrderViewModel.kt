@@ -13,7 +13,7 @@ class OrderViewModel : ViewModel() {
 
     /* TODO: replace the code to fetch orders from API */
     fun fetchOrders(): MutableLiveData<List<OrderModel>>{
-        orders.postValue(SampleOrders.getAll())
+//        orders.postValue(SampleOrders.getAll())
         return orders
     }
 

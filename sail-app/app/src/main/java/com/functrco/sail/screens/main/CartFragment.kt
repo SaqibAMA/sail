@@ -14,7 +14,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.functrco.sail.ProductPage
 import com.functrco.sail.adaptors.CartAdaptor
 import com.functrco.sail.databinding.FragmentCartBinding
+import com.functrco.sail.models.CartItemModel
+import com.functrco.sail.models.ProductModel
+import com.functrco.sail.utils.Util
 import com.functrco.sail.viewModels.CartViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.auth.User
+import com.google.firebase.ktx.Firebase
+import com.google.gson.Gson
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class CartFragment : Fragment() {
 
@@ -22,8 +34,10 @@ class CartFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var cartViewModel: CartViewModel
-
     private val cartAdaptor = CartAdaptor()
+
+    private var user:FirebaseUser? = null
+    private var product: ProductModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +46,15 @@ class CartFragment : Fragment() {
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
 
+        user = FirebaseAuth.getInstance().currentUser
+
+        // get product information from the intent
+        product = Gson().fromJson(
+            arguments?.getString("product_info"),
+            ProductModel::class.java
+        )
+
+        initCart()
         setCart()
         observeCart()
 
@@ -39,15 +62,43 @@ class CartFragment : Fragment() {
     }
 
 
+
+    private fun initCart() {
+        if(product != null){
+             Log.d(TAG, "Product: " +  product.toString())
+            // remove previous fragment i.e home fragment
+            val fragment = activity?.supportFragmentManager?.findFragmentById(0)
+            if (fragment != null) activity?.supportFragmentManager?.beginTransaction()?.remove(fragment)?.commit()
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "Here hello")
+        if(user != null) {
+            Log.d(TAG, cartAdaptor.carts.size.toString())
+            GlobalScope.launch {
+                cartViewModel.insert(user!!.uid, cartViewModel.getObserver().value)
+            }
+        }
+
+    }
+
     // bind cart to the recycler view
     private fun setCart(){
         binding.cartRecyclerView.adapter = cartAdaptor
         binding.cartRecyclerView.layoutManager = LinearLayoutManager(this.context)
 
-        cartAdaptor.onItemClick = {
-            val redirectToCartPage = Intent(activity, ProductPage::class.java)
-            // TODO: pass cart information through intent
-            startActivity(redirectToCartPage)
+        cartAdaptor.onPlusClick = {
+            it.quantity++
+            cartAdaptor.notifyDataSetChanged()
+            updateTotalPaymentText()
+        }
+        cartAdaptor.onMinusClick = {
+            if(it.quantity > 1) it.quantity--
+            cartAdaptor.notifyDataSetChanged()
+            updateTotalPaymentText()
+
         }
     }
 
@@ -55,14 +106,34 @@ class CartFragment : Fragment() {
     @SuppressLint("NotifyDataSetChanged")
     private fun observeCart() {
         cartViewModel.getObserver().observe(viewLifecycleOwner, Observer {
-            if (it != null) {
+            Log.d(TAG, it.toString())
+            if (it?.cartItems != null) {
                 cartAdaptor.setListData(it.cartItems!!)
                 cartAdaptor.notifyDataSetChanged()
+                updateTotalPaymentText()
             } else {
                 Log.d(TAG, "observeCarts(): null")
             }
         })
-        cartViewModel.fetchCarts()
+
+        if(user != null){
+            GlobalScope.launch {
+                if(product != null)
+                    cartViewModel.insert(user?.uid!!, CartItemModel(product?.id, product))
+                cartViewModel.getAll(user!!.uid)
+            }
+        }
+    }
+
+
+    private fun updateTotalPaymentText() {
+        cartViewModel.getObserver().value.let {
+            binding.cartTotalPaymentTextView.text = Util.toCurrency(it?.let { it1 ->
+                Util.calculateTotalPayment(
+                    it1
+                )
+            })
+        }
     }
 
 
