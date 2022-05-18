@@ -34,9 +34,9 @@ object Util {
     }
 
     // calculate total payment of a cart
-    fun calculateTotalPayment(cart: CartModel): Float {
+    fun calculateTotalPayment(cartItems: MutableList<CartItemModel>): Float {
         var totalPayment = 0F
-        cart.cartItems?.forEach {cartItem ->
+        cartItems.forEach { cartItem ->
             cartItem.product?.let { product ->
                 totalPayment += product.price!! * cartItem.quantity
             }

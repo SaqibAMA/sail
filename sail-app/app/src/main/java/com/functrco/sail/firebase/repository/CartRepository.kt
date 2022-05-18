@@ -91,6 +91,12 @@ class CartRepository {
         dbReference.child(userId).setValue(null).await()
     }
 
+    suspend fun delete(userId: String, cartItemId: String) {
+        Log.d(TAG, "User: $userId :: CartItem: $cartItemId")
+        dbReference.child(userId).child(cartItemId).setValue(null).await()
+
+    }
+
     companion object {
         private val TAG = CartRepository::class.java.name
         private val dbReference =

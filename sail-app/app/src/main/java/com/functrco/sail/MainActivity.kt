@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
     private fun navigateToCartPage() {
         if (goToCartPage) {
             val action = HomeFragmentDirections.actionHomeFragmentToCartFragment()
-            navController.navigate(action)
+            navController.navigate(R.id.action_homeFragment_to_cartFragment)
         } else {
             Log.d(TAG, "do not go to cart page")
         }
@@ -56,7 +56,6 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private val TAG = MainActivity::class.java.name
-        const val CART_FRAGMENT_TAG = "cart_fragment"
     }
 
 }

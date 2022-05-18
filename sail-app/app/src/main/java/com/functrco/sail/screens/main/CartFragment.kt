@@ -1,37 +1,31 @@
 package com.functrco.sail.screens.main
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.functrco.sail.MainActivity
 import com.functrco.sail.R
 import com.functrco.sail.adaptors.CartAdaptor
 import com.functrco.sail.databinding.FragmentCartBinding
 import com.functrco.sail.firebase.repository.CartRepository
 import com.functrco.sail.firebase.repository.OrdersRepository
-import com.functrco.sail.models.CartItemModel
 import com.functrco.sail.models.CartModel
 import com.functrco.sail.models.OrderModel
 import com.functrco.sail.utils.Util
 import com.functrco.sail.viewModels.CartViewModel
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.time.LocalDateTime
 import java.util.*
 
 class CartFragment : Fragment() {
@@ -48,7 +42,6 @@ class CartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
         user = FirebaseAuth.getInstance().currentUser
@@ -131,7 +124,23 @@ class CartFragment : Fragment() {
             if (it.quantity > 1) it.quantity--
             cartAdaptor.notifyDataSetChanged()
             updateTotalPaymentText()
+        }
 
+        cartAdaptor.onDeleteItemClick = { cartItem, position ->
+
+            GlobalScope.launch {
+                if(user?.uid != null && cartItem.id != null){
+                    // delete item from the cart database
+                    CartRepository().delete(user?.uid!!, cartItem.id!!)
+
+                    withContext(Dispatchers.Main) {
+                        // delete item from the ui
+                        cartAdaptor.carts.removeAt(position)
+                        cartAdaptor.notifyItemRemoved(position)
+                        updateTotalPaymentText()
+                    }
+                }
+            }
         }
     }
 
@@ -153,8 +162,8 @@ class CartFragment : Fragment() {
 
     // update total payment of the cart in ui
     private fun updateTotalPaymentText() {
-        cartViewModel.getObserver().value.let {
-            binding.cartTotalPaymentTextView.text = Util.toCurrency(it?.let { it1 ->
+        cartAdaptor.carts.let {
+            binding.cartTotalPaymentTextView.text = Util.toCurrency(it.let { it1 ->
                 Util.calculateTotalPayment(it1)
             })
         }
@@ -168,6 +177,5 @@ class CartFragment : Fragment() {
 
     companion object {
         private const val TAG = "CartFragment"
-        const val ORDER_FRAGMENT_TAG = "order_fragment"
     }
 }

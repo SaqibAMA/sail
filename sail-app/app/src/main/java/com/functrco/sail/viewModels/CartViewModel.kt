@@ -22,14 +22,7 @@ class CartViewModel : ViewModel() {
     /* TODO: replace the code to fetch carts from API */
     fun getAll(userId: String): MutableLiveData<CartModel?>{
         viewModelScope.launch {
-            val temp = CartRepository().getNested(userId)
-            if(temp?.cartItems != null){
-                temp.cartItems?.forEach { cartItem ->
-                    if (cartItem != null) {
-                        add(cartItem)
-                    }
-                }
-            }
+            _cart = CartRepository().getNested(userId) ?: CartModel()
             cart.postValue(_cart)
         }
         return cart

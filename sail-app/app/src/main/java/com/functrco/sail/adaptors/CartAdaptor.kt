@@ -14,6 +14,8 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
     var carts: MutableList<CartItemModel> = mutableListOf()
     var onPlusClick: ((CartItemModel) -> Unit)? = null
     var onMinusClick: ((CartItemModel) -> Unit)? = null
+    var onDeleteItemClick: ((CartItemModel, Int) -> Unit)? = null
+
 
     inner class ViewHolder(private val binding: ItemCartProductBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(cartItem: CartItemModel){
@@ -36,6 +38,10 @@ class CartAdaptor(): RecyclerView.Adapter<CartAdaptor.ViewHolder>() {
 
             binding.minusTextView.setOnClickListener{
                 onMinusClick?.invoke(carts[adapterPosition])
+            }
+
+            binding.productDeleteButton.setOnClickListener {
+                onDeleteItemClick?.invoke(carts[adapterPosition], adapterPosition)
             }
         }
     }
