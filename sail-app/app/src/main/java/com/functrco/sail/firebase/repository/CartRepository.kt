@@ -87,6 +87,7 @@ class CartRepository {
 
     // delete cart from the database
     suspend fun delete(userId: String) {
+        Log.d(TAG, userId)
         dbReference.child(userId).removeValue().await()
     }
 

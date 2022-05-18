@@ -12,7 +12,7 @@ import com.functrco.sail.models.ReviewModel
 class ProductPageReviewAdapter(data: List<ReviewModel>) :
     RecyclerView.Adapter<ProductPageReviewAdapter.ViewHolder>() {
 
-    private var data: List<ReviewModel> = data
+    var data: List<ReviewModel> = data
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val listItemView =
@@ -21,7 +21,7 @@ class ProductPageReviewAdapter(data: List<ReviewModel>) :
     }
 
 
-    override fun onBindViewHolder(holder: ProductPageReviewAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.r_name.text = data[position].user?.name
         holder.r_rating.text = String.format("%.1f", data[position].rating)
         holder.r_text.text = data[position].text
@@ -43,5 +43,4 @@ class ProductPageReviewAdapter(data: List<ReviewModel>) :
         var r_date: TextView = itemView.findViewById(R.id.product_page_review_date_posted)
         var r_user_img: ImageView = itemView.findViewById(R.id.product_page_review_user_avatar)
     }
-
 }

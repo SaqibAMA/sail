@@ -1,6 +1,5 @@
 <!-- bottom_menu.xml -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
@@ -22,9 +21,4 @@
         android:icon="@drawable/ic_orders"
         android:iconTint="@color/bottom_navbar_item"
         android:title="@string/nav_item_orders" />
-    <item
-        android:id="@+id/settingsFragment"
-        android:icon="@drawable/ic_settings"
-        android:iconTint="@color/bottom_navbar_item"
-        android:title="@string/nav_item_settings" />
 </menu>

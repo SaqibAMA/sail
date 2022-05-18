@@ -9,7 +9,14 @@
         android:id="@+id/homeFragment"
         android:name="com.functrco.sail.screens.main.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
@@ -21,15 +28,14 @@
         android:id="@+id/cartFragment"
         android:name="com.functrco.sail.screens.main.CartFragment"
         android:label="Cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment" />
+    </fragment>
     <fragment
         android:id="@+id/ordersFragment"
         android:name="com.functrco.sail.screens.main.OrderFragment"
         android:label="Orders"
         tools:layout="@layout/fragment_orders" />
-    <fragment
-        android:id="@+id/settingsFragment"
-        android:name="com.functrco.sail.screens.main.SettingsFragment"
-        android:label="Settings"
-        tools:layout="@layout/fragment_settings" />
 </navigation>

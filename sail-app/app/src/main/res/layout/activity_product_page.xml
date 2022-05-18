@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     tools:context=".ProductPage">
 
     <ScrollView
@@ -15,12 +14,14 @@
         android:paddingBottom="96dp">
 
         <LinearLayout
+            android:id="@+id/bottomPadding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:paddingBottom="30dp">
+            android:paddingBottom="30dp"
+            >
 
             <!--Start of top nav-->
             <com.functrco.sail.PageTopNav
@@ -32,7 +33,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:title="Product"/>
+                app:title="Product" />
             <!--End of top nav-->
 
             <LinearLayout
@@ -70,7 +71,7 @@
                         android:id="@+id/product_page_product_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="3"
+                        android:layout_weight="6"
                         android:fontFamily="@font/dm_serif_display"
                         android:gravity="left"
                         android:paddingTop="10dp"
@@ -86,7 +87,7 @@
                         android:layout_weight="3"
                         android:fontFamily="@font/dm_serif_display"
                         android:gravity="right"
-                        android:minWidth="200dp"
+                        android:minWidth="120dp"
                         android:padding="10dp"
                         android:text="@string/default_product_price"
                         android:textColor="@color/black"
@@ -94,16 +95,6 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/dm_serif_display"
-                    android:textColor="@color/black"
-                    android:id="@+id/product_page_order_limit"
-                    android:text="@string/default_orders_placed"
-                    android:textSize="@dimen/h4"
-                    android:paddingStart="5dp"
-                    android:layout_marginTop="25dp"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -114,41 +105,71 @@
                     android:paddingStart="5dp"
                     app:layout_constraintTop_toBottomOf="@id/product_page_details">
 
-                    <TextView
-                        android:id="@+id/product_page_end_time"
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
-                        android:text="@string/default_product_end_time"
-                        android:textColor="@color/axolotl_200"
-                        android:textSize="@dimen/p"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:orientation="horizontal"
+                        >
 
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dm_serif_display"
+                            android:text="@string/heading_orders_placed_text"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/h5"
+                            tools:ignore="RtlSymmetry" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:id="@+id/product_page_orders_count"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/dm_serif_display"
+                            android:paddingStart="5dp"
+                            android:text="@string/default_orders_placed"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="@dimen/h5"
+                            tools:ignore="RtlSymmetry" />
+
+
+                    </LinearLayout>
                     <LinearLayout
                         android:id="@+id/product_page_rating_container"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:gravity="right"
+                        android:layout_gravity="center"
+                        android:gravity="center"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="right"
-                            android:layout_marginTop="5dp"
-                            android:src="@drawable/ic_star_fg" />
+                        <RatingBar
+                            android:id="@+id/productRatingStars"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:numStars="1"
+                            android:rating="0.5"
+                            android:stepSize="0.1"
+                            android:scaleY="1.4"
+                            android:scaleX="1.4"
+                            android:isIndicator="true"
+                            android:max="1"
+                            android:progressTint="@color/axolotl_100"
+                            />
 
                         <TextView
+                            android:layout_marginStart="10dp"
+                            android:layout_gravity="center"
                             android:id="@+id/product_rating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins"
-                            android:paddingStart="10dp"
+                            android:layout_marginTop="3dp"
                             android:text="@string/default_rating"
                             android:textColor="@color/black"
                             android:textSize="@dimen/h5" />
@@ -193,21 +214,93 @@
                     tools:ignore="RtlSymmetry" />
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/product_page_review_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    tools:listitem="@layout/product_page_review"
-                    android:id="@+id/product_page_review_list"
-                    android:padding="5dp"/>
+                    android:padding="5dp"
+                    tools:listitem="@layout/product_page_review" />
 
                 <TextView
+                    android:id="@+id/product_page_view_more"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="View More >"
-                    android:textColor="@color/axolotl_100"
-                    android:fontFamily="@font/poppins"
                     android:layout_marginTop="14dp"
-                    android:id="@+id/product_page_view_more"
-                    android:paddingStart="5dp"/>
+                    android:fontFamily="@font/poppins"
+                    android:paddingStart="5dp"
+                    android:text="@string/heading_view_more_text"
+                    android:textColor="@color/axolotl_100"
+                    tools:ignore="RtlSymmetry" />
+
+
+                <LinearLayout
+                    android:id="@+id/user_rating_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    >
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dm_serif_display"
+                        android:paddingStart="5dp"
+                        android:text="@string/heading_rate_your_experience"
+                        android:textColor="@color/axolotl_200"
+                        android:textSize="@dimen/h4"
+                        tools:ignore="RtlSymmetry" />
+
+
+
+                        <EditText
+                            android:id="@+id/user_rating_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/border_edit_view"
+                            android:fontFamily="@font/roboto"
+                            android:gravity="start"
+                            android:hint="@string/hint_rate_your_experience_here"
+                            android:lines="10"
+                            android:paddingVertical="5dp"
+                            android:paddingHorizontal="10dp"
+                            android:text=""
+                            android:textColor="@android:color/darker_gray"
+                            android:textSize="@dimen/p"
+                            tools:ignore="RtlSymmetry" />
+
+
+                    <RatingBar
+                        android:id="@+id/user_rating_stars"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:numStars="5"
+                        android:rating="5"
+                        android:stepSize="0.1"
+                        android:isIndicator="false"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:progressTint="@color/axolotl_100"
+                        android:layout_gravity="center_horizontal"
+                        />
+
+                    <Button
+                        android:id="@+id/user_rating_submit_btn"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/axolotl_200"
+                        android:backgroundTint="@color/axolotl_200"
+                        android:fontFamily="@font/poppins"
+                        android:text="@string/button_submit_review_text"
+                        android:textAlignment="center"
+                        android:textColor="@color/cream_100"
+                        android:textSize="@dimen/p" />
+
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
@@ -216,45 +309,47 @@
 
     </ScrollView>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/product_page_bottom_bar"
             android:layout_width="match_parent"
             android:layout_height="75dp"
-            android:padding="15dp"
             android:background="@color/cream_100"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="15dp"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <Button
+                android:id="@+id/product_page_add_to_cart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@color/axolotl_200"
                 android:backgroundTint="@color/axolotl_200"
                 android:fontFamily="@font/poppins"
                 android:text="Add to Cart"
-                android:textColor="@color/cream_100"
                 android:textAlignment="center"
-                android:textSize="@dimen/p"
-                android:id="@+id/product_page_add_to_cart"
-                android:layout_weight="1"/>
+                android:textColor="@color/cream_100"
+                android:textSize="@dimen/p" />
 
             <Button
                 android:id="@+id/product_page_buy_now"
                 android:layout_width="match_parent"
-                android:textAlignment="center"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:layout_weight="1"
                 android:background="@color/axolotl_200"
                 android:backgroundTint="@color/axolotl_200"
                 android:fontFamily="@font/poppins"
                 android:text="Buy Now"
-                android:textSize="@dimen/p"
+                android:textAlignment="center"
                 android:textColor="@color/cream_100"
-                android:layout_marginStart="14dp"
-                android:layout_weight="1"/>
+                android:textSize="@dimen/p" />
 
         </LinearLayout>
 

@@ -8,6 +8,7 @@ import com.functrco.sail.models.CartItemModel
 import com.functrco.sail.models.CartModel
 import com.functrco.sail.models.ReviewModel
 import com.google.gson.Gson
+import java.text.SimpleDateFormat
 
 object Util {
 
@@ -66,6 +67,4 @@ object Util {
         }
         return rating
     }
-
-
 }

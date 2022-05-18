@@ -52,6 +52,7 @@ class ProductsParentsRepository {
             productsParent.productsId?.forEach { productId ->
                 val product = getProduct(productId)
                 if (product != null) {
+                    product.ordersCount = OrdersRepository().countProductOrders(product.id)
                     products.add(product)
                 }
             }

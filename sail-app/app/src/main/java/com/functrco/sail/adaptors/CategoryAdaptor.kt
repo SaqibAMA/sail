@@ -10,9 +10,12 @@ import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.functrco.sail.R
 import com.functrco.sail.databinding.ItemCategoryBinding
 import com.functrco.sail.models.CategoryModel
+import com.functrco.sail.models.ProductModel
 
 class CategoryAdaptor() : RecyclerView.Adapter<CategoryAdaptor.ViewHolder>() {
     private var categories: List<CategoryModel> = listOf()
+    var onItemClick: ((CategoryModel) -> Unit)? = null
+
 
     inner class ViewHolder(private val binding: ItemCategoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -25,6 +28,13 @@ class CategoryAdaptor() : RecyclerView.Adapter<CategoryAdaptor.ViewHolder>() {
                 .into(binding.categoryImage)
             binding.categoryName.text = category.name
         }
+
+        init {
+            binding.categoryImage.setOnClickListener{
+                onItemClick?.invoke(categories[adapterPosition])
+            }
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

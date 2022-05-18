@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.functrco.sail.firebase.repository.ProductsRepository
 import com.functrco.sail.models.ProductModel
+import com.functrco.sail.models.ReviewModel
 import com.functrco.sail.sample_data.SampleProducts
 import kotlinx.coroutines.launch
 

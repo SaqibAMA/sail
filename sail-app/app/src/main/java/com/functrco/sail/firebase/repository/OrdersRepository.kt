@@ -26,59 +26,103 @@ class OrdersRepository {
         return key
     }
 
-    // to insert a list of orders
-    suspend fun insertAll(orders: List<OrderModel>) {
-        orders.forEach { order ->
-            insert(order)
-        }
-    }
-
-    // fetch nested details of a order
-    private suspend fun getNestedDetails(order: OrderModel?): OrderModel? {
-        if (order != null) {
-            val getProduct: suspend (String) -> ProductModel? = { productId ->
-                ProductsRepository().getNested(productId)
-            }
-            // get order product
-            if (order.productId != null) {
-                order.product = getProduct(order.productId!!)
-            }
-        }
-        return order
+    // update order isReviewed flag
+    suspend fun updateIsOrderReviewed(orderId: String, isReviewed: Boolean) {
+        dbReference.child(orderId).child("reviewed").setValue(isReviewed)
     }
 
 
-    // to get a list of orders
-    suspend fun getAll(userId: String): List<OrderModel> {
-        val orders = mutableListOf<OrderModel>()
+    // get count of orders of a specific product
+    suspend fun countProductOrders(productId: String?): Int {
+        var ordersCount = 0
         dbReference.get().addOnSuccessListener {
-            it.children.forEach { dataSnapshot ->
-                dataSnapshot.getValue<OrderModel>().let { order ->
-                    if (order != null && order.userId == userId) {
-                        order.id = dataSnapshot.key
-                        orders.add(order)
+            it.children.forEach { ds ->
+                Log.d(TAG, ds.toString())
+                ds.getValue<OrderModel>()?.let { order ->
+                    if (order.productId == productId) {
+                        ordersCount++
                     }
                 }
             }
         }.addOnFailureListener {
-            Log.d(TAG, "getAll() failed", it.cause)
+            Log.w(TAG, "get order count unsuccessful", it.cause)
+
         }.await()
 
-        for (i in orders.indices) {
-            val order = getNestedDetails(orders[i])
-            if(order != null){
-                orders[i] = order
+        Log.d(TAG, ordersCount.toString())
+        return ordersCount
+    }
+
+// to insert a list of orders
+suspend fun insertAll(orders: List<OrderModel>) {
+    orders.forEach { order ->
+        insert(order)
+    }
+}
+
+// fetch nested details of a order
+suspend fun get(orderId: String?): OrderModel? {
+    var order: OrderModel? = null
+    if (orderId != null) {
+        dbReference.child(orderId).get().addOnSuccessListener {
+            order = it.getValue<OrderModel>()
+            order?.id = it.key
+        }.addOnFailureListener {
+            Log.d(TAG, "get failed", it.cause)
+        }.await()
+    }
+
+    Log.d(TAG, order.toString())
+    return order
+}
+
+
+// fetch nested details of a order
+private suspend fun getNestedDetails(order: OrderModel?): OrderModel? {
+    if (order != null) {
+        val getProduct: suspend (String) -> ProductModel? = { productId ->
+            ProductsRepository().getNested(productId)
+        }
+        // get order product
+        if (order.productId != null) {
+            order.product = getProduct(order.productId!!)
+        }
+    }
+    return order
+}
+
+
+// to get a list of orders
+suspend fun getAll(userId: String): List<OrderModel> {
+    val orders = mutableListOf<OrderModel>()
+    dbReference.get().addOnSuccessListener {
+        it.children.forEach { dataSnapshot ->
+            dataSnapshot.getValue<OrderModel>().let { order ->
+                if (order != null && order.userId == userId) {
+                    order.id = dataSnapshot.key
+                    orders.add(order)
+                }
             }
         }
+    }.addOnFailureListener {
+        Log.d(TAG, "getAll() failed", it.cause)
+    }.await()
 
-        Log.d(TAG, orders.toString())
-        return orders
+    for (i in orders.indices) {
+        val order = getNestedDetails(orders[i])
+        if (order != null) {
+            orders[i] = order
+        }
     }
 
+    Log.d(TAG, orders.toString())
+    return orders
+}
 
-    companion object {
-        private val TAG = OrdersRepository::class.java.name
-        private val dbReference =
-            FirebaseDatabase.getInstance().getReference(FirebaseDBEndPoints.ORDERS)
-    }
+
+companion object {
+    private val TAG = OrdersRepository::class.java.name
+    private val dbReference =
+        FirebaseDatabase.getInstance().getReference(FirebaseDBEndPoints.ORDERS)
+}
 }

@@ -1,6 +1,7 @@
 package com.functrco.sail.screens.main
 
 import android.annotation.SuppressLint
+import android.content.Intent
 
 import android.os.Bundle
 import android.util.Log
@@ -10,8 +11,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.functrco.sail.MainActivity
+import com.functrco.sail.ProductPage
 import com.functrco.sail.R
 import com.functrco.sail.databinding.FragmentHomeBinding
 import com.functrco.sail.adaptors.CategoryAdaptor
@@ -21,6 +25,8 @@ import com.functrco.sail.models.CategoryModel
 import com.functrco.sail.models.ProductModel
 import com.functrco.sail.utils.Util
 import com.functrco.sail.viewModels.ProductsViewModel
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.gson.Gson
 import kotlinx.coroutines.*
 import kotlin.concurrent.fixedRateTimer
@@ -35,7 +41,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var categoriesAdaptor: CategoryAdaptor
     private lateinit var productsParentsAdaptor: ProductsParentAdaptor
-
+    private var user: FirebaseUser? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,33 +49,33 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-         Util.removeFragment(activity?.supportFragmentManager, MainActivity.CART_FRAGMENT_TAG)
-
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         categoryViewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
         productsParentViewModel = ViewModelProvider(this)[ProductsViewModel::class.java]
+        user = FirebaseAuth.getInstance().currentUser
 
-//        TODO: uncomment
+        setUserInfo()
+
         setCategories()
-        GlobalScope.launch {
-            // categoryViewModel.init()
-            withContext(Dispatchers.Main){
-                observeCategories()
-            }
-        }
+        observeCategories()
 
-        // TODO: uncomment
         setProductsParents()
-        GlobalScope.launch {
-            // productsParentViewModel.init()
-            withContext(Dispatchers.Main){
-                observeProductsParents()
-            }
-        }
+        observeProductsParents()
 
         return binding.root
     }
 
+    private fun setUserInfo() {
+        if(user != null){
+            Glide
+                .with(this)
+                .load(user?.photoUrl)
+                .centerCrop()
+                .placeholder(R.drawable.default_product_img)
+                .into(binding.userDisplayImage)
+            binding.userDisplayName.text = user?.displayName
+        }
+    }
 
 
     // bind categories to the recycler view
@@ -78,6 +84,12 @@ class HomeFragment : Fragment() {
         binding.categoriesRecyclerView.adapter = categoriesAdaptor
         binding.categoriesRecyclerView.layoutManager =
             LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
+
+        categoriesAdaptor.onItemClick = {
+            val bundle = Bundle()
+            bundle.putString("category_name", it.name)
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment, bundle)
+        }
     }
 
     // set observer on the categories list and fetch categories

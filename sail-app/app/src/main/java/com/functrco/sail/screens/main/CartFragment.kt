@@ -11,7 +11,9 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.functrco.sail.MainActivity
 import com.functrco.sail.R
 import com.functrco.sail.adaptors.CartAdaptor
 import com.functrco.sail.databinding.FragmentCartBinding
@@ -20,10 +22,13 @@ import com.functrco.sail.firebase.repository.OrdersRepository
 import com.functrco.sail.models.OrderModel
 import com.functrco.sail.utils.Util
 import com.functrco.sail.viewModels.CartViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.time.LocalDateTime
 import java.util.*
 
@@ -41,6 +46,7 @@ class CartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         _binding = FragmentCartBinding.inflate(inflater, container, false)
         cartViewModel = ViewModelProvider(this)[CartViewModel::class.java]
         user = FirebaseAuth.getInstance().currentUser
@@ -48,11 +54,16 @@ class CartFragment : Fragment() {
         binding.orderButton.setOnClickListener {
             handleMakeOrder()
         }
-
         setCart()
         observeCart()
-
         return binding.root
+    }
+
+    override fun onStart() {
+        super.onStart()
+        if (user != null) {
+            cartViewModel.getAll(user!!.uid)
+        }
     }
 
     // insert orders in the database, delete cart and redirect user to the order page
@@ -68,31 +79,29 @@ class CartFragment : Fragment() {
                         "Progress",
                         cartItem.quantity,
                         Date().toString(),
-                        30
+                        30,
+                        false
                     )
                 )
             }
-            GlobalScope.launch {
-                // insert each cart Items as an order
-                OrdersRepository().insertAll(orders)
 
-                // delete cart
-                CartRepository().delete(user?.uid!!)
+            if(orders.size > 0) {
+                GlobalScope.launch {
+                    // insert each cart Items as an order
+                    OrdersRepository().insertAll(orders)
 
-                // navigate to the order page
-                performNoBackStackTransaction("order_fragment", OrderFragment())
+                    // delete cart
+                    CartRepository().delete(user?.uid!!)
+
+                    withContext(Dispatchers.Main){
+                        // navigate to the order page
+                        val action = CartFragmentDirections.actionCartFragmentToOrdersFragment()
+                        findNavController().navigate(action)
+                    }
+                }
             }
         }
     }
-
-    private fun performNoBackStackTransaction(tag: String, fragment: Fragment) {
-        activity?.supportFragmentManager
-            ?.beginTransaction()
-            ?.replace(R.id.fragmentContainer, fragment, tag)
-            ?.commit()
-    }
-
-
 
     override fun onStop() {
         super.onStop()
@@ -137,10 +146,6 @@ class CartFragment : Fragment() {
                 Log.d(TAG, "observeCarts(): null")
             }
         })
-
-        if (user != null) {
-            cartViewModel.getAll(user!!.uid)
-        }
     }
 
 
@@ -163,5 +168,6 @@ class CartFragment : Fragment() {
 
     companion object {
         private const val TAG = "CartFragment"
+        const val ORDER_FRAGMENT_TAG = "order_fragment"
     }
 }

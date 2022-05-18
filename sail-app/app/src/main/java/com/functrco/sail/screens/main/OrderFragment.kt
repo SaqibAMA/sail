@@ -34,7 +34,6 @@ class OrderFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        Util.removeFragment(activity?.supportFragmentManager, MainActivity.CART_FRAGMENT_TAG)
         _binding = FragmentOrdersBinding.inflate(inflater, container, false)
         orderViewModel = ViewModelProvider(this)[OrderViewModel::class.java]
         user = FirebaseAuth.getInstance().currentUser
@@ -46,6 +45,13 @@ class OrderFragment : Fragment() {
         return binding.root
     }
 
+    override fun onStart() {
+        super.onStart()
+        if(user != null) {
+            orderViewModel.getAll(user?.uid!!)
+        }
+    }
+
 
     // bind order to the recycler view
     private fun setOrders(){
@@ -55,6 +61,7 @@ class OrderFragment : Fragment() {
         ordersAdaptor.onItemClick = {
             val redirectToOrderPage = Intent(activity, ProductPage::class.java)
             redirectToOrderPage.putExtra("product_info", Util.toSerializable(it.product))
+            redirectToOrderPage.putExtra("order_id", it.id)
             startActivity(redirectToOrderPage)
         }
     }
@@ -70,9 +77,6 @@ class OrderFragment : Fragment() {
                 Log.d(TAG, "observeOrders(): null")
             }
         })
-        if(user != null) {
-            orderViewModel.getAll(user?.uid!!)
-        }
     }
 
 

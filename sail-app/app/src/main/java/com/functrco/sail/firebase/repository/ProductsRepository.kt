@@ -26,6 +26,32 @@ class ProductsRepository {
     }
 
 
+    // add a product review, update product's reviews list and return the review id
+    suspend fun addReview(productId: String, review: ReviewModel): String? {
+        val reviewId = ReviewsRepository().insert(review)
+        if (reviewId != null) {
+            val reviewsId = mutableListOf<String>()
+            val reviewsRef = dbReference.child(productId).child("reviewsId")
+            reviewsRef.get().addOnSuccessListener {
+                it.children.forEach { ds ->
+                    ds.getValue<String>()?.let { id ->
+                        reviewsId.add(id)
+                    }
+                }
+            }
+                .addOnFailureListener { e ->
+                    Log.w(TAG, "add review unsuccessful", e.cause)
+
+                }
+                .await()
+
+            reviewsId.add(reviewId)
+            reviewsRef.setValue(reviewsId).await()
+        }
+        return reviewId
+    }
+
+
     // fetch nested details of a product
     private suspend fun getNestedDetails(product: ProductModel?): ProductModel? {
         if (product != null) {
@@ -82,6 +108,7 @@ class ProductsRepository {
 
     suspend fun getAll(): List<ProductModel> {
         val products = mutableListOf<ProductModel>()
+
         dbReference.get().addOnSuccessListener {
             it.children.forEach { dataSnapshot ->
                 dataSnapshot.getValue<ProductModel>().let {
@@ -95,10 +122,10 @@ class ProductsRepository {
             Log.d(TAG, "getAll() failed", it.cause)
         }.await()
 
-
         for (i in products.indices) {
             val product = getNestedDetails(products[i])
-            if(product != null){
+            if (product != null) {
+                product.ordersCount = OrdersRepository().countProductOrders(product.id)
                 products[i] = product
             }
         }
