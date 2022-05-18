@@ -1,14 +1,12 @@
 package com.functrco.sail
 
+
 import android.content.Intent
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.*
-import androidx.annotation.RequiresApi
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,19 +14,12 @@ import com.functrco.sail.firebase.repository.CartRepository
 import com.functrco.sail.firebase.repository.OrdersRepository
 import com.functrco.sail.firebase.repository.ProductsRepository
 import com.functrco.sail.models.*
-import com.functrco.sail.screens.main.CartFragment
 import com.functrco.sail.utils.Util
-import com.functrco.sail.viewModels.CartViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.gson.Gson
 import kotlinx.coroutines.*
-import org.w3c.dom.Text
-import java.io.Serializable
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import java.util.*
-import kotlin.concurrent.fixedRateTimer
 
 class ProductPage : AppCompatActivity() {
 
@@ -184,8 +175,33 @@ class ProductPage : AppCompatActivity() {
         }
     }
 
+
     private fun handleBuyNow() {
         Log.d(TAG, "Buy now")
+        val order = OrderModel(
+            user?.uid!!,
+            product.id,
+            product,
+            "Progress",
+            1,
+            Date().toString(),
+            30,
+            false
+        )
+
+        val redirectToOrderPage = Intent(this, MainActivity::class.java)
+
+        GlobalScope.launch {
+            if (user != null) {
+                // insert each cart Items as an order
+                OrdersRepository().insert(order)
+
+                // navigate to the order page
+                redirectToOrderPage.putExtra("go_to_order_page", true)
+                startActivity(redirectToOrderPage)
+            }
+        }
+
     }
 
     private fun fillReviews() {

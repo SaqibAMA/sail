@@ -1,7 +1,6 @@
 package com.functrco.sail.screens.main
 
 import android.annotation.SuppressLint
-import android.content.Intent
 
 import android.os.Bundle
 import android.util.Log
@@ -14,22 +13,19 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.functrco.sail.MainActivity
-import com.functrco.sail.ProductPage
 import com.functrco.sail.R
+import com.functrco.sail.adaptors.BannerAdapter
 import com.functrco.sail.databinding.FragmentHomeBinding
 import com.functrco.sail.adaptors.CategoryAdaptor
 import com.functrco.sail.viewModels.CategoryViewModel
 import com.functrco.sail.adaptors.ProductsParentAdaptor
-import com.functrco.sail.models.CategoryModel
-import com.functrco.sail.models.ProductModel
-import com.functrco.sail.utils.Util
+import com.functrco.sail.api.ApiClient
+import com.functrco.sail.api.services.BannerService
 import com.functrco.sail.viewModels.ProductsViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.gson.Gson
 import kotlinx.coroutines.*
-import kotlin.concurrent.fixedRateTimer
+import retrofit2.HttpException
 
 
 class HomeFragment : Fragment() {
@@ -41,6 +37,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var categoriesAdaptor: CategoryAdaptor
     private lateinit var productsParentsAdaptor: ProductsParentAdaptor
+    private lateinit var bannersAdaptor: BannerAdapter
     private var user: FirebaseUser? = null
 
     override fun onCreateView(
@@ -52,7 +49,11 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         categoryViewModel = ViewModelProvider(this)[CategoryViewModel::class.java]
         productsParentViewModel = ViewModelProvider(this)[ProductsViewModel::class.java]
+
         user = FirebaseAuth.getInstance().currentUser
+
+        setBanners()
+        fillBanners()
 
         setUserInfo()
 
@@ -65,8 +66,40 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
+    private fun fillBanners() {
+        val service = ApiClient.buildService(BannerService::class.java)
+        CoroutineScope(Dispatchers.IO).launch {
+            val response = service.getBanners()
+            withContext(Dispatchers.Main) {
+                try {
+                    if (response.isSuccessful) {
+                        val banners = response.body()
+                        Log.d(TAG, banners.toString())
+                        bannersAdaptor.setListData(banners!!)
+                        bannersAdaptor.notifyDataSetChanged()
+                    } else {
+                        Log.d(TAG, "Not successful")
+                    }
+                } catch (e: HttpException) {
+                    Log.d(TAG, "Exception ${e.message}")
+                } catch (t: Throwable) {
+                    Log.d(TAG, "Throwable ${t.cause}")
+                }
+            }
+        }
+    }
+
+    // bind banners to the recycler view
+    private fun setBanners() {
+        bannersAdaptor = BannerAdapter()
+        binding.bannersRecyclerView.adapter = bannersAdaptor
+        binding.bannersRecyclerView.layoutManager =
+            LinearLayoutManager(this.context, LinearLayoutManager.HORIZONTAL, false)
+    }
+
+
     private fun setUserInfo() {
-        if(user != null){
+        if (user != null) {
             Glide
                 .with(this)
                 .load(user?.photoUrl)

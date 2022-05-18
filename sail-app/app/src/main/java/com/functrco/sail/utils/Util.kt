@@ -3,7 +3,11 @@ package com.functrco.sail.utils
 import android.app.Activity
 import android.content.res.Resources
 import android.util.TypedValue
+import android.widget.ImageView
+import androidx.annotation.DrawableRes
 import androidx.fragment.app.FragmentManager
+import com.bumptech.glide.Glide
+import com.functrco.sail.R
 import com.functrco.sail.models.CartItemModel
 import com.functrco.sail.models.CartModel
 import com.functrco.sail.models.ReviewModel
@@ -59,5 +63,14 @@ object Util {
             rating /= reviews.size
         }
         return rating
+    }
+
+    fun loadImage(imageUrl: String, imageView: ImageView, defaultResourceId: Int = R.drawable.default_product_img) {
+        Glide
+            .with(imageView.context)
+            .load(imageUrl)
+            .centerCrop()
+            .placeholder(defaultResourceId)
+            .into(imageView)
     }
 }

@@ -99,15 +99,17 @@
                     android:elevation="5dp" />
             </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/saleBannerImgView"
-                android:layout_width="match_parent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="20dp"
+                android:id="@+id/bannersRecyclerView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/sale_banner_img_desc_text"
-                android:src="@drawable/img_sale_banner" />
-
+                android:orientation="horizontal"
+                tools:listitem="@layout/item_banner"
+                android:scrollbarSize="0dp"
+                android:scrollbarStyle="outsideInset"
+                android:scrollbars="horizontal"
+                />
 
             <!--   Category Section     -->
             <LinearLayout

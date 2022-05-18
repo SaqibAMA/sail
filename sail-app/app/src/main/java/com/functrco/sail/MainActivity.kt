@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
-    private var goToCartPage: Boolean = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,17 +39,17 @@ class MainActivity : AppCompatActivity() {
         binding.bottomNavbar.setupWithNavController(navController)
 
         // get product information from the intent
-        goToCartPage = intent.getBooleanExtra("go_to_cart_page", false)
-        navigateToCartPage()
+        navigateToFragment()
     }
 
 
-    private fun navigateToCartPage() {
-        if (goToCartPage) {
-            val action = HomeFragmentDirections.actionHomeFragmentToCartFragment()
+    private fun navigateToFragment() {
+        if (intent.getBooleanExtra("go_to_cart_page", false)) {
             navController.navigate(R.id.action_homeFragment_to_cartFragment)
+        } else if (intent.getBooleanExtra("go_to_order_page", false)) {
+            navController.navigate(R.id.action_homeFragment_to_ordersFragment)
         } else {
-            Log.d(TAG, "do not go to cart page")
+            Log.d(TAG, "no fragment flag received")
         }
     }
 

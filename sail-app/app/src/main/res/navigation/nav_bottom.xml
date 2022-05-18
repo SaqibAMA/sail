@@ -22,6 +22,12 @@
             app:popUpTo="@+id/homeFragment"
             app:popUpToInclusive="true"
             />
+        <action
+            android:id="@+id/action_homeFragment_to_ordersFragment"
+            app:destination="@id/ordersFragment"
+            app:popUpTo="@+id/homeFragment"
+            app:popUpToInclusive="true"
+            />
     </fragment>
 
     <fragment
