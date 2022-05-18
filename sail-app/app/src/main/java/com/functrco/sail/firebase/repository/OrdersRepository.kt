@@ -28,7 +28,7 @@ class OrdersRepository {
 
     // update order isReviewed flag
     suspend fun updateIsOrderReviewed(orderId: String, isReviewed: Boolean) {
-        dbReference.child(orderId).child("reviewed").setValue(isReviewed)
+        dbReference.child(orderId).child("reviewed").setValue(isReviewed).await()
     }
 
 
@@ -71,7 +71,7 @@ suspend fun get(orderId: String?): OrderModel? {
             Log.d(TAG, "get failed", it.cause)
         }.await()
     }
-
+    
     Log.d(TAG, order.toString())
     return order
 }

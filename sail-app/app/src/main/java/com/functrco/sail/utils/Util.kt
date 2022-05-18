@@ -33,13 +33,6 @@ object Util {
         }
     }
 
-
-    fun removeFragment(supportFragmentManager: FragmentManager?, fragmentTag: String) {
-        val fragment = supportFragmentManager?.findFragmentByTag(fragmentTag)
-        if (fragment != null) supportFragmentManager.beginTransaction().remove(fragment).commit()
-
-    }
-
     // calculate total payment of a cart
     fun calculateTotalPayment(cart: CartModel): Float {
         var totalPayment = 0F

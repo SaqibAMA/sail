@@ -19,6 +19,8 @@ import com.functrco.sail.adaptors.CartAdaptor
 import com.functrco.sail.databinding.FragmentCartBinding
 import com.functrco.sail.firebase.repository.CartRepository
 import com.functrco.sail.firebase.repository.OrdersRepository
+import com.functrco.sail.models.CartItemModel
+import com.functrco.sail.models.CartModel
 import com.functrco.sail.models.OrderModel
 import com.functrco.sail.utils.Util
 import com.functrco.sail.viewModels.CartViewModel
@@ -93,10 +95,11 @@ class CartFragment : Fragment() {
                     // delete cart
                     CartRepository().delete(user?.uid!!)
 
+                    cartAdaptor.carts = mutableListOf()
+
                     withContext(Dispatchers.Main){
                         // navigate to the order page
-                        val action = CartFragmentDirections.actionCartFragmentToOrdersFragment()
-                        findNavController().navigate(action)
+                        findNavController().navigate(R.id.action_cartFragment_to_ordersFragment)
                     }
                 }
             }
@@ -105,11 +108,10 @@ class CartFragment : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        Log.d(TAG, "Here hello")
         if (user != null) {
             Log.d(TAG, cartAdaptor.carts.size.toString())
             GlobalScope.launch {
-                cartViewModel.insert(user!!.uid, cartViewModel.getObserver().value)
+                cartViewModel.insert(user!!.uid, CartModel(cartAdaptor.carts))
             }
         }
 
@@ -153,9 +155,7 @@ class CartFragment : Fragment() {
     private fun updateTotalPaymentText() {
         cartViewModel.getObserver().value.let {
             binding.cartTotalPaymentTextView.text = Util.toCurrency(it?.let { it1 ->
-                Util.calculateTotalPayment(
-                    it1
-                )
+                Util.calculateTotalPayment(it1)
             })
         }
     }

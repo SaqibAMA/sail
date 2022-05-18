@@ -20,6 +20,10 @@ import com.functrco.sail.adaptors.ProductAdaptor
 import com.functrco.sail.models.ProductModel
 import com.functrco.sail.viewModels.ProductViewModel
 import com.functrco.sail.utils.Util
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.interstitial.InterstitialAd
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
 
 class SearchFragment : Fragment() {
 
@@ -29,6 +33,10 @@ class SearchFragment : Fragment() {
     private lateinit var productViewModel: ProductViewModel
     private val productsAdaptor = ProductAdaptor()
     private var products = listOf<ProductModel>()
+
+    private var mInterstitialAd: InterstitialAd? = null
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +52,9 @@ class SearchFragment : Fragment() {
             binding.searchProduct.setQuery(categoryName, false)
         }
 
+        // setup AdmobAd
+        setupAdmobAd()
+
         setSearchView()
 
         setProducts()
@@ -52,7 +63,7 @@ class SearchFragment : Fragment() {
         return binding.root
     }
 
-    fun isProductMatched(query: String, product: ProductModel): Boolean {
+    private fun isProductMatched(query: String, product: ProductModel): Boolean {
         return product.category?.name?.contains(query, ignoreCase = true) == true ||
                 product.brandName?.contains(query, ignoreCase = true) == true ||
                 product.name?.contains(query, ignoreCase = true) == true ||
@@ -91,6 +102,24 @@ class SearchFragment : Fragment() {
         })
     }
 
+    private fun setupAdmobAd() {
+        val adRequest = AdRequest.Builder().build()
+
+        InterstitialAd.load(this.requireContext(),"ca-app-pub-3940256099942544/1033173712", adRequest,
+            object : InterstitialAdLoadCallback() {
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                Log.d(TAG, adError.message)
+                mInterstitialAd = null
+            }
+
+            override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                Log.d(TAG, "Ad was loaded.")
+                mInterstitialAd = interstitialAd
+            }
+        })
+    }
+
+
     // bind categories to the recycler view
     private fun setProducts() {
         binding.productsRecyclerView.adapter = productsAdaptor
@@ -107,6 +136,13 @@ class SearchFragment : Fragment() {
             val redirectToProductPage = Intent(activity, ProductPage::class.java)
             redirectToProductPage.putExtra("product_info", Util.toSerializable(it))
             startActivity(redirectToProductPage)
+
+            // show ad
+            if (mInterstitialAd != null) {
+                mInterstitialAd?.show(this.requireActivity())
+            } else {
+                Log.d(TAG, "The interstitial ad wasn't ready yet.")
+            }
         }
     }
 

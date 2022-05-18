@@ -79,6 +79,8 @@ class ProductsRepository {
                 }
                 product.reviews = reviews
             }
+
+            product.ordersCount = OrdersRepository().countProductOrders(product.id)
         }
         return product
     }

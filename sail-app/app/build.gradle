@@ -84,6 +84,9 @@ dependencies {
 
     // Gson
     implementation 'com.google.code.gson:gson:2.8.9'
+
+    // admob
+    implementation 'com.google.android.gms:play-services-ads:20.6.0'
 }
 
 apply plugin: 'com.google.gms.google-services'

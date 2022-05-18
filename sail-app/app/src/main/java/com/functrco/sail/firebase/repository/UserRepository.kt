@@ -27,6 +27,7 @@ class UserRepository {
         return users
     }
 
+    // to get a user's information using his id
     suspend fun get(userId: String): UserModel? {
         var user: UserModel? = null
 
@@ -36,9 +37,10 @@ class UserRepository {
                 user?.id = it.key
             }
             .addOnFailureListener { e ->
-                Log.w(TAG, "getAll:onFailure", e.cause)
+                Log.w(TAG, "get:onFailure", e.cause)
             }.await()
 
+        Log.d(TAG, user.toString())
         return user
     }
 
