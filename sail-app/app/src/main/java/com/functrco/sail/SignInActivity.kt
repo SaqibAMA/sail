@@ -1,6 +1,5 @@
 package com.functrco.sail
 
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.net.ConnectivityManager
@@ -8,8 +7,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
-import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import android.widget.TextView
+import com.functrco.sail.models.UserModel
+import com.functrco.sail.firebase.repository.UserRepository
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -18,6 +18,8 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.lang.Exception
 
 
@@ -137,6 +139,13 @@ class SignInActivity : AppCompatActivity() {
                 val firebaseUser = auth.currentUser
                 val uid = firebaseUser?.uid
                 val email = firebaseUser?.email
+
+                // add user to the database
+                GlobalScope.launch {
+                    UserRepository().insert(uid!!, UserModel(firebaseUser.displayName, firebaseUser.phoneNumber, email, firebaseUser.photoUrl.toString()))
+                }
+
+
 
                 Log.d(TAG, "firebaseWithGoogleAccount: $uid")
                 Log.d(TAG, "firebaseWithGoogleAccount: $email")

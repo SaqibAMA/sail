@@ -44,7 +44,7 @@
 
                     <TextView
                         android:id="@+id/productTitleTextView"
-                        android:layout_width="wrap_content"
+                        android:layout_width="125dp"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/dm_serif_display"
                         android:lines="1"
@@ -119,6 +119,7 @@
                         android:textSize="@dimen/caption" />
 
                     <TextView
+                        android:id="@+id/productQuantityTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"

@@ -37,15 +37,36 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/productTitleTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/dm_serif_display"
-                    android:lines="1"
-                    android:text="@string/default_product_title"
-                    android:textColor="@color/axolotl_200"
-                    android:textSize="@dimen/h4" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/productTitleTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dm_serif_display"
+                        android:lines="1"
+                        android:text="@string/default_product_title"
+                        android:textColor="@color/axolotl_200"
+                        android:textSize="@dimen/h4"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        tools:ignore="RelativeOverlap" />
+
+
+                    <ImageButton
+                        android:id="@+id/productDeleteButton"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/ic_delete"
+                        android:backgroundTint="@color/axolotl_100"
+                        android:contentDescription="@string/app_name"
+                        tools:ignore="TouchTargetSizeCheck" />
+
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/productDescriptionTextView"
@@ -56,7 +77,8 @@
                     android:lines="2"
                     android:text="@string/default_review"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/caption" />
+                    android:textSize="@dimen/caption"
+                    tools:ignore="TextContrastCheck" />
 
             </LinearLayout>
 
@@ -88,7 +110,7 @@
                     app:cardCornerRadius="5dp"
                     app:cardElevation="0dp"
                     app:cardBackgroundColor="@color/axolotl_10"
-                    >
+                    tools:ignore="RelativeOverlap">
 
                     <LinearLayout
                         android:layout_width="wrap_content"

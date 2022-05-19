@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screens.main.cart.CartFragment">
-
+    tools:context=".screens.main.CartFragment"
+    android:background="@color/white"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -84,6 +85,7 @@
                         android:textStyle="bold" />
 
                     <TextView
+                        android:id="@+id/cartTotalPaymentTextView"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/default_product_price"
@@ -92,6 +94,7 @@
                 </LinearLayout>
 
                 <Button
+                    android:id="@+id/orderButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
