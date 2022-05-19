@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".screens.main.home.HomeFragment">
+    tools:context=".screens.main.HomeFragment"
+    android:background="@color/white"
+    >
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -27,43 +29,87 @@
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
-                <SearchView
-                    android:id="@+id/searchProduct"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
-                    android:layout_gravity="start"
-                    android:background="@drawable/outline_search"
-                    android:iconifiedByDefault="false"
-                    android:maxWidth="290dp"
-                    android:queryBackground="@android:color/transparent"
-                    android:queryHint="Search here"
-                    android:searchIcon="@drawable/ic_search" />
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_centerVertical="true"
+                    >
 
-                <ImageButton
-                    style="@style/Widget.MaterialComponents.Button"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardElevation="0dp"
+                        app:cardCornerRadius="10dp"
+                        >
+
+                        <ImageView
+                            android:id="@+id/userDisplayImage"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_avatar_fg"
+                            android:contentDescription="@string/default_user_image_description" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginStart="10dp"
+                        android:gravity="center_vertical"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/default_greeting_message"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/caption"
+                            />
+
+                        <TextView
+                            android:id="@+id/userDisplayName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/default_user_display_name"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/h5"
+                            android:textStyle="bold"
+                            />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <ImageView
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:layout_gravity="end"
-                    android:background="@drawable/background_circle"
+                    android:src="@mipmap/ic_launcher_round"
                     android:contentDescription="@string/ic_profile_text"
-                    android:elevation="5dp"
-                    android:src="@drawable/ic_profile"
-                    app:backgroundTint="@color/extra_light_gray" />
+                    android:elevation="5dp" />
             </RelativeLayout>
 
-            <ImageView
-                android:id="@+id/saleBannerImgView"
-                android:layout_width="match_parent"
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="20dp"
+                android:id="@+id/bannersRecyclerView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="20dp"
-                android:adjustViewBounds="true"
-                android:contentDescription="@string/sale_banner_img_desc_text"
-                android:src="@drawable/img_sale_banner" />
-
+                android:orientation="horizontal"
+                tools:listitem="@layout/item_banner"
+                android:scrollbarSize="0dp"
+                android:scrollbarStyle="outsideInset"
+                android:scrollbars="horizontal"
+                />
 
             <!--   Category Section     -->
             <LinearLayout

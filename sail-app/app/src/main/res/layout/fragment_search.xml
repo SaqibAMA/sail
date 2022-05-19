@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".screens.main.home.HomeFragment">
+    tools:context=".screens.main.HomeFragment"
+    android:background="@color/white"
+    >
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -32,9 +34,6 @@
                 android:queryBackground="@android:color/transparent"
                 android:queryHint="Search here"
                 android:searchIcon="@drawable/ic_search" />
-
-
-
 
 
             <!--   Products     -->

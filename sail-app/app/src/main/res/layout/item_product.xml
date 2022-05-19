@@ -69,33 +69,41 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
+                    <RatingBar
+                        android:id="@+id/productRatingStars"
                         android:layout_width="15dp"
                         android:layout_height="15dp"
-                        android:layout_gravity="end"
-                        android:contentDescription="@string/rating_star_image_desc"
-                        android:src="@drawable/ic_star_fg" />
+                        style="@style/Widget.AppCompat.RatingBar.Small"
+                        android:numStars="1"
+                        android:rating="0.5"
+                        android:stepSize="0.1"
+                        android:isIndicator="true"
+                        android:progressTint="@color/axolotl_100"
+                        android:layout_gravity="center_horizontal"
+                        />
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
                         <TextView
+                            android:id="@+id/productRating"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins"
                             android:paddingStart="2dp"
-                            android:text="4.3"
-                            android:textColor="@color/yellow"
+                            android:text="@string/default_product_rating"
+                            android:textColor="@color/axolotl_100"
                             android:textSize="@dimen/caption"
                             tools:ignore="RtlSymmetry" />
 
                         <TextView
+                            android:id="@+id/productOrdersCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins"
                             android:paddingStart="2dp"
-                            android:text="(104)"
+                            android:text="@string/default_product_orders_count"
                             android:textColor="@color/black"
                             android:textSize="@dimen/caption"
                             tools:ignore="RtlSymmetry" />

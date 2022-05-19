@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <ImageButton
-        android:id="@+id/product_page_back_btn"
+        android:id="@+id/top_nav_back_btn"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:background="@drawable/ic_back_fg" />
