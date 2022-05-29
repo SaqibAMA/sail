@@ -6,7 +6,7 @@ import okhttp3.OkHttpClient
 
 object ApiClient {
 
-    private const val BASE_URL = "http://10.0.2.2:3000/"
+    private const val BASE_URL = "https://banner-link-api.herokuapp.com/"
 
     private val okHttp = OkHttpClient.Builder()
 
