@@ -1,9 +1,11 @@
 package com.functrco.sail.utils
 
 import android.app.Activity
+import android.content.Context
 import android.content.res.Resources
 import android.util.TypedValue
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.annotation.DrawableRes
 import androidx.fragment.app.FragmentManager
 import com.bumptech.glide.Glide
@@ -72,5 +74,12 @@ object Util {
             .centerCrop()
             .placeholder(defaultResourceId)
             .into(imageView)
+    }
+
+
+    fun showToast(context: Context?, msg: Any?) {
+        if (msg != null) {
+            Toast.makeText(context, msg.toString(), Toast.LENGTH_SHORT).show()
+        }
     }
 }

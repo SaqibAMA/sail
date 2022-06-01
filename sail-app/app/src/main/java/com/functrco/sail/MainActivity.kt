@@ -1,5 +1,7 @@
 package com.functrco.sail
 
+import android.bluetooth.BluetoothAdapter
+import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.functrco.sail.databinding.ActivityMainBinding
 import com.functrco.sail.models.ProductModel
+import com.functrco.sail.receivers.BluetoothBroadcastReceiver
 import com.functrco.sail.screens.main.CartFragment
 import com.functrco.sail.screens.main.HomeFragmentDirections
 import com.functrco.sail.utils.Util
@@ -25,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
     private lateinit var binding: ActivityMainBinding
-
+    private lateinit var bluetoothReceiver: BluetoothBroadcastReceiver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,11 +38,24 @@ class MainActivity : AppCompatActivity() {
         // initialize Admob
         MobileAds.initialize(this) {}
 
+        // register broadcast receiver
+        registerBroadcastReceiver()
+
+
         navController = findNavController(R.id.fragmentContainer)
         binding.bottomNavbar.setupWithNavController(navController)
 
         // get product information from the intent
         navigateToFragment()
+    }
+
+    private fun registerBroadcastReceiver() {
+        registerBluetoothBroadcastReceiver()
+    }
+
+    private fun registerBluetoothBroadcastReceiver() {
+        bluetoothReceiver = BluetoothBroadcastReceiver()
+        registerReceiver(bluetoothReceiver, IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED))
     }
 
 
@@ -51,6 +67,15 @@ class MainActivity : AppCompatActivity() {
         } else {
             Log.d(TAG, "no fragment flag received")
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterBroadcastReceivers()
+    }
+
+    private fun unregisterBroadcastReceivers() {
+        unregisterReceiver(bluetoothReceiver)
     }
 
 
